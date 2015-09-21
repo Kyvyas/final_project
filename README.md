@@ -1,4 +1,3 @@
-Final Project
 #I'm in!
 ---
 
