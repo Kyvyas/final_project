@@ -7,7 +7,7 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :active_participants
       t.time :date
       t.text :category
-      t.text :type
+      t.text :tag
 
       t.timestamps null: false
     end

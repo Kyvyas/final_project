@@ -1,0 +1,6 @@
+%section
+  - if current_user
+    =link_to "Add an activity", new_user_activity_path(current_user)
+    - if @activities.any?
+      - @activities.each do | activity |
+        %h2= activity.description
