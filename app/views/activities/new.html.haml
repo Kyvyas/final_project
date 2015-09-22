@@ -14,6 +14,7 @@
   = f.number_field :participants, :placeholder => "People needed"
   = f.date_field :date, :placeholder => "Date"
   = f.time_field :time, :placeholder => "Time"
+  = f.label :category
   = f.select :category, ['Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife']
-  = f.text_field :type, :placeholder => "Activity e.g.'Football'"
-  = f.submit
+  = f.text_field :tag, :placeholder => "Activity e.g.'Football'"
+  = f.submit "Let's do it!"

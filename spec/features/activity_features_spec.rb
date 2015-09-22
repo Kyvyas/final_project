@@ -21,9 +21,9 @@ feature 'activity' do
     fill_in "People needed", with: "6"
     fill_in "Date", with: "06/10/2016"
     fill_in "Time", with: "18:00"
-    find "Category", with: "Sports"
-    fill_in "Type", with: "Football"
-    click_link("Let's do it")
+    select "Sport", from: "Category"
+    fill_in "Activity e.g.'Football'", with: "Football"
+    click_on("Let's do it")
     expect(page).to have_content("Your activity has been posted! Good luck!")
     expect(page).to have_content("Football in the park, yea")
   end
