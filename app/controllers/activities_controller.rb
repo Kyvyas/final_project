@@ -15,6 +15,10 @@ class ActivitiesController < ApplicationController
     redirect_to '/'
   end
 
+  def show
+    @activity = Activity.find(params[:id])
+  end
+
   def activity_params
     params.require(:activity).permit(:title, :description, :location, :participants, :date, :time, :category, :tag)
   end

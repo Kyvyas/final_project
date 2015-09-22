@@ -16,4 +16,19 @@ module FeatureHelpers
     fill_in :user_password, with: user.password
     click_button 'Log in'
   end
+
+  def create_activity(activity)
+    visit '/'
+    click_link 'Add an activity'
+    fill_in "Activity Name", with: activity.name
+    fill_in "Describe your Activity", with: activity.description
+    fill_in "Location", with: activity.location
+    fill_in "People needed", with: activity.people_needed
+    fill_in "Date", with: activity.date
+    fill_in "Time", with: activity.time
+    select activity.category, from: "Category"
+    fill_in "Activity e.g.'Football'", with: activity.tag
+    click_on "Let's do it"
+  end
+
 end

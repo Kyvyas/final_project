@@ -15,7 +15,7 @@ feature 'activity' do
   scenario 'user creates a new activity' do
     visit '/'
     click_link("Add an activity")
-    fill_in "Activity Name", with: "Football!"
+    fill_in "Activity Name", with: "Football"
     fill_in "Describe your Activity", with: "Football in the park, yea"
     fill_in "Location", with: "Regent's Park"
     fill_in "People needed", with: "6"
@@ -25,7 +25,18 @@ feature 'activity' do
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
     expect(page).to have_content("Your activity has been posted! Good luck!")
-    expect(page).to have_content("Football in the park, yea")
+    expect(page).to have_content("Football")
+  end
+
+  scenario 'user can participate in an activity' do
+    visit '/'
+    activity = create(:activity)
+    click_on("Sign out")
+    user2 = create(:user_2)
+    sign_in_as(user2)
+    click_on('Football')
+    click_on("I'm in!")
+    expect(page).to have_content("People needed: 5")
   end
 
 end
