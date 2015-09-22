@@ -1,5 +1,6 @@
 class Attendance < ActiveRecord::Base
 
-  belongs_to :user, :activity
+  belongs_to :user
+  belongs_to :activity
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922113804) do
+ActiveRecord::Schema.define(version: 20150922170145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,18 +20,23 @@ ActiveRecord::Schema.define(version: 20150922113804) do
     t.text     "description"
     t.text     "location"
     t.integer  "participants"
-    t.integer  "active_participants"
+    t.integer  "active_participants", default: 0
     t.time     "date"
     t.text     "category"
     t.text     "tag"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.text     "title"
     t.time     "time"
     t.integer  "user_id"
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "activity_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -56,4 +61,6 @@ ActiveRecord::Schema.define(version: 20150922113804) do
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
   add_foreign_key "activities", "users"
+  add_foreign_key "attendances", "activities"
+  add_foreign_key "attendances", "users"
 end

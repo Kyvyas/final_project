@@ -35,6 +35,7 @@ feature 'activity' do
     user2 = create(:user_2)
     sign_in_as(user2)
     click_on('Football')
+    expect(page).to have_content("People needed: 6")
     click_on("I'm in!")
     expect(page).to have_content("People needed: 5")
   end

@@ -1,10 +1,11 @@
 = @activity.title
 = @activity.description
 = @activity.location
-= @activity.participants
+People needed:
+= @people_needed
 = @activity.active_participants
 = @activity.date
 = @activity.category
 = @activity.tag
 
-= link_to "I'm in", new_activity_attendee(@activity)
+= link_to "I'm in!", new_activity_attendance_path(@activity)

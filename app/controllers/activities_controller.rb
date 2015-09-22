@@ -17,7 +17,9 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    @people_needed = @activity.participants - @activity.active_participants
   end
+
 
   def activity_params
     params.require(:activity).permit(:title, :description, :location, :participants, :date, :time, :category, :tag)
