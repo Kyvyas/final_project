@@ -1,0 +1,19 @@
+- if @activity.errors.any?
+  %section#errors
+    %h2
+      = pluralize @activity.errors.count, "error"
+      prohibited this activity from being saved:
+    %ul
+      - @activity.errors.full_messages.each do |message|
+        %li= message
+
+= form_for [@user, @activity], html: { multipart: true } do |f|
+  = f.text_field :title, :placeholder => "Activity Name"
+  = f.text_field :description, :placeholder => "Describe your Activity"
+  = f.text_field :location, :placeholder => "Location"
+  = f.number_field :participants, :placeholder => "People needed"
+  = f.date_field :date, :placeholder => "Date"
+  = f.time_field :time, :placeholder => "Time"
+  = f.select :category, ['Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife']
+  = f.text_field :type, :placeholder => "Activity e.g.'Football'"
+  = f.submit
