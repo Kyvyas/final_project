@@ -28,7 +28,7 @@ feature 'activity' do
     expect(page).to have_content("Football")
   end
 
-  scenario 'user can participate in an activity' do
+  scenario 'user can sign up to an activity' do
     visit '/'
     activity = create(:activity)
     click_on("Sign out")
@@ -71,6 +71,18 @@ feature 'activity' do
     sign_in_as(user3)
     click_on("Tennis")
     expect(page).not_to have_content("I'm in")
+  end
+
+  scenario "users cannot sign up to an activity more than once" do
+    visit '/'
+    activity = create(:activity)
+    click_on("Sign out")
+    user2 = create(:user_2)
+    sign_in_as(user2)
+    click_on('Football')
+    click_on("I'm in!")
+    click_on("I'm in!")
+    expect(page).to have_content("You've already signed up to this - awesome!")
   end
 
   scenario "user cannot add activity with negative participants" do
