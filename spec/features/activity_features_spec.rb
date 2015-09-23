@@ -73,4 +73,39 @@ feature 'activity' do
     expect(page).not_to have_content("I'm in")
   end
 
+  scenario "user cannot add activity with negative participants" do
+    visit '/'
+    click_link("Add an activity")
+    fill_in "Activity Name", with: "Football"
+    fill_in "Describe your Activity", with: "Football in the park, yea"
+    fill_in "Location", with: "Regent's Park"
+    fill_in "People needed", with: "-2"
+    fill_in "Date", with: "06/10/2016"
+    fill_in "Time", with: "18:00"
+    select "Sport", from: "Category"
+    fill_in "Activity e.g.'Football'", with: "Football"
+    click_on("Let's do it")
+    expect(page).to have_content("Please select a valid number of participants")
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end
