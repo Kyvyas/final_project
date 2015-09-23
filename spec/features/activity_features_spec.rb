@@ -40,4 +40,21 @@ feature 'activity' do
     expect(page).to have_content("People needed: 5")
   end
 
+  scenario 'user cannot sign up for activity if it is full' do
+    visit '/'
+    activity1 = create(:activity1)
+    click_on("Sign out")
+    user2 = create(:user_2)
+    sign_in_as(user2)
+    click_on('Tennis')
+    click_on("I'm in!")
+    click_on('Sign out')
+    user3 = create(:user_3)
+    sign_in_as(user3)
+    click_on("Tennis")
+    expect(page).to have_content("People needed: 0")
+    click_on("I'm in")
+    expect(page).to have_content("Sorry, this activity is full")
+  end
+
 end
