@@ -119,7 +119,8 @@ feature 'activity' do
 
   scenario "users cannot sign up to an activity more than once" do
     visit '/'
-    activity = create(:activity)
+    activity = build(:activity)
+    create_activity(activity)
     click_on("Sign out")
     user2 = create(:user_2)
     sign_in_as(user2)
