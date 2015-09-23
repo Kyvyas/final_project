@@ -10,8 +10,12 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = current_user.activities.create(activity_params)
-    flash[:notice] = "Your activity has been posted! Good luck!"
+    @activity = current_user.activities.new(activity_params)
+    if @activity.save
+      flash[:notice] = "Your activity has been posted! Good luck!"
+    else
+      flash[:notice] = "Please select a valid number of participants"
+    end
     redirect_to '/'
   end
 
