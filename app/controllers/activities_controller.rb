@@ -14,7 +14,8 @@ class ActivitiesController < ApplicationController
     if @activity.save
       flash[:notice] = "Your activity has been posted! Good luck!"
     else
-      flash[:notice] = "Please select a valid number of participants"
+      flash[:notice] = @activity.errors.full_messages.to_sentence
+   #   flash[:notice] = "Please select a valid number of participants"
     end
     redirect_to '/'
   end

@@ -30,7 +30,8 @@ feature 'activity' do
 
   scenario 'user can participate in an activity' do
     visit '/'
-    activity = create(:activity)
+    activity = build(:activity)
+    create_activity(activity)
     click_on("Sign out")
     user2 = create(:user_2)
     sign_in_as(user2)
@@ -58,9 +59,52 @@ feature 'activity' do
     expect(page).to have_content("Sorry, this activity is full")
   end
 
+  scenario 'user cannot make an activity without a title' do
+    visit '/'
+    activity = build(:activity, title: "")
+    create_activity(activity)
+    expect(page).to have_content("Title can't be blank")
+  end
+
+  scenario 'user cannot make an activity without a location' do
+    visit '/'
+    activity = build(:activity, location: "")
+    create_activity(activity)
+    expect(page).to have_content("Location can't be blank")
+  end
+
+  scenario 'user cannot make an activity without a category' do
+    visit '/'
+    activity = build(:activity, category: "Select")
+    create_activity(activity)
+    expect(page).to have_content("Must choose category")
+  end
+
+  scenario 'user cannot make an activity without a tag' do
+    visit '/'
+    activity = build(:activity, tag: "")
+    create_activity(activity)
+    expect(page).to have_content("Tag can't be blank")
+  end
+
+  scenario 'user cannot make an activity without a time' do
+    visit '/'
+    activity = build(:activity, time: "")
+    create_activity(activity)
+    expect(page).to have_content("Time can't be blank")
+  end
+
+  scenario 'user cannot make an activity without a date' do
+    visit '/'
+    activity = build(:activity, date: "")
+    create_activity(activity)
+    expect(page).to have_content("Date can't be blank")
+  end
+
   scenario "user does not see the 'I'm in' button if the activity is full" do
     visit '/'
-    activity1 = create(:activity1)
+    activity1 = build(:activity1)
+    create_activity(activity1)
     click_on("Sign out")
     user2 = create(:user_2)
     sign_in_as(user2)
@@ -85,21 +129,25 @@ feature 'activity' do
     select "Sport", from: "Category"
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
-    expect(page).to have_content("Please select a valid number of participants")
+    expect(page).to have_content("must be greater than 0")
   end
 
 
   context "activities need to be ordered by time at which they occur" do
     scenario 'activities are displayed in order ascending by time' do
-      activity = create(:activity)
-      activity2 = create(:activity2)
+      activity = build(:activity)
+      create_activity(activity)
+      activity2 = build(:activity2)
+      create_activity(activity2)
       visit '/'
       expect(page).to have_content("Football Tennis")
     end
 
     scenario 'cannot be displayed in the wrong order' do
-      activity2 = create(:activity2)
-      activity = create(:activity)
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      activity = build(:activity)
+      create_activity(activity)
       visit '/'
       expect(page).to have_content("Football Tennis")
     end
