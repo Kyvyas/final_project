@@ -8,4 +8,5 @@ People needed:
 = @activity.category
 = @activity.tag
 
-= link_to "I'm in!", new_activity_attendance_path(@activity)
+- if @people_needed > 0
+  = link_to "I'm in!", new_activity_attendance_path(@activity)
