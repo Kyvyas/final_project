@@ -4,6 +4,7 @@
   "description": "![alt tag](https://travis-ci.org/Kyvyas/final_project.svg)",
   "main": "Gruntfile.js",
   "dependencies": {
+    "bower": "^1.5.2",
     "grunt": "^0.4.5"
   },
   "devDependencies": {
