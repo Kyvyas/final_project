@@ -2,7 +2,6 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.order(date: :asc)
-    p @activities
   end
 
   def new
