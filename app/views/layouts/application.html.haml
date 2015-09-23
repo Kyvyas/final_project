@@ -2,6 +2,11 @@
 %html
   %head
     %title AppName
+    %meta{:charset => "utf-8"}
+    %link{:href => "bower_components/bootstrap/dist/css/bootstrap.css", :rel => "stylesheet"}
+    %script{:src => "bower_components/jquery/dist/jquery.js"}
+    %script{:src => "bower_components/angular/angular.js"}
+    %script{:src => "bower_components/angular-resource/angular-resource.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags

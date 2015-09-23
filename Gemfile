@@ -28,6 +28,8 @@ gem 'devise'
 gem 'haml-rails'
 gem 'omniauth-facebook'
 gem 'shoulda'
+gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails' #for bootstrap UI
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
