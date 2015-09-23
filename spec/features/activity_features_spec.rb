@@ -87,7 +87,8 @@ feature 'activity' do
     click_on("Let's do it")
     expect(page).to have_content("Please select a valid number of participants")
   end
-  
+
+
   context "activities need to be ordered by time at which they occur" do
     scenario 'activities are displayed in order ascending by time' do
       activity = create(:activity)
