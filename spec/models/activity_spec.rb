@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
+
   it { is_expected.to belong_to :user }
   it { is_expected.to have_many :attendances }
   it { should validate_numericality_of(:participants).is_greater_than(0).with_message(/must be greater than 0/) }
