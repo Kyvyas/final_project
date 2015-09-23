@@ -17,6 +17,8 @@ before_script:
   - webdriver-manager update
   - sleep 3
 
-script: bundle exec rspec spec npm test --single-run
+script:
+ - bundle exec rspec spec
+ - npm test --single-run
 
 
