@@ -8,7 +8,8 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'factory_girl_rails'
 require 'shoulda'
-require_relative './support/helpers.rb'
+require_relative './support/database_cleaner'
+require_relative './support/helpers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
