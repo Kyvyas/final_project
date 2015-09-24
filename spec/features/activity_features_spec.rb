@@ -165,4 +165,17 @@ feature 'activity' do
       expect(page).to have_content("Football Tennis")
     end
   end
+
+  scenario "user can filter activities by category" do
+    activity = build(:activity)
+    create_activity(activity)
+    activity3 = build(:activity3)
+    create_activity(activity3)
+    visit '/'
+    select "Sports", from: "Category"
+    click_on("Filter")
+    expect(page).to have_content("Football")
+    expect(page).not_to have_content("Tom Jones Concert")
+  end
+
 end
