@@ -28,6 +28,7 @@ gem 'devise'
 gem 'haml-rails'
 gem 'omniauth-facebook'
 gem 'shoulda'
+gem 'geocoder'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

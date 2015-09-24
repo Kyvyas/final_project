@@ -26,6 +26,38 @@ class ActivitiesController < ApplicationController
     @people_needed = @activity.participants - @activity.active_participants
   end
 
+  def location
+    p "running method LOCATION"
+    @activities = Activity.all
+    @geojson = Array.new
+
+    @activities.each do |activity|
+      @geojson << {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [activity.longitude, activity.latitude]
+        },
+        properties: {
+          name: activity.title,
+          address: activity.location,
+          :'marker-color' => '#00607d',
+          :'marker-symbol' => 'circle',
+          :'marker-size' => 'medium'
+          }
+        }
+        p @geojson
+    end
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }  # respond with the created JSON object
+    end
+  end
+  #
+  # def loc_param
+  #
+  # end
+
 
   def activity_params
     params.require(:activity).permit(:title, :description, :location, :participants, :date, :time, :category, :tag)

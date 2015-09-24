@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get 'activity/filter' => 'activity#filter'
 
+  get 'activity/map' => 'activities#location'
 
 
 
