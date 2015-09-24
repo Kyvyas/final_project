@@ -2,6 +2,7 @@ class Activity < ActiveRecord::Base
   belongs_to :user
   has_many :attendances
   has_many :attendees, through: :attendances, source: :user
+  before_create :check_params
 
   validates_numericality_of :participants, greater_than: 0, message: "must be greater than 0"
   validates_numericality_of :active_participants, greater_than_or_equal_to: 0
@@ -11,5 +12,9 @@ class Activity < ActiveRecord::Base
 
   def has_spaces?
     self.active_participants < self.participants
+  end
+
+  def check_params
+    self.tag.downcase!
   end
 end

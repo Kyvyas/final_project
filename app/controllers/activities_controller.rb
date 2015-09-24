@@ -1,7 +1,15 @@
 class ActivitiesController < ApplicationController
 
   def index
-    params["Category"] ? @activities = Activity.where(category: params["Category"]) : @activities = Activity.order(date: :asc)
+    @tag = params["Tag"]
+    if @tag
+      @activities = Activity.where(tag: @tag.downcase)
+      render json: {new_activity_list: @activities}
+    elsif params["Category"]
+      @activities = Activity.where(category: params["Category"])
+    else
+      @activities = Activity.order(date: :asc)
+    end
     @categories = Category.all
   end
 
