@@ -10,3 +10,10 @@ People needed:
 
 - if @people_needed > 0
   = link_to "I'm in!", new_activity_attendance_path(@activity)
+
+- if @activity.attendees.include?(current_user)
+  = link_to "Rate activity", new_activity_rating_path(@activity)
+
+- if @activity.ratings.any?
+  %p Activity Rating:
+  = @activity.ratings.average(:value)

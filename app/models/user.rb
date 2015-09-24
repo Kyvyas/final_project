@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :attended_activities, through: :attendances, source: :activity
 
   has_many :activities
+  has_many :ratings
 
 
   def self.from_omniauth(auth)

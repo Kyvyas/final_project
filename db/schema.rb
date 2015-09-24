@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923094748) do
+ActiveRecord::Schema.define(version: 20150924201608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,33 @@ ActiveRecord::Schema.define(version: 20150923094748) do
     t.time     "time"
     t.integer  "user_id"
     t.date     "date"
+    t.integer  "category_id"
   end
 
+  add_index "activities", ["category_id"], name: "index_activities_on_category_id", using: :btree
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id"
     t.integer "activity_id"
   end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.integer  "activity_id"
+  end
+
+  add_index "ratings", ["activity_id"], name: "index_ratings_on_activity_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -60,7 +79,10 @@ ActiveRecord::Schema.define(version: 20150923094748) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
+  add_foreign_key "activities", "categories"
   add_foreign_key "activities", "users"
   add_foreign_key "attendances", "activities"
   add_foreign_key "attendances", "users"
+  add_foreign_key "ratings", "activities"
+  add_foreign_key "ratings", "users"
 end

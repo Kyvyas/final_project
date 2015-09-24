@@ -1,5 +1,6 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
+  has_many :ratings
   has_many :attendances
   has_many :attendees, through: :attendances, source: :user
 
@@ -12,4 +13,9 @@ class Activity < ActiveRecord::Base
   def has_spaces?
     self.active_participants < self.participants
   end
+
+  def build_rating(params, user)
+    rating = ratings.build(value: params[:value], user_id: user.id)
+  end
+
 end
