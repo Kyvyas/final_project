@@ -8,7 +8,7 @@ FactoryGirl.define do
     participants "6"
     date "06/10/2016"
     time "18:00"
-    category "Sport"
+    category "Sports"
     tag "Football"
   end
 
@@ -20,7 +20,7 @@ FactoryGirl.define do
     participants "1"
     date "06/10/2016"
     time "18:00"
-    category "Sport"
+    category "Sports"
     tag "Tennis"
   end
 
@@ -31,7 +31,18 @@ FactoryGirl.define do
     participants "2"
     date "06/11/2016"
     time "18:00"
-    category "Sport"
+    category "Sports"
     tag "Tennis"
+  end
+
+  factory :activity3, parent: :activity do
+    title "Tom Jones Concert"
+    description 'Need someone to go with!'
+    location "Paris"
+    participants "5"
+    date "18/11/2016"
+    time "19:00"
+    category "Music"
+    tag "Concert"
   end
 end

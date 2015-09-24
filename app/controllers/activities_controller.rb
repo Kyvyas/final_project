@@ -1,7 +1,8 @@
 class ActivitiesController < ApplicationController
 
   def index
-    @activities = Activity.order(date: :asc)
+    params["Category"] ? @activities = Activity.where(category: params["Category"]) : @activities = Activity.order(date: :asc)
+    @categories = Category.all
   end
 
   def new
@@ -28,5 +29,9 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:title, :description, :location, :participants, :date, :time, :category, :tag)
+  end
+
+  def filter
+    # redirect_to ("/activity/#{params[]}")
   end
 end

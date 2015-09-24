@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories
+
+  get 'activity/filter' => 'activity#filter'
+
 
 
 
