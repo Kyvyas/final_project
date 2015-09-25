@@ -178,4 +178,28 @@ feature 'activity' do
     expect(page).not_to have_content("Tom Jones Concert")
   end
 
+  scenario "users can search activities by tag", js: true do
+    activity = build(:activity)
+    create_activity(activity)
+    activity2 = build(:activity2)
+    create_activity(activity2)
+    visit '/'
+    fill_in "Search for a pirate activity", with: "Tennis"
+    click_on "Search"
+    expect(page).to have_content("Tennis")
+    expect(page).not_to have_content("Football")
+  end
+
+  scenario "users can search activities by tag regardless of case", js: true do
+    activity = build(:activity)
+    create_activity(activity)
+    activity2 = build(:activity2)
+    create_activity(activity2)
+    visit '/'
+    fill_in "Search for a pirate activity", with: "tenNis"
+    click_on "Search"
+    expect(page).to have_content("Tennis")
+    expect(page).not_to have_content("Football")
+  end
+
 end

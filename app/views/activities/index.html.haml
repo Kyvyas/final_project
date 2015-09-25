@@ -3,7 +3,11 @@
     = form_tag root_path, method: :get do
       = select_tag "Category", options_for_select(@categories.map{|x| x.name}, :selected => params[:category])
       = submit_tag "Filter"
+    = form_tag root_path, class: "search_form", method: :get do
+      = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity"
+      = submit_tag "Search", class: "search_button"
     =link_to "Add an activity", new_user_activity_path(current_user)
-    - if @activities.any?
-      - @activities.each do | activity |
-        %h2=link_to activity.title, activity_path(activity)
+    %section.activity_list
+      - if @activities.any?
+        - @activities.each do | activity |
+          %h2=link_to activity.title, activity_path(activity)
