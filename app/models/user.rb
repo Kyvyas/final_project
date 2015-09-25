@@ -28,4 +28,9 @@ class User < ActiveRecord::Base
      end
    end
   end
+
+  def has_clicked?(activity)
+    activity.attendees.include?(self)
+  end
+
 end
