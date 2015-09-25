@@ -7,6 +7,7 @@
       = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity"
       = submit_tag "Search", class: "search_button"
     =link_to "Add an activity", new_user_activity_path(current_user)
+    =link_to "Map view", locations_path
     %section.activity_list
       - if @activities.any?
         - @activities.each do | activity |

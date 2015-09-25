@@ -10,6 +10,9 @@ class Activity < ActiveRecord::Base
   validates_presence_of :location, :participants, :category, :tag, :title, :time
   validates_presence_of :date, on: :create
 
+  geocoded_by :location
+  after_validation :geocode
+
   def has_spaces?
     self.active_participants < self.participants
   end
