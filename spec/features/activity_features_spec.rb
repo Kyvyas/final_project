@@ -41,24 +41,6 @@ feature 'activity' do
     expect(page).to have_content("People needed: 5")
   end
 
-  xscenario 'user cannot sign up for activity if it is full', js: true  do
-    visit '/'
-    activity1 = build(:activity1)
-    create_activity(activity1)
-    click_on("Sign out")
-    user2 = create(:user_2)
-    sign_in_as(user2)
-    click_on('Tennis')
-    click_on("I'm in!")
-    click_on('Sign out')
-    user3 = create(:user_3)
-    sign_in_as(user3)
-    click_on("Tennis")
-    expect(page).to have_content("People needed: 0")
-    visit '/activities/3/attendances/new'
-    expect(page).to have_content("Sorry, this activity is full")
-  end
-
   scenario 'user cannot make an activity without a title' do
     visit '/'
     activity = build(:activity, title: "")
@@ -117,7 +99,7 @@ feature 'activity' do
     expect(page).not_to have_content("I'm in")
   end
 
-  scenario "users cannot sign up to an activity more than once", js: true do
+  scenario "users does not see the 'I'm in' button if they are attending the activity", js: true do
     visit '/'
     activity = build(:activity)
     create_activity(activity)
@@ -126,9 +108,7 @@ feature 'activity' do
     sign_in_as(user2)
     click_on('Football')
     click_on("I'm in!")
-    sleep 2
-    click_on("I'm in!")
-    expect(page).to have_content("You've already signed up to this - awesome!")
+    expect(page).not_to have_content("I'm in!")
   end
 
   scenario "user cannot add activity with negative participants" do
