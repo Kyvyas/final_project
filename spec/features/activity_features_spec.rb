@@ -28,7 +28,7 @@ feature 'activity' do
     expect(page).to have_content("Football")
   end
 
-  scenario 'user can sign up to an activity' do
+  scenario 'user can sign up to an activity', js: true do
     visit '/'
     activity = build(:activity)
     create_activity(activity)
@@ -41,7 +41,7 @@ feature 'activity' do
     expect(page).to have_content("People needed: 5")
   end
 
-  scenario 'user cannot sign up for activity if it is full' do
+  xscenario 'user cannot sign up for activity if it is full', js: true  do
     visit '/'
     activity1 = build(:activity1)
     create_activity(activity1)
@@ -101,7 +101,7 @@ feature 'activity' do
     expect(page).to have_content("Date can't be blank")
   end
 
-  scenario "user does not see the 'I'm in' button if the activity is full" do
+  scenario "user does not see the 'I'm in' button if the activity is full", js: true do
     visit '/'
     activity1 = build(:activity1)
     create_activity(activity1)
@@ -117,7 +117,7 @@ feature 'activity' do
     expect(page).not_to have_content("I'm in")
   end
 
-  scenario "users cannot sign up to an activity more than once" do
+  scenario "users cannot sign up to an activity more than once", js: true do
     visit '/'
     activity = build(:activity)
     create_activity(activity)
@@ -126,6 +126,7 @@ feature 'activity' do
     sign_in_as(user2)
     click_on('Football')
     click_on("I'm in!")
+    sleep 2
     click_on("I'm in!")
     expect(page).to have_content("You've already signed up to this - awesome!")
   end
@@ -176,6 +177,30 @@ feature 'activity' do
     click_on("Filter")
     expect(page).to have_content("Football")
     expect(page).not_to have_content("Tom Jones Concert")
+  end
+
+  scenario "users can search activities by tag" do
+    activity = build(:activity)
+    create_activity(activity)
+    activity2 = build(:activity2)
+    create_activity(activity2)
+    visit '/'
+    fill_in "Search for a pirate activity", with: "Tennis"
+    click_on "Search"
+    expect(page).to have_content("Tennis")
+    expect(page).not_to have_content("Football")
+  end
+
+  scenario "users can search activities by tag regardless of case", js: true do
+    activity = build(:activity)
+    create_activity(activity)
+    activity2 = build(:activity2)
+    create_activity(activity2)
+    visit '/'
+    fill_in "Search for a pirate activity", with: "tenNis"
+    click_on "Search"
+    expect(page).to have_content("Tennis")
+    expect(page).not_to have_content("Football")
   end
 
 end
