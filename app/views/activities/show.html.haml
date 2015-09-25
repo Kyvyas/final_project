@@ -2,11 +2,12 @@
 = @activity.description
 = @activity.location
 People needed:
-= @people_needed
-= @activity.active_participants
+%p.people_needed= @people_needed
+Total needed;
+= @activity.participants
 = @activity.date
 = @activity.category
 = @activity.tag
 
-- if @people_needed > 0
-  = link_to "I'm in!", new_activity_attendance_path(@activity)
+- if @people_needed > 0 && !current_user.has_clicked?(@activity)
+  %p= link_to "I'm in!", activity_attendances_path(@activity), class: 'join_button'

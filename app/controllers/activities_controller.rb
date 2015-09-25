@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
     @tag = params["Tag"]
     if @tag
       @activities = Activity.where(tag: @tag.downcase)
-      render json: {new_activity_list: @activities}
+
     elsif params["Category"]
       @activities = Activity.where(category: params["Category"])
     else
@@ -24,7 +24,6 @@ class ActivitiesController < ApplicationController
       flash[:notice] = "Your activity has been posted! Good luck!"
     else
       flash[:notice] = @activity.errors.full_messages.to_sentence
-   #   flash[:notice] = "Please select a valid number of participants"
     end
     redirect_to '/'
   end
