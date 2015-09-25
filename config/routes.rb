@@ -15,11 +15,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :locations
+
   resources :categories
 
   get 'activity/filter' => 'activity#filter'
 
   get 'activity/map' => 'activities#location'
+
+
 
 
 

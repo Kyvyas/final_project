@@ -4,7 +4,7 @@
       = select_tag "Category", options_for_select(@categories.map{|x| x.name}, :selected => params[:category])
       = submit_tag "Filter"
     =link_to "Add an activity", new_user_activity_path(current_user)
-    =link_to "Map view", activity_map_path
+    =link_to "Map view", locations_path
     - if @activities.any?
       - @activities.each do | activity |
         %h2=link_to activity.title, activity_path(activity)
