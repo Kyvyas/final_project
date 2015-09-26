@@ -77,6 +77,7 @@ feature "User can sign in and out" do
       click_on('Football')
       click_on('Katya')
       expect(page).to have_content("Hosted activities: Football")
+      expect(page).not_to have_content("No hosted activities yet!")
     end
 
     scenario "has no hosted activities if none exist" do
