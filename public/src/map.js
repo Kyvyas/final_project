@@ -15,9 +15,6 @@ $(document).ready(function() {
   layers.Streets.addTo(map);
   L.control.layers(layers).addTo(map);
 
-
-
-
   myLayer.on('layeradd', function(e) {
     var marker, popupContent, properties;
     marker = e.layer;
@@ -33,6 +30,11 @@ $(document).ready(function() {
       minWidth: 300
     });
   });
+
+  myLayer.on('click', function(e) {
+    map.panTo(e.layer.getLatLng());
+  });
+
 
   $.ajax({
     dataType: 'text',
