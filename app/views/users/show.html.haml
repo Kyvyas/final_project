@@ -1,0 +1,7 @@
+= @user.name
+%p Hosted activities:
+- @user.activities.each do | activity |
+  = activity.title
+%p Attended activities:
+- @user.attended_activities.each do | attended_activity |
+  =attended_activity.title

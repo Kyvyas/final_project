@@ -36,4 +36,44 @@ feature "User can sign in and out" do
       expect(page).not_to have_link('Sign up')
     end
   end
+
+  scenario 'activity host has profile' do
+    user = create(:user)
+    sign_in_as(user)
+    activity = build(:activity)
+    create_activity(activity)
+    click_on('Football')
+    click_on('Katya')
+    expect(page).to have_content("Katya")
+  end
+
+  context 'user profile' do
+    scenario "has hosted activities" do
+      user = create(:user)
+      sign_in_as(user)
+      activity = build(:activity)
+      create_activity(activity)
+      click_on('Football')
+      click_on('Katya')
+      expect(page).to have_content("Hosted activities: Football")
+    end
+    scenario "has attended activities", js: true do
+      user = create(:user)
+      sign_in_as(user)
+      activity = build(:activity)
+      create_activity(activity)
+      click_on("Sign out")
+      user2 = create(:user_2)
+      sign_in_as(user2)
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      visit '/'
+      click_on('Football')
+      click_on("I'm in")
+      visit '/'
+      click_on('Tennis')
+      click_on('Harry')
+      expect(page).to have_content("Attended activities: Football")
+    end
+  end
 end
