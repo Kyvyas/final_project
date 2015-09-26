@@ -12,15 +12,14 @@ class AttendancesController < ApplicationController
     if @activity.has_spaces?
       if @attendance.save
         @activity.update(active_participants: @activity.active_participants + 1)
-        flash[:notice] = "You're in!"
         @people_needed = @activity.participants - @activity.active_participants
-        render json: {new_people_count: @people_needed}
+        render json: { new_people_count: @people_needed, notice: "You are SO in!" }
       else
-        # flash[:notice] = "You've already signed up to this - awesome!"
         render json: { notice: "You've already signed up to this - awesome!" }
       end
     else
       render json: { notice: "Sorry, this activity is full" }
     end
   end
+
 end

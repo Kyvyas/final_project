@@ -1,7 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+
   <head>
+
     <title>TeemApp</title>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -13,7 +16,16 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
+
   <body>
+    <div class="panel">
+      <p>This is simple jQuery Show/Hide Example by Crunchify...</p>
+      <p>Click below Show/Hide again to Toggle visibility...</p>
+    </div>
+
+    <br>
+    <p class="flip">Click here to Show/Hide Panel</p>
+
     <nav class='navbar navbar-default navbar-fixed-top'>
       <a href='/' class='navbar-brand'>
         TeemApp
@@ -45,4 +57,5 @@
 
     <%= yield %>
   </body>
+
 </html>

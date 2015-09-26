@@ -183,4 +183,37 @@ feature 'activity' do
     expect(page).not_to have_content("Football")
   end
 
+  scenario "users cannot create activities in the past" do
+    past_activity = build(:past_activity)
+    create_activity(past_activity)
+    expect(page).to have_content("Your activity cannot be in the past! Leave the past where it is...")
+  end
+
+  context "Time mock testing:" do
+    scenario "activity list does not list past activities - date" do
+      activity = build(:activity)
+      create_activity(activity)
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      t = Time.local(2016, 10, 9, 10, 5, 0)
+      Timecop.travel(t)
+      visit '/'
+      Timecop.return
+      expect(page).to have_content("Tennis")
+      expect(page).not_to have_content("Football")
+    end
+    scenario "activity list does not list past activities - time" do
+      activity = build(:activity)
+      create_activity(activity)
+      activity_late = build(:activity_late)
+      create_activity(activity_late)
+      t = Time.local(2016, 10, 6, 18, 30, 00)
+      Timecop.travel(t)
+      visit '/'
+      Timecop.return
+      expect(page).to have_content("Pro football")
+      expect(page).not_to have_content("Football")
+    end
+  end
+
 end

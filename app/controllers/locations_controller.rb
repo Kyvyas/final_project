@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   def index
-    @activities = Activity.all
+    @activities = Activity.where(['date >= ?', DateTime.now]).where(['time >= ?', ("2000-01-01 #{Time.now.strftime('%H:%M:%S')}")])
     @geojson = Array.new
 
     @activities.each do |activity|
@@ -25,7 +25,6 @@ class LocationsController < ApplicationController
           }
         }
     end
-
     respond_to do |format|
       format.html
       format.json { render json: @geojson }  # respond with the created JSON object

@@ -9,6 +9,7 @@ class Activity < ActiveRecord::Base
   validates_inclusion_of :category, in: ['Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife'], message: "Must choose category"
   validates_presence_of :location, :participants, :category, :tag, :title, :time
   validates_presence_of :date, on: :create
+  validate :date_cannot_be_in_past
 
   geocoded_by :location
   after_validation :geocode
@@ -20,4 +21,10 @@ class Activity < ActiveRecord::Base
   def check_params
     self.tag.downcase!
   end
+
+  def date_cannot_be_in_past
+    errors.add(:date, "Your activity cannot be in the past! Leave the past where it is...") if
+      !date.blank? and date < Date.today
+  end
+
 end
