@@ -1,0 +1,14 @@
+= image_tag @user.avatar(:medium)
+= @user.name
+-if @user.activities.any?
+  %p Hosted activities:
+  - @user.activities.each do | activity |
+    = activity.title
+-else
+  %p No hosted activities yet!
+-if @user.attended_activities.any?
+  %p Attended activities:
+  - @user.attended_activities.each do | attended_activity |
+    =attended_activity.title
+-else
+  %p No attended activities yet!
