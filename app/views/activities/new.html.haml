@@ -7,14 +7,15 @@
       - @activity.errors.full_messages.each do |message|
         %li= message
 
-= form_for [@user, @activity], html: { multipart: true } do |f|
-  = f.text_field :title, :placeholder => "Activity Name"
-  = f.text_field :description, :placeholder => "Describe your Activity"
-  = f.text_field :location, :placeholder => "Location"
-  = f.number_field :participants, :placeholder => "People needed"
-  = f.date_field :date, :placeholder => "Date"
-  = f.time_field :time, :placeholder => "Time"
-  = f.label :category
-  = f.select :category, ['Select', 'Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife']
-  = f.text_field :tag, :placeholder => "Activity e.g.'Football'"
-  = f.submit "Let's do it!"
+%section.create-activity
+  = form_for [@user, @activity], html: { multipart: true } do |f|
+    = f.text_field :title, :placeholder => "Activity Name"
+    = f.text_field :description, :placeholder => "Describe your Activity"
+    = f.text_field :location, :placeholder => "Location"
+    = f.number_field :participants, :placeholder => "People needed"
+    = f.date_field :date, :placeholder => "Date"
+    = f.time_field :time, :placeholder => "Time"
+    = f.label :category
+    = f.select :category, ['Select', 'Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife']
+    = f.text_field :tag, :placeholder => "Activity e.g.'Football'"
+    = f.submit "Let's do it!"

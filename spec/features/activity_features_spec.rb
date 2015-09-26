@@ -171,7 +171,7 @@ feature 'activity' do
     expect(page).not_to have_content("Football")
   end
 
-  scenario "users can search activities by tag regardless of case", js: true do
+  scenario "users can search activities by tag regardless of case" do
     activity = build(:activity)
     create_activity(activity)
     activity2 = build(:activity2)
