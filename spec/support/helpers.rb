@@ -3,6 +3,7 @@ module FeatureHelpers
   def sign_up_as(user)
     visit '/'
     click_link 'Sign up'
+    fill_in :user_name, with: user.name
     fill_in :user_email, with: user.email
     fill_in :user_password, with: user.password
     fill_in :user_password_confirmation, with: user.password_confirmation

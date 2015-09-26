@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :attended_activities, through: :attendances, source: :activity
 
   has_many :activities
+  validates_presence_of :name
 
 
   def self.from_omniauth(auth)
