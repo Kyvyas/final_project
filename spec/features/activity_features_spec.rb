@@ -28,6 +28,13 @@ feature 'activity' do
     expect(page).to have_content("Football")
   end
 
+  scenario 'host is visible on the activity page' do
+    activity = build(:activity)
+    create_activity(activity)
+    click_on('Football')
+    expect(page).to have_content("Hosted by: Katya")
+  end
+
   scenario 'user can sign up to an activity', js: true do
     visit '/'
     activity = build(:activity)
@@ -38,6 +45,7 @@ feature 'activity' do
     click_on('Football')
     expect(page).to have_content("People needed: 6")
     click_on("I'm in!")
+    sleep 1
     expect(page).to have_content("People needed: 5")
   end
 

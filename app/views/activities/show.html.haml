@@ -8,6 +8,8 @@ Total needed:
 = @activity.date
 = @activity.category
 = @activity.tag
+%p Hosted by:
+= link_to @activity.user.name, user_path(@activity.user)
 
 - if @people_needed > 0 && !current_user.has_clicked?(@activity)
   %p= link_to "I'm in!", activity_attendances_path(@activity), class: 'join_button'

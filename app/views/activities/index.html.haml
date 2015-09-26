@@ -1,3 +1,7 @@
+#wrapper
+  .hero
+    .hero-header
+      %h1 Fullscreen Hero image
 %section
   - if current_user
     = form_tag root_path, method: :get do
@@ -8,7 +12,7 @@
       = submit_tag "Search", class: "search_button"
     =link_to "Add an activity", new_user_activity_path(current_user)
     =link_to "Map view", locations_path
-    %section.activity_list
-      - if @activities.any?
-        - @activities.each do | activity |
-          %h2=link_to activity.title, activity_path(activity)
+  %section.activity_list
+    - if @activities.any?
+      - @activities.each do | activity |
+        %h2=link_to activity.title, activity_path(activity)
