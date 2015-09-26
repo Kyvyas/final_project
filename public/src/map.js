@@ -6,6 +6,17 @@ $(document).ready(function() {
 
   var myLayer = L.mapbox.featureLayer().addTo(map);
 
+  var layers = {
+    Streets: L.mapbox.tileLayer('mapbox.streets'),
+    ARRR: L.mapbox.tileLayer('mapbox.pirates'),
+    Hipster: L.mapbox.tileLayer('mapbox.comic')
+  };
+
+  layers.Streets.addTo(map);
+  L.control.layers(layers).addTo(map);
+
+
+
 
   myLayer.on('layeradd', function(e) {
     var marker, popupContent, properties;

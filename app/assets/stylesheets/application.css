@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+#map{
+   position: absolute;
+   top:46px;
+   bottom:0;
+   width:100%;
+}
+
+.navbar{
+  z-index:2;
+}
