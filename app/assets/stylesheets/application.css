@@ -14,6 +14,7 @@
  *= require_self
  */
 
+
 #map{
    position: absolute;
    top:46px;
@@ -23,4 +24,19 @@
 
 .navbar{
   z-index:2;
+ body {
+
+ }
+
+.home_page {
+  text-align: center;
+  margin-top: 15%;
+  width: 300px;
+}
+
+.home_page li {
+  list-style-type: none;
+  border: 5px solid black;
+  padding: 20px;
+  font-size: 20px;
 }

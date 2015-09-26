@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title AppName
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"}
+  %body
+    %nav.navbar.navbar-default
+      %div.container-fluid
+        %div.navbar-header
+        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+
+    %section.container.home_page
+      - if user_signed_in?
+        = link_to "Sign out", destroy_user_session_path, method: :delete
+      - else
+        %ul
+          %li= link_to "Sign in", new_user_session_path
+          %li= link_to "Sign up", new_user_registration_path
+          %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+
+    %p.notice= notice
+    %p.alert= alert
+    = yield
