@@ -190,5 +190,4 @@ feature 'activity' do
     expect(page).to have_content("Tennis")
     expect(page).not_to have_content("Football")
   end
-
 end
