@@ -6,6 +6,8 @@ $(document).ready(function() {
      var peopleCount = $('.people_needed');
      var notice = $('.notice');
 
+     $('.join_button').hide();
+
      $.post(this.href, function(response){
        peopleCount.text(response.new_people_count);
        notice.text(response.notice);
