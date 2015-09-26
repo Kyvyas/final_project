@@ -68,6 +68,7 @@ feature "User can sign in and out" do
       click_on 'My Profile'
       expect(page).to have_content("Katya")
     end
+
     scenario "has hosted activities" do
       user = create(:user)
       sign_in_as(user)
@@ -77,6 +78,14 @@ feature "User can sign in and out" do
       click_on('Katya')
       expect(page).to have_content("Hosted activities: Football")
     end
+
+    scenario "has no hosted activities if none exist" do
+      user = create(:user)
+      sign_in_as(user)
+      click_on("My Profile")
+      expect(page).to have_content("No hosted activities yet!")
+    end
+
     scenario "has attended activities", js: true do
       user = create(:user)
       sign_in_as(user)
@@ -92,6 +101,13 @@ feature "User can sign in and out" do
       click_on("I'm in")
       click_on "My Profile"
       expect(page).to have_content("Attended activities: Football")
+    end
+
+    scenario "has no attended activities if none exist" do
+      user = create(:user)
+      sign_in_as(user)
+      click_on("My Profile")
+      expect(page).to have_content("No attended activities yet!")
     end
   end
 end
