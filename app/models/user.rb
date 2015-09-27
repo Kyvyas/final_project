@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :attendances
   has_many :ratings
+  has_many :rated_activites, through: :ratings, source: :activity
   has_many :attended_activities, through: :attendances, source: :activity
 
   has_many :activities

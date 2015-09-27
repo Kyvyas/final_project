@@ -30,4 +30,34 @@ feature 'rating' do
     expect(page).to have_content "Activity Rating: ★★★☆☆"
   end
 
+  scenario 'user does not see rate activity link if they have already rated', js: true do
+    visit '/'
+    click_on 'Football'
+    click_on "I'm in!"
+    click_on "My Profile"
+    click_on "Football"
+    expect(page).to have_content "Rate activity"
+    click_on("Rate activity")
+    choose("rating_value_3")
+    click_on("Rate activity")
+    expect(page).to have_content "Activity Rating: ★★★☆☆"
+    expect(page).not_to have_content "Rate activity"
+  end
+
+  scenario 'user cannot rate activity more than once', js: true do
+    visit '/'
+    click_on 'Football'
+    click_on "I'm in!"
+    click_on "My Profile"
+    click_on "Football"
+    expect(page).to have_content "Rate activity"
+    click_on("Rate activity")
+    choose("rating_value_3")
+    click_on("Rate activity")
+    visit "/activities/1/ratings/new"
+    choose("rating_value_3")
+    click_on("Rate activity")
+    expect(page).to have_content("Activity already rated.")
+  end
+
 end

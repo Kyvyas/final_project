@@ -7,8 +7,10 @@ class RatingsController < ApplicationController
   def create
     @activity = Activity.find(params[:activity_id])
     @rating = @activity.build_rating(rating_params, current_user)
-    @rating.save
-    redirect_to activity_path(@activity)
+    unless @rating.save
+      flash[:notice] = @rating.errors.full_messages
+    end
+      redirect_to activity_path(@activity)
   end
 
   def rating_params
