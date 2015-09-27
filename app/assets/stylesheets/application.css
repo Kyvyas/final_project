@@ -63,9 +63,10 @@
 .logo {
   position: relative;
   text-align: left;
-  /*margin-top: 10px;*/
+  margin-top: -1.5px;
   margin-bottom: 10px;
   float: left;
+  margin-left: -12px;
 
   padding-bottom:10px;
   font-size: 30px;
@@ -125,7 +126,6 @@ border: none;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
   padding-left: 30px;
-  /*padding-right: 16px;*/
   float:right;
   font-size:16px;
   color:#000;
@@ -210,6 +210,38 @@ border: none;
   margin-top: 25px;
 }
 
+.navbar-toggle {
+  margin-top: 22px !important;
+  margin-right: 7px !important;
+}
+
+.navbar-header {
+  height: 75px !important;
+}
+
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: 0px !important;
+}
+
+
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+    max-height: 340px;
+}
+.navbar-collapse {
+   padding-right: 0px !important;
+   text-align: center;
+}
+
+
+.collapse.in {
+    display: block;
+}
+
 .categories {
 
 }
@@ -224,7 +256,7 @@ border: none;
 
 .overlay a{
   color: #fff;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .overlay a:hover {
@@ -307,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*********************************************************************************/
-/* Hero text                                                                     */
+/* Hero text Desktop                                                             */
 /*********************************************************************************/
 
 .activity-admin {

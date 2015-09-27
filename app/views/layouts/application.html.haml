@@ -13,26 +13,49 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %section
-      %nav.navbar.navbar-default.navbar-fixed-top#header_menu
-        %div.container-fluid
-          %div.logo
-            = image_tag 'logo.png'
+    / %section
+    /   %nav.navbar.navbar-default.navbar-fixed-top#header_menu
+    /     %div.container-fluid
+    /       %div.logo
+    /         = image_tag 'logo.png'
+    /       %div.menu
+    /         %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+    /           %span.sr-only Toggle navigation
+    /           %span.icon-bar
+    /           %span.icon-bar
+    /           %span.icon-bar
+    /         %ul.navbar-right.collapse.navbar-collapse
+    /           - if user_signed_in?
+    /             %li= link_to "Sign out", destroy_user_session_path, method: :delete
+    /             %li= link_to "About us", '#about-us'
+    /           - else
+    /             %li= link_to "Sign in", new_user_session_path
+    /             %li= link_to "Sign up", new_user_registration_path
+    /             %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+    /             %li= link_to "About us", '#about-us'
+
+    %nav.navbar.navbar-default.navbar-fixed-top#header_menu
+      .container-fluid
+        %div.logo
+          = image_tag 'logo.png'
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %div.menu
-            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-              %span.sr-only Toggle navigation
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-            %ul.navbar-right.collapse.navbar-collapse
-              - if user_signed_in?
-                %li= link_to "Sign out", destroy_user_session_path, method: :delete
-                %li= link_to "About us", '#about-us'
-              - else
-                %li= link_to "Sign in", new_user_session_path
-                %li= link_to "Sign up", new_user_registration_path
-                %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-                %li= link_to "About us", '#about-us'
+            - if user_signed_in?
+              %li= link_to "Sign out", destroy_user_session_path, method: :delete
+              %li= link_to "About us", '#about-us'
+            - else
+              %li= link_to "Sign in", new_user_session_path
+              %li= link_to "Sign up", new_user_registration_path
+              %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+              %li= link_to "About us", '#about-us'
+
     %div.notice-message
       = notice
     %div.alert-message
