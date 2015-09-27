@@ -4,6 +4,8 @@
   %p Hosted activities:
   - @user.activities.each do | activity |
     = activity.title
+    %p Activity Rating:
+    = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
 -else
   %p No hosted activities yet!
 -if @user.attended_activities.any?
