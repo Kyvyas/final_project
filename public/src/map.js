@@ -5,7 +5,6 @@ $(document).ready(function() {
        L.control.locate().addTo(map);
 
   var myLayer = L.mapbox.featureLayer().addTo(map);
-
   var filters = document.getElementById('filters');
   var checkboxes = document.getElementsByClassName('filter');
 
@@ -16,7 +15,9 @@ $(document).ready(function() {
   };
 
   layers.Streets.addTo(map);
-  L.control.layers(layers).addTo(map);
+  layerControl = L.control.layers(layers, null, {position: 'topleft'});
+  layerControl.addTo(map);
+  // L.control.layers(layers).addTo(map);
 
   myLayer.on('layeradd', function(e) {
     var marker, popupContent, properties;
@@ -62,7 +63,6 @@ $(document).ready(function() {
     dataType: 'text',
     url: '/locations.json',
     success: function(data) {
-      console.log(data)
       var geojson;
       geojson = $.parseJSON(data);
       return myLayer.setGeoJSON(geojson);

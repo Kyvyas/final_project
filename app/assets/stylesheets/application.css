@@ -30,8 +30,8 @@
 .ui-select {
   background:#fff;
   position:absolute;
-  top:155px;
-  left:10px;
+  top:55px;
+  right:10px;
   z-index:100;
   padding:5px;
   border-style: solid;
