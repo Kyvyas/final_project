@@ -20,6 +20,14 @@
    bottom:0;
    width:100%;
 }
+.fa-map-marker {
+    content: "\f041";
+    padding-right: 10px;
+    margin-bottom: 1px;
+  }
+.fa-spinner{
+  margin: auto;
+}
 
 .navbar{
   z-index:2;
