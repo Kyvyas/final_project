@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :attendances
+  has_many :ratings
+  has_many :rated_activites, through: :ratings, source: :activity
   has_many :attended_activities, through: :attendances, source: :activity
 
   has_many :activities
@@ -36,4 +38,9 @@ class User < ActiveRecord::Base
     activity.attendees.include?(self)
   end
 
+  def host_rating
+    sum = 0
+    self.activities.each {|a| sum += a.ratings.average(:value) if a.ratings.average(:value) }
+    avg = sum/self.activities.length
+  end
 end
