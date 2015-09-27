@@ -1,6 +1,7 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
   has_many :attendances
+  has_many :ratings
   has_many :attendees, through: :attendances, source: :user
   before_create :check_params
 
@@ -19,5 +20,9 @@ class Activity < ActiveRecord::Base
 
   def check_params
     self.tag.downcase!
+  end
+
+  def build_rating(params, user)
+    rating = ratings.build(value: params[:value], user_id: user.id)
   end
 end

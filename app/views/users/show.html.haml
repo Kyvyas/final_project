@@ -9,6 +9,6 @@
 -if @user.attended_activities.any?
   %p Attended activities:
   - @user.attended_activities.each do | attended_activity |
-    =attended_activity.title
+    =link_to attended_activity.title, activity_path(attended_activity)
 -else
   %p No attended activities yet!

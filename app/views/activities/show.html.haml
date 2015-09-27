@@ -13,3 +13,9 @@ Total needed;
 
 - if @people_needed > 0 && !current_user.has_clicked?(@activity)
   %p= link_to "I'm in!", activity_attendances_path(@activity), class: 'join_button'
+
+- if @activity.attendees.include?(current_user)
+  %p= link_to "Rate activity", new_activity_rating_path(@activity)
+
+%p Activity Rating:
+= "★" * @activity.ratings.average(:value).to_i + "☆" * (5 - @activity.ratings.average(:value).to_i)
