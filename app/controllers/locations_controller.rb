@@ -17,6 +17,7 @@ class LocationsController < ApplicationController
           description: activity.description,
           participants: (activity.participants - activity.active_participants),
           active_participants: activity.active_participants,
+          category: activity.category,
           date: Date.parse(activity.date.to_s).strftime('%d-%m-%y'),
           time: activity.time.strftime('%H:%M'),
           :'marker-color' => '#00607d',
