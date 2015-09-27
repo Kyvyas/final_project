@@ -41,7 +41,7 @@
   /*position: relative;*/
   width: 100%;
   height: 75px;
-  background: #000 !important;
+  background: #001738 !important;
   border: 0px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -63,10 +63,10 @@
 .logo {
   position: relative;
   text-align: left;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   margin-bottom: 10px;
   float: left;
-  padding-top:5px;
+
   padding-bottom:10px;
   font-size: 30px;
   font-weight: 700;
@@ -124,10 +124,10 @@ border: none;
 .menu li{
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-  padding-left: 20px;
+  padding-left: 30px;
   /*padding-right: 16px;*/
   float:right;
-  font-size:14px;
+  font-size:16px;
   color:#000;
   list-style:inline;
   list-style-type: none;
@@ -140,8 +140,8 @@ border: none;
   border-right:0;
 }
 .menu{
-  padding: 0.75em 1.5em;
-  margin-top: 15px;
+  padding: 0.75em 3em;
+  margin-top: 16px;
 }
 .menu li a{
   color:#fff;
@@ -160,7 +160,7 @@ border: none;
 /*********************************************************************************/
 
 .hero{
-  background-image:url('hero.jpg');
+  background-image:url('boat.jpg');
   background-size:cover;
   position:relative;
   height:100vh;
@@ -180,6 +180,109 @@ border: none;
   font-size: 50px;
 }
 
+/*********************************************************************************/
+/* Mobile                                                                         */
+/*********************************************************************************/
+
+.mobile{
+  background-image:url('boat.jpg');
+  background-size:cover;
+  position:relative;
+  height:60vh;
+}
+
+.mobile-header{
+  position:relative;
+  top:40%;
+  text-align:center;
+  width:100%;
+  color:#fff;
+  -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%);
+}
+
+.mobile-header h1 {
+  font-size: 40px;
+}
+
+.mobile-activity-admin {
+  margin-top: 25px;
+}
+
+.categories {
+
+}
+
+.overlay {
+   position: absolute;
+   bottom: 40%;
+   text-align: center;
+   font-size: 30px;
+   width: 100%;
+}
+
+.overlay a{
+  color: #fff;
+  font-weight: 500;
+}
+
+.overlay a:hover {
+  text-decoration: none;
+}
+
+.no-padding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+
+/*********************************************************************************/
+/* Latest Activities                                                             */
+/*********************************************************************************/
+
+.promoted-collection__title {
+    margin: 2.5rem 0 3rem;
+}
+.heading--center {
+    text-align: center;
+}
+.heading--dark {
+    color: #606b70;
+}
+.heading {
+    font-family: MuseoSansRounded-500,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+h2 {
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    margin: 0;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+
+.latest {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  height: 500px;
+  background: #fff;
+}
+
+.latest h1 {
+  margin-bottom: 30px;
+  color: rgb(127,127,127);
+  margin-top: 30px ;
+}
+
+.latest-activity {
+
+}
 
 /*********************************************************************************/
 /* Content                                                                       */
@@ -187,13 +290,16 @@ border: none;
 
 .content{
   width: 100%;
-  margin: 0 auto;
   display: inline-block;
+  text-align: center;
+  height: 500px;
+  background: #fff;
 }
 
 .content h1 {
-  float: left;
   margin-bottom: 30px;
+  color: rgb(127,127,127);
+  margin-top: 30px ;
 }
 
 .each-activity {
@@ -201,7 +307,7 @@ border: none;
 }
 
 /*********************************************************************************/
-/* Activities                                                                    */
+/* Hero text                                                                     */
 /*********************************************************************************/
 
 .activity-admin {
@@ -210,31 +316,30 @@ border: none;
 }
 
 .input-box {
-  width: 30%;
+  width: 320px;
   height: 50px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 5px solid black;
+  border: 2px solid black;
   color: #fff;
-
+  margin-bottom: 20px;
 }
 ::-webkit-input-placeholder {
-   color: black;
+   color: #bcbcbc;
    font-size: 16px;
    font-weight: 500;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: black;
+   color: #bcbcbc;
    font-size: 16px;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: black;
+   color: #bcbcbc;
    font-size: 16px;
 }
 
 :-ms-input-placeholder {
-   color: black;
+   color: #605f5e;
    font-size: 16px;
 }
 
@@ -247,16 +352,15 @@ input[type=text] {
 
 .category-box {
   color: #000;
-  background: rgba(255,255,255,0.7);
-  width: 30%;
+  /*background: rgba(255,255,255,0.7);*/
+  width: 320px;
   padding: 5px;
   font-size: 16px;
   line-height: 1;
-  border: 5px solid black;
+  border: 2px solid black;
   border-radius: 0;
   height: 50px;
   margin-bottom: 20px;
-  text-align: center;
   font-weight: 500;
 }
 
@@ -283,20 +387,22 @@ input[type=text] {
 }
 
 .add-activity {
-  width: 30%;
+  width: 340px;
   padding: 5px;
+  background-color: #2f7cd0 !important;
   line-height: 1;
-  border: 5px solid black;
   border-radius: 0;
   height: 45px;
   margin-bottom: 20px;
   text-align: center;
   font-size: 20px !important;
   font-weight: 500 !important;
+  color: #fff;
+  list-style-type: none;
 }
 
 .map-button {
-  width: 30%;
+  width: 340px;
   padding: 5px;
   line-height: 1;
   border: 5px solid black;
@@ -306,39 +412,24 @@ input[type=text] {
   text-align: center;
   font-size: 20px !important;
   font-weight: 500 !important;
+  background-color: #2f7cd0 !important;
+  color: #fff;
+  list-style-type: none;
 }
 
 .button-container {
-  margin-top: 20px;
+  margin-top: 10px;
   height: 50px;
 }
 
-.overlay {
-   position: absolute;
-   bottom: 10%;
-   padding-left: 30px;
-   font-size: 40px;
-   width: 100%;
-}
 
-.overlay a{
-  color: #fff;
-  font-weight: 700;
-}
+/*********************************************************************************/
+/* About us                                                          */
+/*********************************************************************************/
 
-.overlay a:hover {
-  color: #a9fdac;
-  text-decoration: none;
-}
 
-.no-padding {
-   padding: 0 !important;
-   margin: 0 !important;
-}
 
-.categories {
-  margin-top: 30px;
-}
+
 
 #about-us{
   height: 500px;
@@ -352,4 +443,12 @@ input[type=text] {
   float: left;
   margin-bottom: 30px;
 
+}
+
+/*********************************************************************************/
+/* Show activity                                                                */
+/*********************************************************************************/
+
+.show-activity {
+  margin-top: 100px;
 }

@@ -1,21 +1,52 @@
 #wrapper
-  .hero
+  .hero.hidden-xs
     .hero-header
-      %h1 Arrrr you in?
+      %h1 Are you in?
       %section.activity-admin
-        - if current_user
-          = form_tag root_path, method: :get do
-            = select_tag "Category", options_for_select(["Select category"] + @categories.map{|x| x.name}, :selected => params[:category]), :onchange => "this.form.submit()", class: "category-box", placeholder: "Select an option"
-            %noscript= submit_tag "Filter", class: "filter_button"
-          = form_tag root_path, class: "search_form", method: :get do
-            = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity", class: "input-box"
-            %noscript= submit_tag "Search", class: "search_button"
-          %div.button-container
-            =link_to "Add an activity", new_user_activity_path(current_user), class: "btn btn-default add-activity"
-          %div.button-container
-            =link_to "Map view", locations_path, class: "btn btn-default map-button"
-  %section.content
-    %h1.container Latest Activities
+        = form_tag root_path, class: "col-xs-12", method: :get do
+          = select_tag "Category", options_for_select(["Select category"] + @categories.map{|x| x.name}, :selected => params[:category]), :onchange => "this.form.submit()", class: "category-box", placeholder: "Select an option"
+          %noscript= submit_tag "Filter", class: "filter_button"
+        = form_tag root_path, class: "search_form", method: :get do
+          = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity", class: "input-box"
+          %noscript= submit_tag "Search", class: "search_button"
+          %div.button-container.col-xs-12
+            =link_to "Map view", locations_path, class: "btn map-button"
+          - if current_user
+            %div.button-container.col-xs-12
+              =link_to "Add an activity", new_user_activity_path(current_user), class: "btn add-activity"
+
+  .mobile.hidden-md.hidden-lg
+    %section.mobile-header.hidden-md.hidden-lg
+      %h1 Are you in?
+      %section.mobile-activity-admin
+        = form_tag root_path, class: "search_form", method: :get do
+          = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity", class: "input-box"
+          %noscript= submit_tag "Search", class: "search_button"
+          %div.button-container.col-xs-12
+            =link_to "Map view", locations_path, class: "btn map-button"
+          - if current_user
+            %div.button-container.col-xs-12
+              =link_to "Add an activity", new_user_activity_path(current_user), class: "btn add-activity"
+
+
+  %section.latest.hidden-xs.hidden-sm
+    %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
+      Latest Events
+    .row
+      %div.latest-activity.col-md-4.no-padding
+        %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
+        %h2 Event 1
+      %div.latest-activity.col-md-4
+        %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
+        %h2 Event 2
+      %div.latest-activity.col-md-4
+        %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
+        %h2 Event 3
+
+
+  %section.content.hidden-xs.hidden-sm
+    %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
+      Latest Events
     - if @activities.any?
       - @activities.each do | activity |
         %container
@@ -23,45 +54,42 @@
             %h2=link_to activity.title, activity_path(activity)
             %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:304px;height:228px;"}/
 
-  %section.categories
-    .row
-      .image.col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Sport
-      .image.col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Music
-      .image.col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Culture
-      .image.col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Education
-
-    .row
-      .col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Coding
-      .col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Nightlife
-      .col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Comedy
-      .col-md-3.no-padding
-        %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
-        %div.overlay
-          %a{:href => "/?utf8=✓&Category=Sports"} Sport
+  %section.categories.hidden-md.hidden-lg
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Sport
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Music
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Culture
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Education
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Coding
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Nightlife
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Comedy
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/?utf8=✓&Category=Sports"} Sport
 
   %section#about-us
-    %h1.rowAbout Us
+    %h1.rowAbout About Us
 
 
 
