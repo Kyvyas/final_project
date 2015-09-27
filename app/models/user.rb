@@ -38,4 +38,9 @@ class User < ActiveRecord::Base
     activity.attendees.include?(self)
   end
 
+  def host_rating
+    sum = 0
+    self.activities.each {|a| sum += a.ratings.average(:value) if a.ratings.average(:value) }
+    avg = sum/self.activities.length
+  end
 end

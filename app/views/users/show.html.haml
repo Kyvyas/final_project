@@ -1,6 +1,8 @@
 = image_tag @user.avatar(:medium)
 = @user.name
 -if @user.activities.any?
+  %p Host Rating:
+  = "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
   %p Hosted activities:
   - @user.activities.each do | activity |
     = activity.title
