@@ -63,10 +63,10 @@
 .logo {
   position: relative;
   text-align: left;
-  margin-top: -1.5px;
+  margin-top: 12px;
   margin-bottom: 10px;
   float: left;
-  margin-left: -12px;
+  margin-left: 5px;
 
   padding-bottom:10px;
   font-size: 30px;
@@ -163,7 +163,7 @@ border: none;
   background-image:url('boat.jpg');
   background-size:cover;
   position:relative;
-  height:100vh;
+  height:70vh;
 }
 .hero-header{
   position:absolute;
@@ -237,6 +237,32 @@ border: none;
    text-align: center;
 }
 
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .navbar-collapse {
+     padding-right: 0px !important;
+     padding-left: 0px !important;
+     width: 100%;
+     text-align: center;
+     background: #001750;
+  }
+  .navbar-collapse menu {
+     padding-left: 0px !important;
+     padding-bottom: 20px;
+     text-align: center;
+     padding-top: 0.5em;
+  }
+  .navbar-collapse li {
+     padding-left: 20px;
+     padding-bottom: 20px;
+
+  }
+  .logo {
+    padding: 0px;
+
+  }
+}
+
 
 .collapse.in {
     display: block;
@@ -273,8 +299,8 @@ border: none;
 /* Latest Activities                                                             */
 /*********************************************************************************/
 
-.promoted-collection__title {
-    margin: 2.5rem 0 3rem;
+.section-header__title {
+    margin: 2.5rem 0 2rem;
 }
 .heading--center {
     text-align: center;
@@ -302,7 +328,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   display: inline-block;
   text-align: center;
-  height: 500px;
   background: #fff;
 }
 
@@ -312,9 +337,68 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 30px ;
 }
 
-.latest-activity {
+.latest .row {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.image-wrapper {
+  position: relative;
+  padding-top: 20px;
+  width: 250px;
 
 }
+
+.image-wrapper img {
+  max-width:100%;
+max-height:100%;
+  border-radius: 7px;
+}
+
+.image-wrapper .text-box {
+  position: absolute;
+  left:15px;
+  text-align: left;
+  bottom: 0;
+  padding: 10px;
+  background: rgba(255,255,255,0.7);
+  width: 100%;
+  color: #FFF;
+  margin: 0px;
+  color: #000;
+}
+
+.image-wrapper .text-box h2 {
+  margin-top: 0px;
+}
+
+.event-overlay {
+   position: absolute;
+   bottom: 0%;
+   font-size: 30px;
+   width: 100%;
+   background: rgba(255,255,255,0.7)
+}
+
+.event-overlay {
+  text-align: left;
+}
+
+.event-overlay a{
+  color: #fff;
+  font-weight: 400;
+}
+
+.event-overlay a:hover {
+  text-decoration: none;
+}
+
+
+
+
+
+
 
 /*********************************************************************************/
 /* Content                                                                       */
@@ -324,7 +408,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   display: inline-block;
   text-align: center;
-  height: 500px;
   background: #fff;
 }
 
@@ -458,9 +541,6 @@ input[type=text] {
 /*********************************************************************************/
 /* About us                                                          */
 /*********************************************************************************/
-
-
-
 
 
 #about-us{

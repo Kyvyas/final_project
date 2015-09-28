@@ -10,5 +10,5 @@
   = @activity.category
   = @activity.tag
 
-  - if @people_needed > 0 && !current_user.has_clicked?(@activity)
+  - if @people_needed > 0
     %p= link_to "I'm in!", activity_attendances_path(@activity), class: 'join_button'

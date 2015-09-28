@@ -1,5 +1,5 @@
 #wrapper
-  .hero.hidden-xs.hidden-sm
+  .hero.hidden-xs
     .hero-header
       %h1 Are you in?
       %section.activity-admin
@@ -15,8 +15,8 @@
             %div.button-container.col-xs-12
               =link_to "Add an activity", new_user_activity_path(current_user), class: "btn add-activity"
 
-  .mobile.hidden-md.hidden-lg
-    %section.mobile-header.hidden-md.hidden-lg
+  .mobile.hidden-md.hidden-lg.hidden-sm
+    %section.mobile-header.hidden-sm.hidden-md.hidden-lg
       %h1 Are you in?
       %section.mobile-activity-admin
         = form_tag root_path, class: "search_form", method: :get do
@@ -29,24 +29,42 @@
               =link_to "Add activity", new_user_activity_path(current_user), class: "btn add-activity"
 
 
-  %section.latest.hidden-xs.hidden-sm
-    %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
+  %section.latest.hidden-xs
+    %h2.heading.heading--light.heading--center.heading--dark.section-header__title
       Latest Events
     .row
-      %div.latest-activity.col-md-4.no-padding
-        %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
-        %h2 Event 1
-      %div.latest-activity.col-md-4
-        %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
-        %h2 Event 2
-      %div.latest-activity.col-md-4
-        %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
-        %h2 Event 3
+      .image-wrapper.col-md-4.col-sm-6
+        %img{:alt => "sometext", :src => "http://weknowyourdreams.com/images/football/football-08.jpg"}/
+        .text-box
+          %h2 Event
+          %p Some event information
+      .image-wrapper.col-md-4.col-sm-6
+        %img{:alt => "sometext", :src => "http://weknowyourdreams.com/images/football/football-08.jpg"}/
+        .text-box
+          %h2 Event
+          %p Some event information
+      .image-wrapper.col-md-4.col-sm-6
+        %img{:alt => "sometext", :src => "http://weknowyourdreams.com/images/football/football-08.jpg"}/
+        .text-box
+          %h2 Event
+          %p Some event information
+      / %div.latest-activity.col-md-4.col-sm-6
+      /   %img.act-image{:alt => "Mountain View", :src => "http://weknowyourdreams.com/images/football/football-08.jpg", :style => "width:320px;height:228px;"}/
+      /   .event-overlay
+      /     %h2 Event 1
+      / %div.latest-activity.col-md-4.col-sm-6
+      /   %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
+      /   .event-overlay
+      /     %h2 Event 2
+      / %div.latest-activity.col-md-4.col-sm-6
+      /   %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:320px;height:228px;"}/
+      /   .event-overlay
+      /     %h2 Event 3
 
 
-  %section.content.hidden-xs.hidden-sm
+  %section.content.hidden-xs
     %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
-      Latest Events
+      Categories
     - if @activities.any?
       - @activities.each do | activity |
         %container
@@ -54,7 +72,7 @@
             %h2=link_to activity.title, activity_path(activity)
             %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:304px;height:228px;"}/
 
-  %section.categories.hidden-md.hidden-lg
+  %section.categories.hidden-md.hidden-lg.hidden-sm
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
@@ -89,7 +107,8 @@
         %a{:href => "/?utf8=✓&Category=Sports"} Sport
 
   %section#about-us
-    %h1.rowAbout About Us
+    %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
+      About Us
 
 
 
