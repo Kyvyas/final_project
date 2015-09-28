@@ -87,6 +87,55 @@ feature "User can sign in and out" do
       expect(page).to have_content("No hosted activities yet!")
     end
 
+    scenario "shows average activity rating for hosted activities", js: true do
+      user = create(:user)
+      sign_in_as(user)
+      activity = build(:activity)
+      create_activity(activity)
+      click_on("Sign out")
+      user2 = create(:user_2)
+      sign_in_as(user2)
+      click_on('Football')
+      click_on("I'm in")
+      click_on("My Profile")
+      click_on("Football")
+      click_on("Rate activity")
+      choose("rating_value_3")
+      click_on("Rate activity")
+      click_on('Katya')
+      expect(page).to have_content("Activity Rating: ★★★☆☆")
+    end
+
+    scenario "shows average host rating", js: true do
+      user = create(:user)
+      sign_in_as(user)
+      activity = build(:activity)
+      create_activity(activity)
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      click_on("Sign out")
+      user2 = create(:user_2)
+      sign_in_as(user2)
+      visit'/'
+      click_on('Football')
+      click_on("I'm in")
+      click_on("My Profile")
+      click_on("Football")
+      click_on("Rate activity")
+      choose("rating_value_5")
+      click_on("Rate activity")
+      visit '/'
+      click_on("Tennis")
+      click_on("I'm in")
+      click_on("My Profile")
+      click_on("Tennis")
+      click_on("Rate activity")
+      choose("rating_value_1")
+      click_on("Rate activity")
+      click_on('Katya')
+      expect(page).to have_content("Host Rating: ★★★☆☆")
+    end
+
     scenario "has attended activities", js: true do
       user = create(:user)
       sign_in_as(user)

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, shallow: true do
     resources :activities do
       resources :attendances
+      resources :ratings
     end
   end
 
