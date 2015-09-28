@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   def index
-    @activities = Activity.where(['date >= ?', DateTime.now]).where(['time >= ?', ("2000-01-01 #{Time.now.strftime('%H:%M:%S')}")])
+    @activities = Activity.where(['datetime >= ?', DateTime.now])
     @geojson = Array.new
 
     @activities.each do |activity|
@@ -17,8 +17,8 @@ class LocationsController < ApplicationController
           description: activity.description,
           participants: (activity.participants - activity.active_participants),
           active_participants: activity.active_participants,
-          date: Date.parse(activity.date.to_s).strftime('%d-%m-%y'),
-          time: activity.time.strftime('%H:%M'),
+          date: activity.datetime.strftime('%d-%m-%y'),
+          time: activity.datetime.strftime('%H:%M'),
           :'marker-color' => '#00607d',
           :'marker-symbol' => 'circle',
           :'marker-size' => 'medium'

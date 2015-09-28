@@ -10,7 +10,6 @@ RSpec.describe Activity, type: :model do
   it { should validate_presence_of(:category)}
   it { should validate_presence_of(:tag)}
   it { should validate_presence_of(:title)}
-  it { should validate_presence_of(:time)}
-  it { should validate_presence_of(:date).on(:create)}
+  it { should validate_presence_of(:datetime).on(:create)}
 
 end

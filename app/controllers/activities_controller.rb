@@ -8,8 +8,12 @@ class ActivitiesController < ApplicationController
     elsif params["Category"]
       @activities = Activity.where(category: params["Category"])
     else
-      @activities = Activity.where(['date >= ?', DateTime.now]).where(['time >= ?', ("2000-01-01 #{Time.now.strftime('%H:%M:%S')}")]).order(date: :asc)
+      # @activities = Activity.where(['date >= ?', DateTime.now]).where(['time >= ?', ("2000-01-01 #{Time.now.strftime('%H:%M:%S')}")]).order(date: :asc)
       # @activities = Activity.order(date: :asc)
+      # @activities = Activity.where(['datetime >= ?', Time.now.to_formatted_s(:db)]).order(datetime: :asc)
+      @activities = Activity.where(['datetime >= ?', DateTime.now]).order(datetime: :asc)
+
+
     end
     @categories = Category.all
   end
@@ -35,6 +39,6 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:title, :description, :location, :participants, :date, :time, :category, :tag)
+    params.require(:activity).permit(:title, :description, :location, :participants, :datetime, :category, :tag)
   end
 end

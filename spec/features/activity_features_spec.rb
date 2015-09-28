@@ -19,8 +19,11 @@ feature 'activity' do
     fill_in "Describe your Activity", with: "Football in the park, yea"
     fill_in "Location", with: "Regent's Park"
     fill_in "People needed", with: "6"
-    fill_in "Date", with: "06/10/2016 00:00:00"
-    fill_in "Time", with: "18:00"
+    select '2016', from: 'activity_datetime_1i'
+    select 'October', from: 'activity_datetime_2i'
+    select '6', from: 'activity_datetime_3i'
+    select '18', from: 'activity_datetime_4i'
+    select '00', from: 'activity_datetime_5i'
     select "Sport", from: "Category"
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
@@ -31,6 +34,7 @@ feature 'activity' do
   scenario 'host is visible on the activity page' do
     activity = build(:activity)
     create_activity(activity)
+    visit '/'
     click_on('Football')
     expect(page).to have_content("Hosted by: Katya")
   end
@@ -77,20 +81,6 @@ feature 'activity' do
     expect(page).to have_content("Tag can't be blank")
   end
 
-  scenario 'user cannot make an activity without a time' do
-    visit '/'
-    activity = build(:activity, time: "")
-    create_activity(activity)
-    expect(page).to have_content("Time can't be blank")
-  end
-
-  scenario 'user cannot make an activity without a date' do
-    visit '/'
-    activity = build(:activity, date: "")
-    create_activity(activity)
-    expect(page).to have_content("Date can't be blank")
-  end
-
   scenario "user does not see the 'I'm in' button if the activity is full", js: true do
     visit '/'
     activity1 = build(:activity1)
@@ -126,8 +116,11 @@ feature 'activity' do
     fill_in "Describe your Activity", with: "Football in the park, yea"
     fill_in "Location", with: "Regent's Park"
     fill_in "People needed", with: "-2"
-    fill_in "Date", with: "06/10/2016"
-    fill_in "Time", with: "18:00"
+    select '2016', from: 'activity_datetime_1i'
+    select 'October', from: 'activity_datetime_2i'
+    select '6', from: 'activity_datetime_3i'
+    select '18', from: 'activity_datetime_4i'
+    select '00', from: 'activity_datetime_5i'
     select "Sport", from: "Category"
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
@@ -216,10 +209,11 @@ feature 'activity' do
       activity_late = build(:activity_late)
       create_activity(activity_late)
       t = Time.local(2016, 10, 6, 18, 30, 00)
+      p t
       Timecop.travel(t)
       visit '/'
       Timecop.return
-      expect(page).to have_content("Pro football")
+      expect(page).to have_content("running")
       expect(page).not_to have_content("Football")
     end
   end
