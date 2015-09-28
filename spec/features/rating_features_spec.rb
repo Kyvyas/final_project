@@ -44,6 +44,14 @@ feature 'rating' do
     expect(page).not_to have_content "Rate activity"
   end
 
+  scenario "user does not see I'm in link if they are host", js: true do
+    activity2 = build(:activity2)
+    create_activity(activity2)
+    visit '/'
+    click_on 'Tennis'
+    expect(page).not_to have_content("I'm in!")
+  end
+
   scenario 'user cannot rate activity more than once', js: true do
     visit '/'
     click_on 'Football'
