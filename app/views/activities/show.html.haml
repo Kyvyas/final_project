@@ -11,7 +11,7 @@ Total needed;
 %p Hosted by:
 = link_to @activity.user.name, user_path(@activity.user)
 
-- if @people_needed > 0 && !current_user.has_clicked?(@activity)
+- if @people_needed > 0 && !current_user.has_clicked?(@activity) && !current_user.activities.include?(@activity)
   %p= link_to "I'm in!", activity_attendances_path(@activity), class: 'join_button'
 
 - if @activity.attendees.include?(current_user) && !current_user.rated_activites.include?(@activity)
