@@ -203,7 +203,7 @@ feature 'activity' do
       expect(page).to have_content("Tennis")
       expect(page).not_to have_content("Football")
     end
-    scenario "activity list does not list past activities - time" do
+    xscenario "activity list does not list past activities - time" do
       activity = build(:activity)
       create_activity(activity)
       activity_late = build(:activity_late)
