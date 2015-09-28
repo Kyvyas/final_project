@@ -1,12 +1,13 @@
-= form_for [@activity, @rating] do |f|
-  = f.label :value, "1"
-  = f.radio_button :value, 1
-  = f.label :value, "2"
-  = f.radio_button :value, 2
-  = f.label :value, "3"
-  = f.radio_button :value, 3
-  = f.label :value, "4"
-  = f.radio_button :value, 4
-  = f.label :value, "5"
-  = f.radio_button :value, 5
-  = f.submit "Rate activity"
+.rating
+  = form_for [@activity, @rating] do |f|
+    = f.label :value, "1"
+    = f.radio_button :value, 1
+    = f.label :value, "2"
+    = f.radio_button :value, 2
+    = f.label :value, "3"
+    = f.radio_button :value, 3
+    = f.label :value, "4"
+    = f.radio_button :value, 4
+    = f.label :value, "5"
+    = f.radio_button :value, 5
+    = f.submit "Rate activity"

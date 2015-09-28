@@ -4,35 +4,40 @@
     %title TeemApp
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     %script{:src => "http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js"}
-    %script{:src => "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"}
-    %link{:href => "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css", :rel => "stylesheet"}/
     %script{:src => "//code.jquery.com/jquery-1.11.3.min.js"}
     %script{:src => "//code.jquery.com/jquery-migrate-1.2.1.min.js"}
     %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"}
-    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css", :rel => "stylesheet"}/
-    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", :rel => "stylesheet"}/
-    %link{:href => "http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css", :rel => "stylesheet"}/
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css", :rel => "stylesheet"}
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", :rel => "stylesheet"}
+    %link{:href => "http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css", :rel => "stylesheet"}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top
-      %a.navbar-brand{:href => "/"}
-        TeemApp
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %ul.nav.navbar-nav.navbar-right.collapse.navbar-collapse
-        - if user_signed_in?
-          %li= link_to "Sign out", destroy_user_session_path, method: :delete
-          %li= link_to "My Profile", user_path(current_user)
-        - else
-          %li= link_to "Sign in", new_user_session_path
-          %li= link_to "Sign up", new_user_registration_path
-          %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-    %p.notice
+    %nav.navbar.navbar-default.navbar-fixed-top#header_menu
+      .container-fluid
+        %div.logo
+          = image_tag 'logo.png'
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %div.menu
+            - if user_signed_in?
+              %li= link_to "Sign out", destroy_user_session_path, method: :delete
+              %li= link_to "My Profile", user_path(current_user)
+              %li= link_to "About us", '#about-us'
+            - else
+              %li= link_to "Sign in", new_user_session_path
+              %li= link_to "Sign up", new_user_registration_path
+              %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+              %li= link_to "About us", '#about-us'
+
+    %div.notice-message
       = notice
-    %p.alert
+    %div.alert-message
       = alert
     = yield

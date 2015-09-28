@@ -14,12 +14,7 @@
  *= require_self
  */
 
-#map{
-   position: absolute;
-   top:46px;
-   bottom:0;
-   width:100%;
-}
+
 .fa-map-marker {
     content: "\f041";
     padding-right: 10px;
@@ -40,31 +35,148 @@
   border-radius:3px;
   }
 
+
+#map{
+   position: absolute;
+   top:46px;
+   bottom:0;
+   width:100%;
+}
+
 .navbar{
   z-index:2;
+  margin-bottom: 0 !important;
 }
 
-div.panel, p.flip {
-   position: relative;
-  margin: 30px;
-  padding: 10px;
-  text-align: center;
-  background: #ddd;
-  border: solid 1px #fff;
+#header_menu {
+  /*position: relative;*/
+  width: 100%;
+  height: 75px;
+  background: #001738 !important;
+  border: 0px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-div.panel {
-  widht: 50%;
-  height: 100px;
-  display: none;
+.nav-links ul {
+  float:right;
+  display: inline-block;
 }
+
+
+.nav-links li a{
+  color: #fff;
+  margin-top: 10px;
+}
+
+.logo {
+  position: relative;
+  text-align: left;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  float: left;
+  margin-left: 5px;
+
+  padding-bottom:10px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  color: #a9fdac;
+  text-decoration: none;
+}
+
+.logo a:active {
+  color: #a9fdac;
+  text-decoration: none;
+}
+
+
+/*********************************************************************************/
+/* Menu                                                                          */
+/*********************************************************************************/
+
+
+.menu a:active {
+color:#CB2821;
+}
+.menu select {
+display: none;
+}
+
+.menu .active a {
+border:0;
+color:#CB2821;
+}
+.menu .active a:focus{
+  outline: none;
+border: none;
+}
+.menu .active a:active {
+  outline: none;
+border: none;
+}
+.menu .active a:link {
+  outline: none;
+border: none;
+}
+.menu .active a:visited  {
+  outline: none;
+  border: none;
+}
+
+.menu li{
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  padding-left: 30px;
+  float:right;
+  font-size:16px;
+  color:#000;
+  list-style:inline;
+  list-style-type: none;
+  text-transform:uppercase;
+  font-weight:700;
+  color: #fff;
+
+}
+.menu li:last-child{
+  border-right:0;
+}
+.menu{
+  padding: 0.75em 3em;
+  margin-top: 16px;
+}
+.menu li a{
+  color:#fff;
+  text-decoration:none;
+
+}
+.menu li a:hover{
+  border:none;
+  outline:none;
+  color:#a9fdac;
+}
+
+
+/*********************************************************************************/
+/* Hero                                                                          */
+/*********************************************************************************/
 
 .hero{
-  background-image:url('hero.jpg');
+  background-image:url('boat.jpg');
   background-size:cover;
   position:relative;
   height:100vh;
 }
+
 .hero-header{
   position:absolute;
   top:50%;
@@ -76,3 +188,397 @@ div.panel {
     -webkit-transform: translate(0,-50%); /* Safari */
     transform: translate(0,-50%);
 }
+
+.hero-header h1 {
+  font-size: 50px;
+}
+
+/*********************************************************************************/
+/* Mobile                                                                         */
+/*********************************************************************************/
+
+.mobile{
+  background-image:url('boat.jpg');
+  background-size:cover;
+  position:relative;
+  height:60vh;
+}
+
+.mobile-header{
+  position:relative;
+  top:40%;
+  text-align:center;
+  width:100%;
+  color:#fff;
+  -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%);
+}
+
+.mobile-header h1 {
+  font-size: 40px;
+}
+
+.mobile-activity-admin {
+  margin-top: 25px;
+}
+
+.navbar-toggle {
+  margin-top: 22px !important;
+  margin-right: 7px !important;
+}
+
+.navbar-header {
+  height: 75px !important;
+}
+
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: 0px !important;
+}
+
+
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+    max-height: 340px;
+}
+.navbar-collapse {
+   padding-right: 0px !important;
+   text-align: center;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .navbar-collapse {
+     padding-right: 0px !important;
+     padding-left: 0px !important;
+     width: 100%;
+     text-align: center;
+     background: #001750;
+  }
+  .navbar-collapse menu {
+     padding-left: 0px !important;
+     padding-bottom: 20px;
+     text-align: center;
+     padding-top: 0.5em;
+  }
+  .navbar-collapse li {
+     padding-left: 20px;
+     padding-bottom: 20px;
+
+  }
+  .logo {
+    padding: 0px;
+
+  }
+}
+
+
+.collapse.in {
+    display: block;
+}
+
+.categories {
+
+}
+
+.overlay {
+   position: absolute;
+   bottom: 40%;
+   text-align: center;
+   font-size: 30px;
+   width: 100%;
+}
+
+.overlay a{
+  color: #fff;
+  font-weight: 400;
+}
+
+.overlay a:hover {
+  text-decoration: none;
+}
+
+.no-padding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+
+/*********************************************************************************/
+/* Latest Activities                                                             */
+/*********************************************************************************/
+
+.section-header__title {
+    margin: 2.5rem 0 2rem;
+}
+.heading--center {
+    text-align: center;
+}
+.heading--dark {
+    color: #606b70;
+}
+.heading {
+    font-family: MuseoSansRounded-500,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+h2 {
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    margin: 0;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+
+.latest {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  background: #fff;
+}
+
+.latest h1 {
+  margin-bottom: 30px;
+  color: rgb(127,127,127);
+  margin-top: 30px ;
+}
+
+.latest .row {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.image-wrapper {
+  position: relative;
+  padding-top: 20px;
+  width: 250px;
+
+}
+
+.image-wrapper img {
+  max-width:100%;
+max-height:100%;
+  border-radius: 7px;
+}
+
+.image-wrapper .text-box {
+  position: absolute;
+  left:15px;
+  text-align: left;
+  bottom: 0;
+  padding: 10px;
+  background: rgba(255,255,255,0.7);
+  width: 100%;
+  color: #FFF;
+  margin: 0px;
+  color: #000;
+}
+
+.image-wrapper .text-box h2 {
+  margin-top: 0px;
+}
+
+.event-overlay {
+   position: absolute;
+   bottom: 0%;
+   font-size: 30px;
+   width: 100%;
+   background: rgba(255,255,255,0.7)
+}
+
+.event-overlay {
+  text-align: left;
+}
+
+.event-overlay a{
+  color: #fff;
+  font-weight: 400;
+}
+
+.event-overlay a:hover {
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+/*********************************************************************************/
+/* Content                                                                       */
+/*********************************************************************************/
+
+.content{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  background: #fff;
+}
+
+.content h1 {
+  margin-bottom: 30px;
+  color: rgb(127,127,127);
+  margin-top: 30px ;
+}
+
+.each-activity {
+  display: inline-block;
+}
+
+/*********************************************************************************/
+/* Hero text Desktop                                                             */
+/*********************************************************************************/
+
+.activity-admin {
+  margin-top: 50px;
+
+}
+
+.input-box {
+  width: 320px;
+  height: 50px;
+  border: 2px solid black;
+  color: #fff;
+  margin-bottom: 20px;
+}
+::-webkit-input-placeholder {
+   color: #bcbcbc;
+   font-size: 16px;
+   font-weight: 500;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #bcbcbc;
+   font-size: 16px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #bcbcbc;
+   font-size: 16px;
+}
+
+:-ms-input-placeholder {
+   color: #605f5e;
+   font-size: 16px;
+}
+
+input[type=text] {
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+}
+
+.category-box {
+  color: #000;
+  /*background: rgba(255,255,255,0.7);*/
+  width: 320px;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 1;
+  border: 2px solid black;
+  border-radius: 0;
+  height: 50px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.search_button {
+  visibility: collapse;
+  float: left;
+    width: 1px;
+    height: 1px;
+    background-color: transparent;
+    border: none;
+}
+
+/*.filter_button {
+  visibility: collapse;
+  float: left;
+    width: 1px;
+    height: 1px;
+    background-color: transparent;
+    border: none;
+}*/
+
+.create-activity {
+  margin-top: 10%;
+}
+
+.add-activity {
+  width: 340px;
+  padding: 5px;
+  background-color: #2f7cd0 !important;
+  line-height: 1;
+  border-radius: 0;
+  height: 45px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: #fff;
+  list-style-type: none;
+}
+
+.map-button {
+  width: 340px;
+  padding: 5px;
+  line-height: 1;
+  border: 5px solid black;
+  border-radius: 0;
+  height: 45px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  background-color: #2f7cd0 !important;
+  color: #fff;
+  list-style-type: none;
+}
+
+.button-container {
+  margin-top: 10px;
+  height: 50px;
+}
+
+
+/*********************************************************************************/
+/* About us                                                          */
+/*********************************************************************************/
+
+
+#about-us{
+  height: 500px;
+  width: 100%;
+  display: inline-block;
+  margin-left: 0 !important;
+}
+
+
+.about-us h1 {
+  float: left;
+  margin-bottom: 30px;
+
+}
+
+/*********************************************************************************/
+/* Show activity                                                                */
+/*********************************************************************************/
+
+.show-activity {
+  margin-top: 100px;
+}
+
+.rating {
+  margin-top: 200px;
+}
+
