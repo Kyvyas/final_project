@@ -24,6 +24,11 @@ Rails.application.routes.draw do
 
   get 'activity/map' => 'activities#location'
 
+  get 'activities/confirmation' => 'activities#confirmation'
+
+  post 'activities/confirmation' => 'activities#confirmation'
+
+
 
 
 

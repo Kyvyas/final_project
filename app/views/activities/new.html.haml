@@ -8,7 +8,7 @@
         %li= message
 
 %section.create-activity
-  = form_for [@user, @activity], html: { multipart: true } do |f|
+  = form_for [@user, @activity], :url => activities_confirmation_path, html: { multipart: true } do |f|
     = f.text_field :title, :placeholder => "Activity Name"
     = f.text_field :description, :placeholder => "Describe your Activity"
     = f.text_field :location, :placeholder => "Location"

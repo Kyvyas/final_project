@@ -25,12 +25,13 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = current_user.activities.new(activity_params)
+    @user = current_user
     if @activity.save
       flash[:notice] = "Your activity has been posted! Good luck!"
     else
       flash[:notice] = @activity.errors.full_messages.to_sentence
     end
-    redirect_to '/'
+    redirect_to root_path
   end
 
   def show
@@ -40,5 +41,10 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:title, :description, :location, :participants, :datetime, :category, :tag)
+  end
+
+  def confirmation
+    @user = current_user
+    @activity = current_user.activities.new(activity_params)
   end
 end
