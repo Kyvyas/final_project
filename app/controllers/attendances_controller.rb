@@ -15,7 +15,7 @@ class AttendancesController < ApplicationController
         @people_needed = @activity.participants - @activity.active_participants
         render json: { new_people_count: @people_needed, notice: "You are SO in!" }
       else
-        render json: { notice: "You've already signed up to this - awesome!" }
+        render json: { notice: "You're already going to this activity - awesome!" }
       end
     else
       render json: { notice: "Sorry, this activity is full" }

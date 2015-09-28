@@ -1,6 +1,7 @@
   class Activity < ActiveRecord::Base
   belongs_to :user
   has_many :attendances
+  has_many :ratings
   has_many :attendees, through: :attendances, source: :user
   before_create :check_params
 
@@ -22,9 +23,14 @@
     self.tag.downcase!
   end
 
+
   def date_cannot_be_in_past
     errors.add(:datetime, "Your activity cannot be in the past! Leave the past where it is...") if
       !datetime.blank? and datetime < Date.today
+  end
+
+  def build_rating(params, user)
+    rating = ratings.build(value: params[:value], user_id: user.id)
   end
 
 end

@@ -19,6 +19,7 @@ class LocationsController < ApplicationController
           active_participants: activity.active_participants,
           date: activity.datetime.strftime('%d-%m-%y'),
           time: activity.datetime.strftime('%H:%M'),
+          category: activity.category,
           :'marker-color' => '#00607d',
           :'marker-symbol' => 'circle',
           :'marker-size' => 'medium'

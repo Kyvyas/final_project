@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :attendances
+  has_many :ratings
+  has_many :rated_activites, through: :ratings, source: :activity
   has_many :attended_activities, through: :attendances, source: :activity
 
   has_many :activities
@@ -18,8 +20,8 @@ class User < ActiveRecord::Base
 
      user.email = auth.info.email
      user.password = Devise.friendly_token[0,20]
-     # user.name = auth.info.name   # assuming the user model has a name
-     # user.image = auth.info.image # assuming the user model has an image
+     user.name = auth.info.name   # assuming the user model has a name
+     user.avatar = auth.info.image # assuming the user model has an image
    end
   end
 
@@ -36,4 +38,9 @@ class User < ActiveRecord::Base
     activity.attendees.include?(self)
   end
 
+  def host_rating
+    sum = 0
+    self.activities.each {|a| sum += a.ratings.average(:value) if a.ratings.average(:value) }
+    avg = sum/self.activities.length
+  end
 end
