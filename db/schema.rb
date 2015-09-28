@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924164217) do
+ActiveRecord::Schema.define(version: 20150928084038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,10 @@ ActiveRecord::Schema.define(version: 20150924164217) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.text     "title"
-    t.time     "time"
     t.integer  "user_id"
-    t.date     "date"
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "datetime"
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
@@ -45,6 +44,17 @@ ActiveRecord::Schema.define(version: 20150924164217) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.integer  "activity_id"
+  end
+
+  add_index "ratings", ["activity_id"], name: "index_ratings_on_activity_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -61,6 +71,11 @@ ActiveRecord::Schema.define(version: 20150924164217) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -71,4 +86,6 @@ ActiveRecord::Schema.define(version: 20150924164217) do
   add_foreign_key "activities", "users"
   add_foreign_key "attendances", "activities"
   add_foreign_key "attendances", "users"
+  add_foreign_key "ratings", "activities"
+  add_foreign_key "ratings", "users"
 end

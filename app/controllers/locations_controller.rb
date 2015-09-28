@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   def index
-    @activities = Activity.all
+    @activities = Activity.where(['datetime >= ?', DateTime.now])
     @geojson = Array.new
 
     @activities.each do |activity|
@@ -17,15 +17,15 @@ class LocationsController < ApplicationController
           description: activity.description,
           participants: (activity.participants - activity.active_participants),
           active_participants: activity.active_participants,
-          date: Date.parse(activity.date.to_s).strftime('%d-%m-%y'),
-          time: activity.time.strftime('%H:%M'),
+          date: activity.datetime.strftime('%d-%m-%y'),
+          time: activity.datetime.strftime('%H:%M'),
+          category: activity.category,
           :'marker-color' => '#00607d',
           :'marker-symbol' => 'circle',
           :'marker-size' => 'medium'
           }
         }
     end
-
     respond_to do |format|
       format.html
       format.json { render json: @geojson }  # respond with the created JSON object

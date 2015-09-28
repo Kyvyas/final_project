@@ -14,16 +14,27 @@
  *= require_self
  */
 
-#map{
-   position: absolute;
-   top:46px;
-   bottom:0;
-   width:100%;
-}
 
-.navbar{
-  z-index:2;
-}
+.fa-map-marker {
+    content: "\f041";
+    padding-right: 10px;
+    margin-bottom: 1px;
+    padding-bottom: 5px;
+  }
+
+.ui-select {
+  background:#fff;
+  position:absolute;
+  top:55px;
+  right:10px;
+  z-index:100;
+  padding:5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #A0A0A0;
+  border-radius:3px;
+  }
+
 
 #map{
    position: absolute;
@@ -163,14 +174,16 @@ border: none;
   background-image:url('boat.jpg');
   background-size:cover;
   position:relative;
-  height:70vh;
+  height:100vh;
 }
+
 .hero-header{
   position:absolute;
   top:50%;
   text-align:center;
   width:100%;
   color:#fff;
+  font-size:36px;
   -ms-transform: translate(0,-50%); /* IE 9 */
     -webkit-transform: translate(0,-50%); /* Safari */
     transform: translate(0,-50%);
@@ -564,3 +577,8 @@ input[type=text] {
 .show-activity {
   margin-top: 100px;
 }
+
+.rating {
+  margin-top: 200px;
+}
+

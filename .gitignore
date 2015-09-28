@@ -7,9 +7,12 @@
 # Ignore bundler config.
 /.bundle
 
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
 
-/app/assets/images
+.DS_Store
+public/system/users/avatars/000/000/001/
+
