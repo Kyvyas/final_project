@@ -4,5 +4,27 @@
 %script{:src => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"}
 %link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css", :rel => "stylesheet"}/
 %link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+#filters.ui-select
+  %div
+    %input#sports.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Sports"}/
+    %label{:for => "Sports"} sports
+  %div
+    %input#culture.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Culture"}/
+    %label{:for => "Culture"} culture
+  %div
+    %input#coding.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Coding"}/
+    %label{:for => "Coding"} coding
+  %div
+    %input#education.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Education"}/
+    %label{:for => "Education"} education
+  %div
+    %input#music.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Music"}/
+    %label{:for => "Music"} music
+  %div
+    %input#comedy.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Comedy"}/
+    %label{:for => "Comedy"} comedy
+  %div
+    %input#nightlife.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Nightlife"}/
+    %label{:for => "Nightlife"} nightlife
 #map
 %script{:src => "/src/map.js"}
