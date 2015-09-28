@@ -44,6 +44,21 @@
   z-index:2;
 }
 
+div.panel, p.flip {
+   position: relative;
+  margin: 30px;
+  padding: 10px;
+  text-align: center;
+  background: #ddd;
+  border: solid 1px #fff;
+}
+
+div.panel {
+  widht: 50%;
+  height: 100px;
+  display: none;
+}
+
 .hero{
   background-image:url('hero.jpg');
   background-size:cover;

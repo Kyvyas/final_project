@@ -127,6 +127,7 @@ feature "User can sign in and out" do
       visit '/'
       click_on("Tennis")
       click_on("I'm in")
+      sleep 1
       click_on("My Profile")
       click_on("Tennis")
       click_on("Rate activity")
