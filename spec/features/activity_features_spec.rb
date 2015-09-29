@@ -258,6 +258,7 @@ feature 'activity' do
     click_on 'Football'
     click_on "I'm out"
     expect(page).to have_content("You are no longer attending this activity")
+    Timecop.return
   end
 
   scenario 'user can delete their attendance which updates the number of people needed', js: true do
@@ -276,6 +277,7 @@ feature 'activity' do
     visit '/'
     click_on "Football"
     expect(page).to have_content("People needed: 6")
+    Timecop.return
   end
 
 

@@ -3,12 +3,14 @@
 -if @user.activities.any?
   %p Host Rating:
   = "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
-  %p Hosted activities:
-  - @user.activities.each do | activity |
+  %p Upcoming hosted activities:
+  - @future_hosted_activities.each do | activity |
     = link_to activity.title, activity_path(activity)
-    -if activity.has_happened?
-      %p Activity Rating:
-      = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
+  %p Hosted activities:
+  - @past_hosted_activities.each do | activity |
+    = link_to activity.title, activity_path(activity)
+    %p Activity Rating:
+    = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
 -else
   %p No hosted activities yet!
 -if @user.attended_activities.any?

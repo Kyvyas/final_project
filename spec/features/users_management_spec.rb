@@ -74,9 +74,23 @@ feature "User can sign in and out" do
       sign_in_as(user)
       activity = build(:activity)
       create_activity(activity)
+      t = Time.local(2020, 10, 6, 12, 0, 0)
+      Timecop.travel(t)
       click_on('Football')
       click_on('Katya')
       expect(page).to have_content("Hosted activities: Football")
+      expect(page).not_to have_content("No hosted activities yet!")
+      Timecop.return
+    end
+
+    scenario "has upcoming hosted activities" do
+      user = create(:user)
+      sign_in_as(user)
+      activity = build(:activity)
+      create_activity(activity)
+      click_on('Football')
+      click_on('Katya')
+      expect(page).to have_content("Upcoming hosted activities: Football")
       expect(page).not_to have_content("No hosted activities yet!")
     end
 
