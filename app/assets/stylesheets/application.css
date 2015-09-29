@@ -493,12 +493,9 @@ input[type=text] {
 }
 
 .search_button {
-  visibility: collapse;
-  float: left;
-    width: 1px;
-    height: 1px;
-    background-color: transparent;
-    border: none;
+  background: url(icon.png) center no-repeat;
+  position: absolute;
+  background-size: 50px;
 }
 
 /*.filter_button {

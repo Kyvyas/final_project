@@ -1,6 +1,6 @@
-%section.user-profile
+%section.user-profile.col-md-6.col-md-offset-3
   = image_tag @user.avatar(:medium)
-  = @user.name
+  %p= @user.name
   -if @user.activities.any?
     %p Host Rating:
     = "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
