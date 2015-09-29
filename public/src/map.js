@@ -24,14 +24,14 @@ $(document).ready(function() {
     marker = e.layer;
     properties = marker.feature.properties;
     popupContent =  '<div class="popup"><h3><a href="/activities/' + properties.id + '" target="marker">' + properties.name+ '</a></h3>' +
-                   '<p><strong>When Its On:   </strong>' + properties.date + properties.time + '</p>' +
+                   '<p><strong>When Its On:   </strong>' + properties.date + " " + properties.time + '</p>' +
                    '<p><strong>Location:   </strong>' + properties.address + '</p>' +
                    '<p><strong>People Needed: </strong>' + properties.participants + '</p>' +
                    '<p><strong>People In:  </strong>' + properties.active_participants+ '</p>' +
                  '</div>'
     return marker.bindPopup(popupContent, {
       closeButton: false,
-      minWidth: 300
+      minWidth: 250
     });
   });
 
