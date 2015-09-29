@@ -1,21 +1,29 @@
 = image_tag @user.avatar(:medium)
 = @user.name
 -if @user.activities.any?
-  %p Host Rating:
-  = "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
-  %p Upcoming hosted activities:
-  - @future_hosted_activities.each do | activity |
-    = link_to activity.title, activity_path(activity)
-  %p Hosted activities:
-  - @past_hosted_activities.each do | activity |
-    = link_to activity.title, activity_path(activity)
-    %p Activity Rating:
-    = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
+  - if @past_hosted_activities.any?
+    %p Host Rating:
+    = "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
+  - if @future_hosted_activities.any?
+    %p Upcoming hosted activities:
+    - @future_hosted_activities.each do | activity |
+      = link_to activity.title, activity_path(activity)
+  - if @past_hosted_activities.any?
+    %p Hosted activities:
+    - @past_hosted_activities.each do | activity |
+      = link_to activity.title, activity_path(activity)
+      %p Activity Rating:
+      = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
 -else
   %p No hosted activities yet!
 -if @user.attended_activities.any?
-  %p Attended activities:
-  - @user.attended_activities.each do | attended_activity |
-    =link_to attended_activity.title, activity_path(attended_activity)
+  -if @future_attending_activities.any?
+    %p Upcoming attending activities:
+    - @user.attended_activities.each do | attended_activity |
+      =link_to attended_activity.title, activity_path(attended_activity)
+  -if @past_attended_activities.any?
+    %p Attended activities:
+    - @user.attended_activities.each do | attended_activity |
+      =link_to attended_activity.title, activity_path(attended_activity)
 -else
   %p No attended activities yet!
