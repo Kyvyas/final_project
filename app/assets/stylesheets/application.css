@@ -493,9 +493,16 @@ input[type=text] {
 }
 
 .search_button {
-  background: url(icon.png) center no-repeat;
+  /*background: url(icon.png) center no-repeat;
   position: absolute;
   background-size: 50px;
+  color: transparent;
+  border-left: 1px solid black;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  height: 50px;
+  width:50px;*/
 }
 
 /*.filter_button {

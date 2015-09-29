@@ -7,8 +7,10 @@
           = select_tag "Category", options_for_select(["Select category"] + @categories.map{|x| x.name}, :selected => params[:category]), :onchange => "this.form.submit()", class: "category-box", placeholder: "Select an option"
           %noscript= submit_tag "Filter", class: "filter_button"
         = form_tag root_path, class: "search_form", method: :get do
-          = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity", class: "input-box"
-          = submit_tag "Search", class: "search_button"
+          %div.right-inner-addon
+
+            = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity", class: "input-box"
+            %noscript= submit_tag "Search", class: "search_button"
           %div.button-container.col-xs-12
             =link_to "Map view", locations_path, class: "btn map-button"
           - if current_user
