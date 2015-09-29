@@ -101,3 +101,7 @@ input[type="number"] {
 .lrg-submit-btn:hover {
   color: #ececec;
 }
+
+.profile {
+  padding-top: 150px;
+}
