@@ -81,6 +81,24 @@ feature 'activity' do
     expect(page).to have_content("Tag can't be blank")
   end
 
+   scenario "user cannot add activity with negative participants" do
+    visit '/'
+    click_link("Add an activity")
+    fill_in "Activity Name", with: "Football"
+    fill_in "Describe your Activity", with: "Football in the park, yea"
+    fill_in "Location", with: "Regent's Park"
+    fill_in "People needed", with: "-2"
+    select '2016', from: 'activity_datetime_1i'
+    select 'October', from: 'activity_datetime_2i'
+    select '6', from: 'activity_datetime_3i'
+    select '18', from: 'activity_datetime_4i'
+    select '00', from: 'activity_datetime_5i'
+    select "Sport", from: "Category"
+    fill_in "Activity e.g.'Football'", with: "Football"
+    click_on("Let's do it")
+    expect(page).to have_content("must be greater than 0")
+  end
+
   scenario "user does not see the 'I'm in' button if the activity is full", js: true do
     visit '/'
     activity1 = build(:activity1)
@@ -107,46 +125,9 @@ feature 'activity' do
     click_on('Football')
     click_on("I'm in!")
     expect(page).not_to have_content("I'm in!")
-  end
-
-  scenario "user cannot add activity with negative participants" do
     visit '/'
-    click_link("Add an activity")
-    fill_in "Activity Name", with: "Football"
-    fill_in "Describe your Activity", with: "Football in the park, yea"
-    fill_in "Location", with: "Regent's Park"
-    fill_in "People needed", with: "-2"
-    select '2016', from: 'activity_datetime_1i'
-    select 'October', from: 'activity_datetime_2i'
-    select '6', from: 'activity_datetime_3i'
-    select '18', from: 'activity_datetime_4i'
-    select '00', from: 'activity_datetime_5i'
-    select "Sport", from: "Category"
-    fill_in "Activity e.g.'Football'", with: "Football"
-    click_on("Let's do it")
-    expect(page).to have_content("must be greater than 0")
   end
 
-
-  context "activities need to be ordered by time at which they occur" do
-    scenario 'activities are displayed in order ascending by time' do
-      activity = build(:activity)
-      create_activity(activity)
-      activity2 = build(:activity2)
-      create_activity(activity2)
-      visit '/'
-      expect(page).to have_content("Football Tennis")
-    end
-
-    scenario 'cannot be displayed in the wrong order' do
-      activity2 = build(:activity2)
-      create_activity(activity2)
-      activity = build(:activity)
-      create_activity(activity)
-      visit '/'
-      expect(page).to have_content("Football Tennis")
-    end
-  end
 
   scenario "user can filter activities by category" do
     activity = build(:activity)
@@ -188,6 +169,26 @@ feature 'activity' do
     past_activity = build(:past_activity)
     create_activity(past_activity)
     expect(page).to have_content("Your activity cannot be in the past! Leave the past where it is...")
+  end
+
+  context "activities need to be ordered by time at which they occur" do
+    scenario 'activities are displayed in order ascending by time' do
+      activity = build(:activity)
+      create_activity(activity)
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      visit '/'
+      expect(page).to have_content("Football Tennis")
+    end
+
+    scenario 'cannot be displayed in the wrong order' do
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      activity = build(:activity)
+      create_activity(activity)
+      visit '/'
+      expect(page).to have_content("Football Tennis")
+    end
   end
 
   context "Time mock testing:" do

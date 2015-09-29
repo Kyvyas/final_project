@@ -27,6 +27,7 @@ class ActivitiesController < ApplicationController
     @activity = current_user.activities.new(activity_params)
     if @activity.save
       flash[:notice] = "Your activity has been posted! Good luck!"
+      ConfirmationMailer.confirm_activity(@activity, current_user).deliver_now
     else
       flash[:notice] = @activity.errors.full_messages.to_sentence
     end
