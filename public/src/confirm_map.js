@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+// $(document).ready(function() {
   navigator.geolocation.getCurrentPosition(function(position) {
     var mylat = position.coords.latitude;
     var mylon = position.coords.longitude;
@@ -10,6 +10,7 @@ $(document).ready(function() {
       var result = result.features[0].center;
       var confirm_map = L.mapbox.map('confirm_map', 'mapbox.streets')
          .setView([result[1], result[0]], 15);
+      $(".spinner").hide();
 
       var marker = L.marker([result[1], result[0]], {
          icon: L.mapbox.marker.icon({
@@ -34,4 +35,4 @@ $(document).ready(function() {
       };
     });
   });
-});
+// });

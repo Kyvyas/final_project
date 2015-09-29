@@ -19,7 +19,6 @@ feature 'rating' do
 
   scenario 'user can rate activity they have signed up for after it has begun', js: true do
     visit '/'
-    expect(page).to have_content("carrot")
     click_on 'Football'
     click_on "I'm in!"
     click_on "My Profile"
@@ -68,5 +67,6 @@ feature 'rating' do
     click_on("Rate activity")
     expect(page).to have_content("Activity already rated.")
   end
+
 
 end
