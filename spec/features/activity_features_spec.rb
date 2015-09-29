@@ -220,7 +220,7 @@ feature 'activity' do
   end
 
   scenario "user can delete their hosted activities before they happen" do
-    t = Time.local(2016, 10, 6, 17, 0, 0)
+    t = Time.local(2016, 10, 6, 12, 0, 0)
     Timecop.travel(t)
     activity = build(:activity)
     create_activity(activity)
