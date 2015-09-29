@@ -199,9 +199,9 @@ feature 'activity' do
       t = Time.local(2016, 10, 9, 10, 5, 0)
       Timecop.travel(t)
       visit '/'
-      Timecop.return
       expect(page).to have_content("Tennis")
       expect(page).not_to have_content("Football")
+      Timecop.return
     end
     xscenario "activity list does not list past activities - time" do
       activity = build(:activity)
@@ -212,10 +212,20 @@ feature 'activity' do
       p t
       Timecop.travel(t)
       visit '/'
-      Timecop.return
       expect(page).to have_content("running")
       expect(page).not_to have_content("Football")
+      Timecop.return
     end
+  end
+
+  xscenario "user can delete their hosted activities before they happen" do
+    activity = build(:activity)
+    create_activity(activity)
+    t = Time.local(2016, 10, 6, 10, 5, 0)
+    Timecop.travel(t)
+    visit '/'
+    click_on 'My Profile'
+    expect(page).to have_link "Delete"
   end
 
 end
