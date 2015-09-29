@@ -32,7 +32,6 @@ $(document).ready(function() {
           $("#activity_location").val(address);
         });
       };
-      var coordinates = document.getElementById('coordinates');
     });
   });
 });

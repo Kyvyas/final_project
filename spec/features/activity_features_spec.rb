@@ -87,6 +87,25 @@ feature 'activity' do
     expect(page).to have_content("Tag can't be blank")
   end
 
+   scenario "user cannot add activity with negative participants" do
+    visit '/'
+    click_link("Add an activity")
+    fill_in "Activity Name", with: "Football"
+    fill_in "Describe your Activity", with: "Football in the park, yea"
+    fill_in "Location", with: "Regent's Park"
+    fill_in "People needed", with: "-2"
+    select '2016', from: 'activity_datetime_1i'
+    select 'October', from: 'activity_datetime_2i'
+    select '6', from: 'activity_datetime_3i'
+    select '18', from: 'activity_datetime_4i'
+    select '00', from: 'activity_datetime_5i'
+    select "Sport", from: "Category"
+    fill_in "Activity e.g.'Football'", with: "Football"
+    click_on("Let's do it")
+    click_on("Confirm")
+    expect(page).to have_content("must be greater than 0")
+  end
+
   scenario "user does not see the 'I'm in' button if the activity is full", js: true do
     visit '/'
     activity1 = build(:activity1)
@@ -113,9 +132,6 @@ feature 'activity' do
     click_on('Football')
     click_on("I'm in!")
     expect(page).not_to have_content("I'm in!")
-  end
-
-  scenario "user cannot add activity with negative participants" do
     visit '/'
     click_link("Add an activity")
     fill_in "Activity Name", with: "Football"
@@ -134,26 +150,6 @@ feature 'activity' do
     expect(page).to have_content("must be greater than 0")
   end
 
-
-  context "activities need to be ordered by time at which they occur" do
-    scenario 'activities are displayed in order ascending by time' do
-      activity = build(:activity)
-      create_activity(activity)
-      activity2 = build(:activity2)
-      create_activity(activity2)
-      visit '/'
-      expect(page).to have_content("Football Tennis")
-    end
-
-    scenario 'cannot be displayed in the wrong order' do
-      activity2 = build(:activity2)
-      create_activity(activity2)
-      activity = build(:activity)
-      create_activity(activity)
-      visit '/'
-      expect(page).to have_content("Football Tennis")
-    end
-  end
 
   scenario "user can filter activities by category" do
     activity = build(:activity)
@@ -197,6 +193,26 @@ feature 'activity' do
     expect(page).to have_content("Your activity cannot be in the past! Leave the past where it is...")
   end
 
+  context "activities need to be ordered by time at which they occur" do
+    scenario 'activities are displayed in order ascending by time' do
+      activity = build(:activity)
+      create_activity(activity)
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      visit '/'
+      expect(page).to have_content("Football Tennis")
+    end
+
+    scenario 'cannot be displayed in the wrong order' do
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      activity = build(:activity)
+      create_activity(activity)
+      visit '/'
+      expect(page).to have_content("Football Tennis")
+    end
+  end
+
   context "Time mock testing:" do
     scenario "activity list does not list past activities - date" do
       activity = build(:activity)
@@ -206,9 +222,9 @@ feature 'activity' do
       t = Time.local(2016, 10, 9, 10, 5, 0)
       Timecop.travel(t)
       visit '/'
-      Timecop.return
       expect(page).to have_content("Tennis")
       expect(page).not_to have_content("Football")
+      Timecop.return
     end
     scenario "activity list does not list past activities - time" do
       activity = build(:activity)
@@ -219,10 +235,35 @@ feature 'activity' do
       p t
       Timecop.travel(t)
       visit '/'
-      Timecop.return
       expect(page).to have_content("running")
       expect(page).not_to have_content("Football")
+      Timecop.return
     end
+  end
+
+  scenario "user can delete their hosted activities before they happen" do
+    t = Time.local(2016, 10, 6, 12, 0, 0)
+    Timecop.travel(t)
+    activity = build(:activity)
+    create_activity(activity)
+    visit '/'
+    click_on 'My Profile'
+    click_on "Football"
+    click_on "Delete"
+    expect(page).not_to have_content("Football")
+    Timecop.return
+  end
+
+  scenario "user cannot delete their hosted activities after they happen" do
+    t = Time.local(2117, 10, 6, 17, 0, 0)
+    activity = build(:activity)
+    create_activity(activity)
+    Timecop.travel(t)
+    visit '/'
+    click_on 'My Profile'
+    click_on "Football"
+    expect(page).not_to have_content("Delete")
+    Timecop.return
   end
 
 end

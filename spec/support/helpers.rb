@@ -32,6 +32,7 @@ module FeatureHelpers
     select activity.datetime.strftime('%M'), from: 'activity_datetime_5i'
     select activity.category, from: "Category"
     fill_in "Activity e.g.'Football'", with: activity.tag
+
     click_on "Let's do it"
     click_on "Confirm"
   end

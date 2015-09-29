@@ -18,8 +18,8 @@ feature "User can sign in and out" do
       click_link('Sign up')
       fill_in('Name', with: 'Harry')
       fill_in('Email', with: 'test@example.com')
-      fill_in('Password', with: 'testtest')
-      fill_in('Password confirmation', with: 'testtest')
+      fill_in(:user_password, with: 'testtest')
+      fill_in(:user_password_confirmation, with: 'testtest')
       allow_any_instance_of(Paperclip::Attachment).to receive(:url).and_return("/spec/asset_specs/photos/Pirate-Parrot.jpg")
       click_button('Sign up')
       click_on "My Profile"
@@ -33,8 +33,8 @@ feature "User can sign in and out" do
       click_link('Sign up')
       fill_in('Name', with: 'Harry')
       fill_in('Email', with: 'test@example.com')
-      fill_in('Password', with: 'testtest')
-      fill_in('Password confirmation', with: 'testtest')
+      fill_in(:user_password, with: 'testtest')
+      fill_in(:user_password_confirmation, with: 'testtest')
       click_button('Sign up')
     end
 
@@ -99,11 +99,14 @@ feature "User can sign in and out" do
       click_on("I'm in")
       click_on("My Profile")
       click_on("Football")
+      t = Time.local(2516, 10, 9, 10, 5, 0)
+      Timecop.travel(t)
       click_on("Rate activity")
       choose("rating_value_3")
       click_on("Rate activity")
       click_on('Katya')
       expect(page).to have_content("Activity Rating: ★★★☆☆")
+      Timecop.return
     end
 
     scenario "shows average host rating", js: true do

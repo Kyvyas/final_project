@@ -47,18 +47,6 @@
   width: 400px;
   height: 400px;
 }
-pre.ui-coordinates {
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  padding:5px 10px;
-  background:rgba(0,0,0,0.5);
-  color:#fff;
-  font-size:11px;
-  line-height:18px;
-  border-radius:3px;
-  }
-
 .navbar{
   z-index:2;
   margin-bottom: 0 !important;
@@ -167,7 +155,7 @@ border: none;
   border-right:0;
 }
 .menu{
-  padding: 0.75em 3em;
+  padding: 0.75em 2em;
   margin-top: 16px;
 }
 .menu li a{
@@ -597,4 +585,3 @@ input[type=text] {
 .rating {
   margin-top: 200px;
 }
-

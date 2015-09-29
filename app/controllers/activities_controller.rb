@@ -28,7 +28,7 @@ class ActivitiesController < ApplicationController
     @user = current_user
     if @activity.save
       flash[:notice] = "Your activity has been posted! Good luck!"
-      # flash.keep
+      ConfirmationMailer.confirm_activity(@activity, current_user).deliver_now
     else
       flash[:notice] = @activity.errors.full_messages.to_sentence
     end
@@ -47,5 +47,11 @@ class ActivitiesController < ApplicationController
   def confirmation
     @user = current_user
     @activity = current_user.activities.new(activity_params)
+  end
+
+  def destroy
+    @activity = Activity.find(params[:id])
+    @activity.destroy
+    redirect_to user_path(current_user)
   end
 end
