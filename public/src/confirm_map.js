@@ -19,10 +19,11 @@ $(document).ready(function() {
   ondragend();
 
   function ondragend() {
-      var m = marker.getLatLng();
-      coordinates.innerHTML = 'Latitude: ' + m.lat + '<br />Longitude: ' + m.lng;
-      console.log(m.lat)
-      console.log(m.lng)
+    var m = marker.getLatLng();
+    coordinates.innerHTML = 'Latitude: ' + m.lat + '<br />Longitude: ' + m.lng;
+    var lat = m.lat
+    var lng = m.lng
+    $("#activity_latitude").val(lat);
+    $("#activity_longitude").val(lng);
   }
-
 });

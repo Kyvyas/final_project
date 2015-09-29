@@ -27,8 +27,10 @@
     = f.label :category
     = f.select :category, ['Select', 'Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife'], :readonly => true
     = f.text_field :tag, :placeholder => "Activity e.g.'Football'", :readonly => true
+    = f.hidden_field :latitude
+    = f.hidden_field :longitude
     = f.submit "Confirm"
 
-/ #confirm_map{:style => "width:150" "height:400px"}confirm_map
-/ %pre#coordinates.ui-coordinates
-/ %script{:src => "/src/confirm_map.js"}
+#confirm_map{:style => "width:150" "height:400px"}confirm_map
+%pre#coordinates.ui-coordinates
+%script{:src => "/src/confirm_map.js"}

@@ -12,8 +12,8 @@
   validates_presence_of :datetime, on: :create
   validate :date_cannot_be_in_past
 
-  geocoded_by :location
-  after_validation :geocode
+  # geocoded_by :location
+  # after_validation :geocode
 
   def has_spaces?
     self.active_participants < self.participants

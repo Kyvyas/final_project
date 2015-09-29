@@ -40,11 +40,12 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:title, :description, :location, :participants, :datetime, :category, :tag)
+    params.require(:activity).permit(:title, :description, :location, :participants, :datetime, :category, :tag, :latitude, :longitude)
   end
 
   def confirmation
     @user = current_user
     @activity = current_user.activities.new(activity_params)
+    p @activity
   end
 end
