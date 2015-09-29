@@ -598,6 +598,11 @@ input[type=text] {
   animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
 
+.ui-coordinates {
+  border: none;
+  padding: 0;
+}
+
 @-webkit-keyframes sk-rotateplane {
   0% { -webkit-transform: perspective(120px) }
   50% { -webkit-transform: perspective(120px) rotateY(180deg) }

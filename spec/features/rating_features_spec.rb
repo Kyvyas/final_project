@@ -12,7 +12,6 @@ feature 'rating' do
   end
 
   scenario 'user cannot rate activity they have not signed up for' do
-    expect(page).to have_content("carrotsticks")
     visit '/'
     click_on 'Football'
     expect(page).not_to have_content "Rate activity"
