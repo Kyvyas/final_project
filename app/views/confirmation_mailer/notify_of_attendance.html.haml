@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Someone signed up to your activity, #{@user.name}
+    %p
+      Congratulations! #{@attendee.name} has signed up to your activity, #{@activity.title}
+      %br
+    %p
+      To login to the site, just follow this link: #{@url}.
+    %p Thanks for joining and have a great day!
