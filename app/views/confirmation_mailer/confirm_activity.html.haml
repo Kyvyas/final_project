@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Thanks for creating an activity, #{@user.name}
+    %p
+      Here are the details of your activity:
+      = @activity.title
+      = @activity.description
+      = @activity.location
+      People needed:
+      %p.people_needed= @people_needed
+      Total needed;
+      = @activity.participants
+      = @activity.datetime
+      = @activity.category
+      %br
+    %p
+      To login to the site, just follow this link: #{@url}.
+    %p Thanks for joining and have a great day!
