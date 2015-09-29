@@ -16,7 +16,5 @@ $(document).ready(function() {
        peopleCount.text(response.new_people_count);
        notice.text(response.notice);
    })
-
-
  })
 })

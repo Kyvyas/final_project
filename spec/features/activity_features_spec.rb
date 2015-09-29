@@ -244,4 +244,21 @@ feature 'activity' do
     Timecop.return
   end
 
+  scenario 'user can delete their attendance from an activity before it happens', js: true do
+    t = Time.local(2016, 10, 6, 12, 0, 0)
+    Timecop.travel(t)
+    activity = build(:activity)
+    create_activity(activity)
+    click_on 'Sign out'
+    user2 = create(:user_2)
+    sign_in_as(user2)
+    click_on "Football"
+    click_on "I'm in"
+    visit '/'
+    click_on 'Football'
+    click_on "I'm out"
+    expect(page).to have_content("You are no longer attending this activity")
+  end
+
+
 end
