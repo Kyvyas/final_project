@@ -27,6 +27,7 @@ feature 'activity' do
     select "Sport", from: "Category"
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
+    click_on("Confirm")
     expect(page).to have_content("Your activity has been posted! Good luck!")
     expect(page).to have_content("Football")
   end
@@ -38,19 +39,24 @@ feature 'activity' do
     click_on('Football')
     expect(page).to have_content("Hosted by: Katya")
   end
-
-  scenario 'user can sign up to an activity', js: true do
-    visit '/'
-    activity = build(:activity)
-    create_activity(activity)
-    click_on("Sign out")
-    user2 = create(:user_2)
-    sign_in_as(user2)
-    click_on('Football')
-    expect(page).to have_content("People needed: 6")
-    click_on("I'm in!")
-    sleep 1
-    expect(page).to have_content("People needed: 5")
+  context "stuff with built activity" do
+    before(:each) do
+      visit '/'
+      activity = build(:activity)
+      create_activity(activity)
+      visit '/'
+      expect(page).to have_content("Football")
+    end
+    scenario 'user can sign up to an activity', js: true do
+      click_on("Sign out")
+      user2 = create(:user_2)
+      sign_in_as(user2)
+      click_on('Football')
+      expect(page).to have_content("People needed: 6")
+      click_on("I'm in!")
+      sleep 1
+      expect(page).to have_content("People needed: 5")
+    end
   end
 
   scenario 'user cannot make an activity without a title' do
@@ -124,6 +130,7 @@ feature 'activity' do
     select "Sport", from: "Category"
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
+    click_on("Confirm")
     expect(page).to have_content("must be greater than 0")
   end
 

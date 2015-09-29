@@ -12,7 +12,7 @@
     = f.text_field :title, :placeholder => "Activity Name"
     = f.text_field :description, :placeholder => "Describe your Activity"
     = f.text_field :location, :placeholder => "Location"
-    = f.number_field :participants, :placeholder => "People needed"
+    = f.number_field :participants, { min: 1, :placeholder => "People needed" }
     = f.label :datetime
     = f.datetime_select :datetime
     = f.label :category
