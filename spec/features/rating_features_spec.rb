@@ -17,7 +17,7 @@ feature 'rating' do
     expect(page).not_to have_content "Rate activity"
   end
 
-  scenario 'user can rate activity they have signed up for', js: true do
+  scenario 'user can rate activity they have signed up for after it has begun', js: true do
     visit '/'
     click_on 'Football'
     click_on "I'm in!"
