@@ -99,11 +99,14 @@ feature "User can sign in and out" do
       click_on("I'm in")
       click_on("My Profile")
       click_on("Football")
+      t = Time.local(2516, 10, 9, 10, 5, 0)
+      Timecop.travel(t)
       click_on("Rate activity")
       choose("rating_value_3")
       click_on("Rate activity")
       click_on('Katya')
       expect(page).to have_content("Activity Rating: ★★★☆☆")
+      Timecop.return
     end
 
     scenario "shows average host rating", js: true do

@@ -218,14 +218,29 @@ feature 'activity' do
     end
   end
 
-  xscenario "user can delete their hosted activities before they happen" do
+  scenario "user can delete their hosted activities before they happen" do
+    t = Time.local(2016, 10, 6, 17, 0, 0)
+    Timecop.travel(t)
     activity = build(:activity)
     create_activity(activity)
-    t = Time.local(2016, 10, 6, 10, 5, 0)
+    visit '/'
+    click_on 'My Profile'
+    click_on "Football"
+    click_on "Delete"
+    expect(page).not_to have_content("Football")
+    Timecop.return
+  end
+
+  scenario "user cannot delete their hosted activities after they happen" do
+    t = Time.local(2117, 10, 6, 17, 0, 0)
+    activity = build(:activity)
+    create_activity(activity)
     Timecop.travel(t)
     visit '/'
     click_on 'My Profile'
-    expect(page).to have_link "Delete"
+    click_on "Football"
+    expect(page).not_to have_content("Delete")
+    Timecop.return
   end
 
 end

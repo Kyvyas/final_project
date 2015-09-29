@@ -41,4 +41,10 @@ class ActivitiesController < ApplicationController
   def activity_params
     params.require(:activity).permit(:title, :description, :location, :participants, :datetime, :category, :tag)
   end
+
+  def destroy
+    @activity = Activity.find(params[:id])
+    @activity.destroy
+    redirect_to user_path(current_user)
+  end
 end

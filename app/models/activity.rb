@@ -33,4 +33,8 @@
     rating = ratings.build(value: params[:value], user_id: user.id)
   end
 
+  def has_happened?
+    self.datetime < DateTime.now
+  end
+
 end

@@ -22,3 +22,6 @@
   %p Activity Rating:
   = "★" * @activity.ratings.average(:value).to_i + "☆" * (5 - @activity.ratings.average(:value).to_i)
 
+  - if @activity.user == current_user && !@activity.has_happened?
+    =link_to "Delete activity", activity_path(@activity), method: :delete
+
