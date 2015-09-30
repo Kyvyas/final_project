@@ -1,7 +1,6 @@
 class LocationsController < ApplicationController
   def index
     @activities = Activity.where(['datetime >= ?', DateTime.now])
-    p @activities
     @geojson = Array.new
 
     @activities.each do |activity|
@@ -21,7 +20,7 @@ class LocationsController < ApplicationController
           date: activity.datetime.strftime('%d-%m-%y'),
           time: activity.datetime.strftime('%H:%M'),
           category: activity.category,
-          :'marker-color' => '#00607d',
+          :'marker-color' => '#FE5F55',
           :'marker-symbol' => 'circle',
           :'marker-size' => 'medium'
           }
