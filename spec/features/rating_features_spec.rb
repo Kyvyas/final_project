@@ -68,4 +68,5 @@ feature 'rating' do
     expect(page).to have_content("Activity already rated.")
   end
 
+
 end

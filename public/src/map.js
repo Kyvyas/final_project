@@ -1,4 +1,4 @@
-$(document).ready(function() {
+// $(document).ready(function() {
 
   L.mapbox.accessToken = 'pk.eyJ1Ijoib3dlbmxhbWIiLCJhIjoiY2lleWljcnF4MDBiOXQ0bHR0anRvamtucSJ9.t3YnHHqvQZ8Y0MTCNy0NNw';
   var map = L.mapbox.map('map')
@@ -69,4 +69,4 @@ $(document).ready(function() {
       return myLayer.setGeoJSON(geojson);
     }
   });
-});
+// });
