@@ -1,0 +1,9 @@
+%section.content
+  %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
+    Categories
+  - if @activities.any?
+    - @activities.each do | activity |
+      %container
+        %div.each-activity.col-md-4
+          %h2=link_to activity.title, activity_path(activity)
+          %img.act-image{:alt => "Mountain View", :src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg", :style => "width:304px;height:228px;"}/

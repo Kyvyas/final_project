@@ -12,7 +12,7 @@ feature 'activity' do
     expect(page).to have_content("Add an activity")
   end
 
-  scenario 'user creates a new activity' do
+  scenario 'user creates a new activity', js: true do
     visit '/'
     click_link("Add an activity")
     fill_in "Activity Name", with: "Football"
@@ -159,6 +159,7 @@ feature 'activity' do
     visit '/'
     select "Sports", from: "Category"
     click_on("Filter")
+    expect(current_path).to eq "/categories"
     expect(page).to have_content("Football")
     expect(page).not_to have_content("Tom Jones Concert")
   end
