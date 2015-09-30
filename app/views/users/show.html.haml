@@ -1,19 +1,54 @@
-= image_tag @user.avatar(:medium)
-= @user.name
--if @user.activities.any?
-  %p Host Rating:
-  = "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
-  %p Hosted activities:
-  - @user.activities.each do | activity |
-    = link_to activity.title, activity_path(activity)
-    -if activity.has_happened?
-      %p Activity Rating:
-      = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
--else
-  %p No hosted activities yet!
--if @user.attended_activities.any?
-  %p Attended activities:
-  - @user.attended_activities.each do | attended_activity |
-    =link_to attended_activity.title, activity_path(attended_activity)
--else
-  %p No attended activities yet!
+.profile.container
+  .row
+    .well.col-md-12.text-center
+      %h1= @user.name
+  .row
+    .col-md-4
+      = image_tag @user.avatar(:medium)
+    .col-md-4
+      .container
+        %ul.list-unstyled
+          -if @user.activities.any?
+            - if @past_hosted_activities.any?
+              %li
+                %h4 Host Rating:
+              %li
+                %p= "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
+            - if @future_hosted_activities.any?
+              %li
+                %p Upcoming hosted activities:
+              - @future_hosted_activities.each do | activity |
+                %li
+                  = link_to activity.title, activity_path(activity)
+            - if @past_hosted_activities.any?
+              %li
+                %p Hosted activities:
+              - @past_hosted_activities.each do | activity |
+                %li
+                  = link_to activity.title, activity_path(activity)
+                %li
+                  %p Activity Rating:
+                %li
+                  = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
+          -else
+            %li
+              %p No hosted activities yet!
+    .col-md-4
+      .container
+        %ul.list-unstyled
+        -if @user.attended_activities.any?
+          -if @future_attending_activities.any?
+            %li
+              %p Upcoming attending activities:
+            - @user.attended_activities.each do | attended_activity |
+              %li
+                =link_to attended_activity.title, activity_path(attended_activity)
+          -if @past_attended_activities.any?
+            %li
+              %p Attended activities:
+            - @user.attended_activities.each do | attended_activity |
+              %li
+                =link_to attended_activity.title, activity_path(attended_activity)
+        -else
+          %li
+            %p No attended activities yet!
