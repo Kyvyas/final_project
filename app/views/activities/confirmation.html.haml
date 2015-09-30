@@ -11,7 +11,7 @@
   = form_for [@user, @activity], :url => user_activities_path(@user), html: { multipart: true } do |f|
     %div.form-group.form-input= f.text_field :title, :placeholder => "Activity Name", :readonly => true
     %div.form-group.form-input= f.text_field :description, :placeholder => "Describe your Activity", :readonly => true
-    %div.form-group.form-input= f.number_field :participants, :placeholder => "People needed", :readonly => true
+    %div.form-group.form-input= f.number_field :participants,  { min: 1, :placeholder => "People needed", :readonly => true }
     = f.label :datetime
     %div.form-group= f.datetime_select :datetime
     = f.label :category
@@ -22,6 +22,10 @@
     = f.hidden_field :longitude
     %div.form-group= f.submit "Confirm", class: "submit-btn"
 
-  .spinner
 
   #confirm_map{:style => "width:150" "height:400px"}
+    .sk-folding-cube
+      .sk-cube1.sk-cube
+      .sk-cube2.sk-cube
+      .sk-cube4.sk-cube
+      .sk-cube3.sk-cube

@@ -13,7 +13,7 @@
     %div.form-group.form-input= f.text_field :title, {:required => true, :placeholder => "Activity Name" }
     %div.form-group.form-input= f.text_field :description, {:required => true, :placeholder => "Describe your Activity" }
     %div.form-group.form-input= f.text_field :location, {:required => true,  :placeholder => "Location" }
-    %div.form-group.form-input= f.number_field :participants, {:required => true,  :placeholder => "People needed"}
+    %div.form-group.form-input= f.number_field :participants, {min: 1, :required => true,  :placeholder => "People needed"}
     = f.label :datetime
     %div.form-group= f.datetime_select :datetime
     = f.label :category

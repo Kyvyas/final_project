@@ -10,7 +10,7 @@
       var result = result.features[0].center;
       var confirm_map = L.mapbox.map('confirm_map', 'mapbox.streets')
          .setView([result[1], result[0]], 15);
-      $(".spinner").hide();
+      $(".sk-folding-cube").slideToggle("slow");
 
       var marker = L.marker([result[1], result[0]], {
          icon: L.mapbox.marker.icon({

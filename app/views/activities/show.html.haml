@@ -27,8 +27,11 @@
   - elsif current_user.has_clicked?(@activity)
     %p= link_to "I'm out!", attendance_path(@attendance), class: 'leave_button', method: :delete
 
-  - if @activity.attendees.include?(current_user) && !current_user.rated_activites.include?(@activity)
+  - if @activity.attendees.include?(current_user) && !current_user.rated_activites.include?(@activity)&& @activity.datetime < (Time.now)
     %p= link_to "Rate activity", new_activity_rating_path(@activity)
+
+  - if @activity.datetime > (DateTime.now)
+    %p= "You can rate this only after the event!"
 
   %p Activity Rating:
   = "★" * @activity.ratings.average(:value).to_i + "☆" * (5 - @activity.ratings.average(:value).to_i)
