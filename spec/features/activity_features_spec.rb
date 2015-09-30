@@ -159,6 +159,7 @@ feature 'activity' do
     visit '/'
     select "Sports", from: "Category"
     click_on("Filter")
+    expect(current_path).to eq "/categories"
     expect(page).to have_content("Football")
     expect(page).not_to have_content("Tom Jones Concert")
   end
