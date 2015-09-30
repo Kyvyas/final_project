@@ -13,11 +13,12 @@
     %link{:href => "https://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css", :rel => "stylesheet"}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = favicon_link_tag
   %body
     %nav.navbar.navbar-default.navbar-fixed-top#header_menu
       .container-fluid
         %div.logo
-          = link_to(image_tag("logo.png", :alt => "logo", :title => "Home"), "/")
+          = link_to(image_tag("white_horizontal_logo.png", :alt => "logo", :title => "Home"), "/")
         .navbar-header
           %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
             %span.sr-only Toggle navigation
