@@ -24,4 +24,14 @@ class AttendancesController < ApplicationController
     end
   end
 
+  def destroy
+    @attendance = Attendance.find(params[:id])
+    @activity = Activity.find(@attendance.activity_id)
+    @attendance.destroy
+    @activity.update(active_participants: @activity.active_participants - 1)
+    flash[:notice] = "You are no longer attending this activity"
+    redirect_to root_path
+  end
+
+
 end

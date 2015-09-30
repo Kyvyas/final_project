@@ -8,9 +8,6 @@ class ActivitiesController < ApplicationController
     elsif params["Category"]
       @activities = Activity.where(category: params["Category"])
     else
-      # @activities = Activity.where(['date >= ?', DateTime.now]).where(['time >= ?', ("2000-01-01 #{Time.now.strftime('%H:%M:%S')}")]).order(date: :asc)
-      # @activities = Activity.order(date: :asc)
-      # @activities = Activity.where(['datetime >= ?', Time.now.to_formatted_s(:db)]).order(datetime: :asc)
       @activities = Activity.where(['datetime >= ?', DateTime.now]).order(datetime: :asc)
 
 
@@ -37,6 +34,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    @attendance = @activity.attendances.where(user_id: current_user.id).where(activity_id: @activity.id)[0]
     @people_needed = @activity.participants - @activity.active_participants
   end
 
