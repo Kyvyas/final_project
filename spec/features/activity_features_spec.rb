@@ -12,7 +12,7 @@ feature 'activity' do
     expect(page).to have_content("Add an activity")
   end
 
-  scenario 'user creates a new activity' do
+  scenario 'user creates a new activity', js: true do
     visit '/'
     click_link("Add an activity")
     fill_in "Activity Name", with: "Football"
