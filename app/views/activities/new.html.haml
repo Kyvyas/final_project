@@ -9,7 +9,7 @@
 
 %section.create-activity.col-lg-6.col-lg-offset-3.container.center.well
   <h2>Add an activity!</h2>
-  = form_for [@user, @activity], html: { multipart: true } do |f|
+  = form_for [@user, @activity], :url => activities_confirmation_path, html: { multipart: true } do |f|
     %div.form-group.form-input= f.text_field :title, :placeholder => "Activity Name"
     %div.form-group.form-input= f.text_field :description, :placeholder => "Describe your Activity"
     %div.form-group.form-input= f.text_field :location, :placeholder => "Location"
