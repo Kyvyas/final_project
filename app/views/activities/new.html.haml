@@ -10,13 +10,13 @@
 %section.create-activity.col-lg-6.col-lg-offset-3.container.center.well
   <h2>Add an activity!</h2>
   = form_for [@user, @activity], :url => activities_confirmation_path, html: { multipart: true } do |f|
-    %div.form-group.form-input= f.text_field :title, :placeholder => "Activity Name"
-    %div.form-group.form-input= f.text_field :description, :placeholder => "Describe your Activity"
-    %div.form-group.form-input= f.text_field :location, :placeholder => "Location"
-    %div.form-group.form-input= f.number_field :participants, :placeholder => "People needed"
+    %div.form-group.form-input= f.text_field :title, {:required => true, :placeholder => "Activity Name" }
+    %div.form-group.form-input= f.text_field :description, {:required => true, :placeholder => "Describe your Activity" }
+    %div.form-group.form-input= f.text_field :location, {:required => true,  :placeholder => "Location" }
+    %div.form-group.form-input= f.number_field :participants, {:required => true,  :placeholder => "People needed"}
     = f.label :datetime
     %div.form-group= f.datetime_select :datetime
     = f.label :category
-    %div.form-group= f.select :category, options_for_select(["Select category"] + @categories)
-    %div.form-group.form-input= f.text_field :tag, :placeholder => "Activity e.g.'Football'"
+    %div.form-group= f.select :category, ['Select', 'Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife']
+    %div.form-group.form-input= f.text_field :tag, {:required => true,  :placeholder => "Activity e.g.'Football'"}
     %div.form-group= f.submit "Let's do it!", class: "submit-btn"
