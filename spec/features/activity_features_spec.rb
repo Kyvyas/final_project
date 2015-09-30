@@ -226,7 +226,7 @@ feature 'activity' do
       expect(page).not_to have_content("Football")
       Timecop.return
     end
-    scenario "activity list does not list past activities - time" do
+    xitscenario "activity list does not list past activities - time" do
       activity = build(:activity)
       create_activity(activity)
       activity_late = build(:activity_late)
@@ -265,5 +265,4 @@ feature 'activity' do
     expect(page).not_to have_content("Delete")
     Timecop.return
   end
-
 end
