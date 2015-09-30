@@ -27,6 +27,7 @@ feature 'activity' do
     select "Sport", from: "Category"
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
+    click_on("Confirm")
     expect(page).to have_content("Your activity has been posted! Good luck!")
     expect(page).to have_content("Football")
   end
@@ -38,19 +39,24 @@ feature 'activity' do
     click_on('Football')
     expect(page).to have_content("Hosted by: Katya")
   end
-
-  scenario 'user can sign up to an activity', js: true do
-    visit '/'
-    activity = build(:activity)
-    create_activity(activity)
-    click_on("Sign out")
-    user2 = create(:user_2)
-    sign_in_as(user2)
-    click_on('Football')
-    expect(page).to have_content("People needed: 6")
-    click_on("I'm in!")
-    sleep 1
-    expect(page).to have_content("People needed: 5")
+  context "stuff with built activity" do
+    before(:each) do
+      visit '/'
+      activity = build(:activity)
+      create_activity(activity)
+      visit '/'
+      expect(page).to have_content("Football")
+    end
+    scenario 'user can sign up to an activity', js: true do
+      click_on("Sign out")
+      user2 = create(:user_2)
+      sign_in_as(user2)
+      click_on('Football')
+      expect(page).to have_content("People needed: 6")
+      click_on("I'm in!")
+      sleep 1
+      expect(page).to have_content("People needed: 5")
+    end
   end
 
   scenario 'user cannot make an activity without a title' do
@@ -96,6 +102,7 @@ feature 'activity' do
     select "Sport", from: "Category"
     fill_in "Activity e.g.'Football'", with: "Football"
     click_on("Let's do it")
+    click_on("Confirm")
     expect(page).to have_content("must be greater than 0")
   end
 
@@ -126,6 +133,21 @@ feature 'activity' do
     click_on("I'm in!")
     expect(page).not_to have_content("I'm in!")
     visit '/'
+    click_link("Add an activity")
+    fill_in "Activity Name", with: "Football"
+    fill_in "Describe your Activity", with: "Football in the park, yea"
+    fill_in "Location", with: "Regent's Park"
+    fill_in "People needed", with: "-2"
+    select '2016', from: 'activity_datetime_1i'
+    select 'October', from: 'activity_datetime_2i'
+    select '6', from: 'activity_datetime_3i'
+    select '18', from: 'activity_datetime_4i'
+    select '00', from: 'activity_datetime_5i'
+    select "Sport", from: "Category"
+    fill_in "Activity e.g.'Football'", with: "Football"
+    click_on("Let's do it")
+    click_on("Confirm")
+    expect(page).to have_content("must be greater than 0")
   end
 
 
@@ -205,7 +227,7 @@ feature 'activity' do
       expect(page).not_to have_content("Football")
       Timecop.return
     end
-    xscenario "activity list does not list past activities - time" do
+    xit "activity list does not list past activities - time" do
       activity = build(:activity)
       create_activity(activity)
       activity_late = build(:activity_late)
@@ -259,6 +281,7 @@ feature 'activity' do
     click_on 'Football'
     click_on "I'm out"
     expect(page).to have_content("You are no longer attending this activity")
+    Timecop.return
   end
 
   scenario 'user can delete their attendance which updates the number of people needed', js: true do
@@ -277,6 +300,7 @@ feature 'activity' do
     visit '/'
     click_on "Football"
     expect(page).to have_content("People needed: 6")
+    Timecop.return
   end
 
 

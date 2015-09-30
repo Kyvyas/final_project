@@ -1,0 +1,41 @@
+%meta{:content => "initial-scale=1,maximum-scale=1,user-scalable=no", :name => "viewport"}/
+%script{:src => "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"}
+%link{:href => "https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css", :rel => "stylesheet"}/
+%script{:src => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"}
+%link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css", :rel => "stylesheet"}/
+%link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+%script{:src => "/src/confirm_map.js"}
+
+
+%section.show-activity
+  = @activity.title
+  = @activity.description
+  = @activity.location
+  Total needed;
+  = @activity.participants
+  = @activity.datetime
+  = @activity.category
+  = @activity.tag
+  / = button_to "Confirm!!", user_activities_path({user_id: @user.id, params: {activity: @activity.attributes}}), method: :post
+
+%section.create-activity.col-lg-6.col-lg-offset-3.container.center.well
+  %h2 Confirm your activity
+  = form_for [@user, @activity], :url => user_activities_path(@user), html: { multipart: true } do |f|
+    %div.form-group.form-input= f.text_field :title, :placeholder => "Activity Name", :readonly => true
+    %div.form-group.form-input= f.text_field :description, :placeholder => "Describe your Activity", :readonly => true
+    %div.form-group.form-input= f.number_field :participants, :placeholder => "People needed", :readonly => true
+    = f.label :datetime
+    %div.form-group= f.datetime_select :datetime
+    = f.label :category
+    %div.form-group= f.select :category, ['Select', 'Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife'], :readonly => true
+    %div.form-group.form-input= f.text_field :tag, :placeholder => "Activity e.g.'Football'", :readonly => true
+    %div.form-group.form-input= f.text_field :location, :placeholder => "Location", :readonly => true
+    = f.hidden_field :latitude
+    = f.hidden_field :longitude
+    %div.form-group= f.submit "Confirm", class: "submit-btn"
+
+  .spinner
+
+  #confirm_map{:style => "width:150" "height:400px"}
+  %pre#coordinates.ui-coordinates
+  / %script{:src => "/src/confirm_map.js"}

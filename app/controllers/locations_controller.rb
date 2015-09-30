@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   def index
     @activities = Activity.where(['datetime >= ?', DateTime.now])
+    p @activities
     @geojson = Array.new
 
     @activities.each do |activity|

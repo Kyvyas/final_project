@@ -69,14 +69,28 @@ feature "User can sign in and out" do
       expect(page).to have_content("Katya")
     end
 
-    scenario "has hosted activities" do
+    scenario "has previously hosted activities" do
+      user = create(:user)
+      sign_in_as(user)
+      activity = build(:activity)
+      create_activity(activity)
+      t = Time.local(2020, 10, 6, 12, 0, 0)
+      Timecop.travel(t)
+      click_on('Football')
+      click_on('Katya')
+      expect(page).to have_content("Hosted activities: Football")
+      expect(page).not_to have_content("No hosted activities yet!")
+      Timecop.return
+    end
+
+    scenario "has upcoming hosted activities" do
       user = create(:user)
       sign_in_as(user)
       activity = build(:activity)
       create_activity(activity)
       click_on('Football')
       click_on('Katya')
-      expect(page).to have_content("Hosted activities: Football")
+      expect(page).to have_content("Upcoming hosted activities: Football")
       expect(page).not_to have_content("No hosted activities yet!")
     end
 
@@ -98,9 +112,9 @@ feature "User can sign in and out" do
       click_on('Football')
       click_on("I'm in")
       click_on("My Profile")
-      click_on("Football")
       t = Time.local(2516, 10, 9, 10, 5, 0)
       Timecop.travel(t)
+      click_on("Football")
       click_on("Rate activity")
       choose("rating_value_3")
       click_on("Rate activity")
@@ -122,15 +136,19 @@ feature "User can sign in and out" do
       visit'/'
       click_on('Football')
       click_on("I'm in")
+      t = Time.local(2516, 10, 9, 10, 5, 0)
+      Timecop.travel(t)
       click_on("My Profile")
       click_on("Football")
       click_on("Rate activity")
       choose("rating_value_5")
       click_on("Rate activity")
+      Timecop.return
       visit '/'
       click_on("Tennis")
       click_on("I'm in")
       sleep 1
+      Timecop.travel(t)
       click_on("My Profile")
       click_on("Tennis")
       click_on("Rate activity")
@@ -138,6 +156,7 @@ feature "User can sign in and out" do
       click_on("Rate activity")
       click_on('Katya')
       expect(page).to have_content("Host Rating: ★★★☆☆")
+      Timecop.return
     end
 
     scenario "has attended activities", js: true do
@@ -153,8 +172,28 @@ feature "User can sign in and out" do
       visit '/'
       click_on('Football')
       click_on("I'm in")
+      t = Time.local(2020, 10, 6, 12, 0, 0)
+      Timecop.travel(t)
       click_on "My Profile"
       expect(page).to have_content("Attended activities: Football")
+      Timecop.return
+    end
+
+    scenario "has upcoming attending activities", js: true do
+      user = create(:user)
+      sign_in_as(user)
+      activity = build(:activity)
+      create_activity(activity)
+      click_on("Sign out")
+      user2 = create(:user_2)
+      sign_in_as(user2)
+      activity2 = build(:activity2)
+      create_activity(activity2)
+      visit '/'
+      click_on('Football')
+      click_on("I'm in")
+      click_on "My Profile"
+      expect(page).to have_content("Upcoming attending activities: Football")
     end
 
     scenario "has no attended activities if none exist" do
