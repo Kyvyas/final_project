@@ -27,7 +27,7 @@
     = f.label :datetime
     %div.form-group= f.datetime_select :datetime
     = f.label :category
-    %div.form-group= f.select :category, ['Select', 'Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife'], :readonly => true
+    %div.form-group= f.text_field :category, :readonly => true
     %div.form-group.form-input= f.text_field :tag, :placeholder => "Activity e.g.'Football'", :readonly => true
     %div.form-group.form-input= f.text_field :location, :placeholder => "Location", :readonly => true
     = f.hidden_field :latitude
@@ -37,5 +37,3 @@
   .spinner
 
   #confirm_map{:style => "width:150" "height:400px"}
-  %pre#coordinates.ui-coordinates
-  / %script{:src => "/src/confirm_map.js"}

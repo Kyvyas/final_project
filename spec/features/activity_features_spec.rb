@@ -111,6 +111,7 @@ feature 'activity' do
     activity1 = build(:activity1)
     create_activity(activity1)
     click_on("Sign out")
+    sleep 2
     user2 = create(:user_2)
     sign_in_as(user2)
     click_on('Tennis')
@@ -118,6 +119,7 @@ feature 'activity' do
     click_on('Sign out')
     user3 = create(:user_3)
     sign_in_as(user3)
+    expect(page).to have_content("Tennis")
     click_on("Tennis")
     expect(page).not_to have_content("I'm in")
   end

@@ -36,6 +36,23 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     @attendance = @activity.attendances.where(user_id: current_user.id).where(activity_id: @activity.id)[0]
     @people_needed = @activity.participants - @activity.active_participants
+    @geojson = Array.new
+    @geojson << {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [@activity.longitude, @activity.latitude]
+      },
+      properties: {
+        :'marker-color' => '#FE5F55',
+        :'marker-symbol' => 'circle',
+        :'marker-size' => 'medium'
+        }
+    }
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }  # respond with the created JSON object
+    end
   end
 
   def activity_params
