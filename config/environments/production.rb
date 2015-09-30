@@ -19,6 +19,18 @@ Rails.application.configure do
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
   # config.action_dispatch.rack_cache = true
+  config.action_mailer.default_url_options = { host: 'teemapp.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: ENV['GMAIL_DOMAIN'],
+  authentication: "plain",
+  enable_starttls_auto: true,
+  user_name: ENV['GMAIL_USER_NAME'],
+  password: ENV['GMAIL_PASSWORD']
+  }
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
