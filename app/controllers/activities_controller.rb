@@ -9,15 +9,14 @@ class ActivitiesController < ApplicationController
       @activities = Activity.where(category: params["Category"])
     else
       @activities = Activity.where(['datetime >= ?', DateTime.now]).order(datetime: :asc)
-
-
     end
-    @categories = Category.all
+    @categories = Category.pluck(:name)
   end
 
   def new
     @user = current_user
     @activity = Activity.new
+    @categories = Category.pluck(:name)
   end
 
   def create
@@ -62,6 +61,7 @@ class ActivitiesController < ApplicationController
   def confirmation
     @user = current_user
     @activity = current_user.activities.new(activity_params)
+    @categories = Category.pluck(:name)
   end
 
   def destroy

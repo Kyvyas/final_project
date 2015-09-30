@@ -35,6 +35,10 @@
   border-radius:3px;
   }
 
+.leaflet-top {
+    top: 30px !important;
+}
+
 
 #map{
    position: absolute;
