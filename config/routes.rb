@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  # match "category/:category" => "categories#index"
+
   get 'activity/filter' => 'activity#filter'
 
   get 'activity/map' => 'activities#location'
