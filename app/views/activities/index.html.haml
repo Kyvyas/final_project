@@ -4,7 +4,7 @@
       %h1 Are you in?
       %section.activity-admin
         = form_tag categories_path, class: "col-xs-12", method: :get do
-          = select_tag "Category", options_for_select(["Select category"] + @categories.map{|x| x.name}, :selected => params[:category]), :onchange => "this.form.submit()", class: "category-box", placeholder: "Select an option"
+          = select_tag "Category", options_for_select(["Select category"] + @categories, :selected => params[:category]), :onchange => "this.form.submit()", class: "category-box", placeholder: "Select an option"
           %noscript= submit_tag "Filter", class: "filter_button"
         = form_tag root_path, class: "search_form", method: :get do
           = text_field_tag "Tag", nil, :placeholder => "Search for a pirate activity", class: "input-box"
@@ -76,35 +76,43 @@
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Sport
+        %a{:href => "/categories?utf8=✓&Category=Sports"} Sports
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Music
+        %a{:href => "/categories?utf8=✓&Category=Music"} Music
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Culture
+        %a{:href => "/categories?utf8=✓&Category=Culture"} Culture
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Education
+        %a{:href => "/categories?utf8=✓&Category=Education"} Education
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Coding
+        %a{:href => "/categories?utf8=✓&Category=Coding"} Coding
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Nightlife
+        %a{:href => "/categories?utf8=✓&Category=Nightlife"} Nightlife
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Comedy
+        %a{:href => "/categories?utf8=✓&Category=Comedy"} Comedy
     .col-xs-6.no-padding
       %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
       %div.overlay
-        %a{:href => "/?utf8=✓&Category=Sports"} Sport
+        %a{:href => "/categories?utf8=✓&Category=Food"} Food
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/categories?utf8=✓&Category=Outdoors"} Outdoors
+    .col-xs-6.no-padding
+      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      %div.overlay
+        %a{:href => "/categories?utf8=✓&Category=Other"} Other
 
   %section#about-us
     %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title

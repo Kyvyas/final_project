@@ -17,6 +17,6 @@
     = f.label :datetime
     %div.form-group= f.datetime_select :datetime
     = f.label :category
-    %div.form-group= f.select :category, ['Select', 'Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife']
+    %div.form-group= f.select :category, options_for_select(["Select category"] + @categories)
     %div.form-group.form-input= f.text_field :tag, :placeholder => "Activity e.g.'Football'"
     %div.form-group= f.submit "Let's do it!", class: "submit-btn"
