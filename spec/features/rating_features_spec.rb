@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'rating' do
   before(:each) do
+    visit '/'
     user = create(:user)
     sign_in_as(user)
     activity = build(:activity)
@@ -12,13 +13,13 @@ feature 'rating' do
   end
 
   scenario 'user cannot rate activity they have not signed up for' do
-    visit '/'
+    visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     expect(page).not_to have_content "Rate activity"
   end
 
   scenario 'user can rate activity they have signed up for after it has begun', js: true do
-    visit '/'
+    visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     click_on "I'm in!"
     Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
@@ -33,7 +34,7 @@ feature 'rating' do
   end
 
   scenario 'user does not see rate activity link if they have already rated', js: true do
-    visit '/'
+    visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     click_on "I'm in!"
     Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
@@ -51,13 +52,13 @@ feature 'rating' do
   scenario "user does not see I'm in link if they are host", js: true do
     activity2 = build(:activity2)
     create_activity(activity2)
-    visit '/'
+    visit '/categories?utf8=&Category=Sports'
     click_on 'Tennis'
     expect(page).not_to have_content("I'm in!")
   end
 
   scenario 'user cannot rate activity more than once', js: true do
-    visit '/'
+    visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     click_on "I'm in!"
     Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
@@ -84,7 +85,7 @@ feature 'rating' do
       end
 
       scenario 'user cannot rate activity until after it has happened', js: true do
-        visit '/'
+        visit '/categories?utf8=&Category=Sports'
         click_on 'Football'
         click_on "I'm in!"
         click_on "My Profile"
@@ -94,7 +95,7 @@ feature 'rating' do
       end
 
       scenario 'user cannot rate activity until after it has happened', js: true do
-        visit '/'
+        visit '/categories?utf8=&Category=Sports'
         click_on 'Football'
         click_on "I'm in!"
         Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
