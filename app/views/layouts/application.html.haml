@@ -43,16 +43,16 @@
                 = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
               %li
                 = link_to "About us", '#about-us'
+      %nav#footer_menu.navbar.navbar-static-bottom
+        .container-fluid
+          .logo
+            = link_to(image_tag("white.png", :alt => "logo", :title => "Home"), "/")
+          %div
+            .menu-footer
+              %li
+                %a{:href => "mailto:teemapp.team@gmail.com"} Contact us
     .notice-message
       = notice
     .alert-message
       = alert
     = yield
-    %nav#footer_menu.navbar.navbar-static-bottom
-      .container-fluid
-        .logo
-          = link_to(image_tag("white.png", :alt => "logo", :title => "Home"), "/")
-        %div
-          .menu-footer
-            %li
-              %a{:href => "mailto:teemapp.team@gmail.com"} Contact us

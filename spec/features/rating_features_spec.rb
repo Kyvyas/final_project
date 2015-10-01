@@ -54,6 +54,7 @@ feature 'rating' do
     visit '/'
     click_on 'Tennis'
     expect(page).not_to have_content("I'm in!")
+    visit '/'
   end
 
   scenario 'user cannot rate activity more than once', js: true do
@@ -70,6 +71,7 @@ feature 'rating' do
     visit "/activities/1/ratings/new"
     choose("rating_value_3")
     click_on("Rate activity")
+    sleep 2
     expect(page).to have_content("Activity already rated.")
     Timecop.return
   end
