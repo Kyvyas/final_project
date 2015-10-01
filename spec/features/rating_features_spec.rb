@@ -22,7 +22,8 @@ feature 'rating' do
     visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     click_on "I'm in!"
-    Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
+    t = Time.local(2016, 10, 7, 12, 0, 0)
+    Timecop.travel(t)
     click_on "My Profile"
     click_on "Football"
     expect(page).to have_content "Rate activity"
@@ -61,7 +62,8 @@ feature 'rating' do
     visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     click_on "I'm in!"
-    Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
+    t = Time.local(2016, 10, 7, 12, 0, 0)
+    Timecop.travel(t)
     click_on "My Profile"
     click_on "Football"
     expect(page).to have_content "Rate activity"
@@ -76,13 +78,13 @@ feature 'rating' do
   end
 
     describe "time mock testing on rating" do
-      before do
-        Timecop.freeze(Time.local(2016, 10, 5, 12, 0, 0))
-      end
+      # before do
+      #   Timecop.freeze(Time.local(2016, 10, 5, 12, 0, 0))
+      # end
 
-      after do
-        Timecop.return
-      end
+      # after do
+      #   Timecop.return
+      # end
 
       scenario 'user cannot rate activity until after it has happened', js: true do
         visit '/categories?utf8=&Category=Sports'
@@ -94,7 +96,7 @@ feature 'rating' do
         expect(page).to have_content "You can rate this only after the event!"
       end
 
-      scenario 'user cannot rate activity until after it has happened', js: true do
+      scenario 'user can rate activity until after it has happened', js: true do
         visit '/categories?utf8=&Category=Sports'
         click_on 'Football'
         click_on "I'm in!"
@@ -103,6 +105,7 @@ feature 'rating' do
         click_on "Football"
         expect(page).to have_content "Rate activity"
         expect(page).not_to have_content "You can rate this only after the event!"
+        Timecop.return
       end
 
     end

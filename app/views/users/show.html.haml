@@ -1,54 +1,80 @@
 .profile.container
   .row
-    .well.col-md-12.text-center
-      %h1= @user.name
+    .col-md-6.col-xs-12
+      = image_tag @user.avatar(:medium), class: "center-block"
+    .col-xs-6
+      %h2= @user.name
+      -if @user.activities.any?
+        - if @past_hosted_activities.any?
+          %ul.list-unstyled
+            %li
+              %h4
+                Host Rating:
+                %span= "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
+      = link_to "Previous activities", '#previous_activities'
   .row
-    .col-md-4
-      = image_tag @user.avatar(:medium)
-    .col-md-4
+    .col-xs-12
       .container
-        %ul.list-unstyled
-          -if @user.activities.any?
-            - if @past_hosted_activities.any?
-              %li
-                %h4 Host Rating:
-              %li
-                %p= "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
-            - if @future_hosted_activities.any?
-              %li
-                %p Upcoming hosted activities:
-              - @future_hosted_activities.each do | activity |
-                %li
-                  = link_to activity.title, activity_path(activity)
-            - if @past_hosted_activities.any?
-              %li
-                %p Hosted activities:
-              - @past_hosted_activities.each do | activity |
-                %li
-                  = link_to activity.title, activity_path(activity)
-                %li
-                  %p Activity Rating:
-                %li
-                  = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
-          -else
-            %li
-              %p No hosted activities yet!
-    .col-md-4
+        .row.text-center
+          %h2 Hosting
+          %ul.list-unstyled
+            -if @user.activities.any?
+              - if @future_hosted_activities.any?
+                - @future_hosted_activities.each do | activity |
+                  %li.col-md-4
+                    %h2= link_to activity.title, activity_path(activity)
+                    %ul.list-unstyled
+                      %li= activity.datetime.strftime("%d/%m/%Y %I:%M%p")
+                      %li= activity.location
+  .row
+    .col-xs-12
       .container
-        %ul.list-unstyled
-        -if @user.attended_activities.any?
-          -if @future_attending_activities.any?
-            %li
-              %p Upcoming attending activities:
-            - @user.attended_activities.each do | attended_activity |
+        .row.text-center
+          %h2 Attending
+          %ul.list-unstyled
+            -if @user.attended_activities.any?
+              -if @future_attending_activities.any?
+                - @user.attended_activities.each do | attended_activity |
+                  %li.col-md-4
+                    %h2=link_to attended_activity.title, activity_path(attended_activity)
+              -else
+                %li
+                  No plans!
+            -else
               %li
-                =link_to attended_activity.title, activity_path(attended_activity)
-          -if @past_attended_activities.any?
-            %li
-              %p Attended activities:
-            - @user.attended_activities.each do | attended_activity |
+                %p No attended activities yet!
+
+  .row
+    .col-xs-12
+      .container
+        .row.text-center#previous_activities
+          %h3 Activities #{@user.name} has hosted
+          %ul.list-unstyled
+            -if @user.activities.any?
+              - if @past_hosted_activities.any?
+                - @past_hosted_activities.each do | activity |
+                  %li.col-md-4
+                    %h3= link_to activity.title, activity_path(activity)
+                    %ul.list-unstyled
+                      %li
+                        %p Activity Rating:
+                      %li
+                      = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
+            -else
               %li
-                =link_to attended_activity.title, activity_path(attended_activity)
-        -else
-          %li
-            %p No attended activities yet!
+                %p No hosted activities yet!
+  .row
+    .col-xs-12
+      .container
+        .row.text-center
+          %h3 Activites #{@user.name} went to
+          %ul.list-unstyled
+            -if @user.attended_activities.any?
+              -if @past_attended_activities.any?
+                %li
+                  %p Attended activities:
+                - @user.attended_activities.each do | attended_activity |
+                  %li.col-md-4
+                    %h3=link_to attended_activity.title, activity_path(attended_activity)
+              -else
+                %li Hasn't been anywhere yet!

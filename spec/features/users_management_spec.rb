@@ -77,11 +77,11 @@ feature "User can sign in and out" do
       create_activity(activity)
       t = Time.local(2020, 10, 6, 12, 0, 0)
       Timecop.travel(t)
+
       visit '/'
       click_on 'My Profile'
-      # click_on('Football')
-      # click_on('Katya')
-      expect(page).to have_content("Hosted activities: Football")
+
+      expect(page).to have_content("Activities Katya has hosted Football")
       expect(page).not_to have_content("No hosted activities yet!")
       Timecop.return
     end
@@ -93,7 +93,7 @@ feature "User can sign in and out" do
       create_activity(activity)
       visit '/'
       click_on 'My Profile'
-      expect(page).to have_content("Upcoming hosted activities: Football")
+      expect(page).to have_content("Hosting Football")
       expect(page).not_to have_content("No hosted activities yet!")
     end
 
@@ -196,8 +196,9 @@ feature "User can sign in and out" do
       visit '/categories?utf8=&Category=Sports'
       click_on('Football')
       click_on("I'm in")
+      sleep 1
       click_on "My Profile"
-      expect(page).to have_content("Upcoming attending activities: Football")
+      expect(page).to have_content("Attending Football")
     end
 
     scenario "has no attended activities if none exist" do
