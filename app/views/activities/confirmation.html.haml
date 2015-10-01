@@ -6,24 +6,40 @@
 %link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css", :rel => "stylesheet"}/
 %script{:src => "/src/confirm_map.js"}
 
-%section.create-activity.col-md-6.col-md-offset-3.col-xs-12.container.center.well
-  %h2 Confirm your activity
+%section.create-activity.col-md-6.col-md-offset-3.col-xs-12.container.well
+  %h2
+    .confirm-head Confirm your activity
+  %h4
+    .confirm-head Check that the details below are correct then go down to the map
+  %p
   = form_for [@user, @activity], :url => user_activities_path(@user), html: { multipart: true } do |f|
-    %div.form-group.form-input= f.text_field :title, :placeholder => "Activity Name", :readonly => true
-    %div.form-group.form-input= f.text_field :description, :placeholder => "Describe your Activity", :readonly => true
-    %div.form-group.form-input= f.number_field :participants,  { min: 1, :placeholder => "People needed", :readonly => true }
-    = f.label :datetime
-    %div.form-group= f.text_field :datetime, value: "#{@activity.datetime.strftime("%a %d %b, %Y - at %I:%M %p")}"
-    = f.label :category
-    %div.form-group= f.text_field :category, :readonly => true
-    %div.form-group.form-input= f.text_field :tag, :placeholder => "Activity e.g.'Football'", :readonly => true
-    %div.form-group.form-input= f.text_field :location, :placeholder => "Location", :readonly => true
+    %span.confirm-label Title:
+    %span.form-group.form-input= f.text_field :title, :readonly => true, class: 'confirm-box'
+    %p
+    %span.confirm-label Description:
+    %span.form-group.form-input= f.text_field :description, :readonly => true, class: 'confirm-box'
+    %p
+    %span.confirm-label People Needed:
+    %span.form-group.form-input= f.text_field :participants,  { min: 1, :readonly => true, class: 'confirm-box' }
+    %p
+    %span.confirm-label When it's on:
+    %span.form-group= f.text_field :datetime, { value: "#{@activity.datetime.strftime("%a %d %b, %Y - at %I:%M %p")}", :readonly => true, class: 'confirm-box' }
+    %p
+    %span.confirm-label Category:
+    %span.form-group= f.text_field :category, :readonly => true, class: 'confirm-box'
+    %p
+    %span.confirm-label Tag:
+    %span.form-group.form-input= f.text_field :tag, :readonly => true, class: 'confirm-box'
+    %p
+    %span.confirm-label Location:
+    %span.form-group.form-input= f.text_field :location, :readonly => true, class: 'confirm-box'
     = f.hidden_field :latitude
     = f.hidden_field :longitude
+    %p
     %div.form-group= f.submit "Confirm", class: "submit-btn"
-
-
-  #confirm_map{:style => "width:150" "height:400px"}
+  %h4
+    .confirm-head Use the map to narrow down the perfect spot!
+  #confirm_map{:style => "width:200" "height:350px"}
     .sk-folding-cube
       .sk-cube1.sk-cube
       .sk-cube2.sk-cube

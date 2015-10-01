@@ -7,7 +7,7 @@
 
   validates_numericality_of :participants, greater_than_or_equal_to: 1, message: "must be greater than 0"
   validates_numericality_of :active_participants, greater_than_or_equal_to: 0
-  validates_inclusion_of :category, in: ['Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife'], message: "Must choose category"
+  validates_inclusion_of :category, in: ['Sports', 'Culture', 'Coding', 'Education', 'Music', 'Comedy', 'Nightlife', 'Food', 'Outdoor', 'Other'], message: "Must choose category"
   validates_presence_of :location, :participants, :category, :tag, :title
   validates_presence_of :datetime, on: :create
   validate :date_cannot_be_in_past
