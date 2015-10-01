@@ -35,8 +35,9 @@
   %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
   - if @activities.any?
     - @activities.each do | activity |
-      %container
-        %div.each-activity.col-md-4
-          %h2=link_to activity.title, activity_path(activity)
-          %h3= activity.location
-          %h3= activity.datetime
+      .row
+        %ul
+          %div.each-activity.col-md-5
+            %li=link_to activity.title, activity_path(activity)
+            %li= activity.location
+            %li= activity.datetime.strftime("%a %d %b, %Y - at %I:%M %p")
