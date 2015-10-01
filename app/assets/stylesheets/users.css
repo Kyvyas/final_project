@@ -105,6 +105,10 @@ input[type="number"] {
   padding-top: 150px;
 }
 
+.profile-photo {
+  margin: 0 auto;
+}
+
 
 @media only screen and (max-width : 480px) {
   input[type=email] {

@@ -55,6 +55,7 @@ feature "User can sign in and out" do
     sign_in_as(user)
     activity = build(:activity)
     create_activity(activity)
+    visit '/categories?utf8=&Category=Sports'
     click_on('Football')
     click_on('Katya')
     expect(page).to have_content("Katya")
@@ -76,9 +77,11 @@ feature "User can sign in and out" do
       create_activity(activity)
       t = Time.local(2020, 10, 6, 12, 0, 0)
       Timecop.travel(t)
-      click_on('Football')
-      click_on('Katya')
-      expect(page).to have_content("Hosted activities: Football")
+
+      visit '/'
+      click_on 'My Profile'
+
+      expect(page).to have_content("Activities Katya has hosted Football")
       expect(page).not_to have_content("No hosted activities yet!")
       Timecop.return
     end
@@ -88,9 +91,9 @@ feature "User can sign in and out" do
       sign_in_as(user)
       activity = build(:activity)
       create_activity(activity)
-      click_on('Football')
-      click_on('Katya')
-      expect(page).to have_content("Upcoming hosted activities: Football")
+      visit '/'
+      click_on 'My Profile'
+      expect(page).to have_content("Hosting Football")
       expect(page).not_to have_content("No hosted activities yet!")
     end
 
@@ -109,6 +112,7 @@ feature "User can sign in and out" do
       click_on("Sign out")
       user2 = create(:user_2)
       sign_in_as(user2)
+      visit '/categories?utf8=&Category=Sports'
       click_on('Football')
       click_on("I'm in")
       click_on("My Profile")
@@ -133,7 +137,7 @@ feature "User can sign in and out" do
       click_on("Sign out")
       user2 = create(:user_2)
       sign_in_as(user2)
-      visit'/'
+      visit '/categories?utf8=&Category=Sports'
       click_on('Football')
       click_on("I'm in")
       t = Time.local(2516, 10, 9, 10, 5, 0)
@@ -144,7 +148,7 @@ feature "User can sign in and out" do
       choose("rating_value_5")
       click_on("Rate activity")
       Timecop.return
-      visit '/'
+      visit '/categories?utf8=&Category=Sports'
       click_on("Tennis")
       click_on("I'm in")
       sleep 1
@@ -169,7 +173,7 @@ feature "User can sign in and out" do
       sign_in_as(user2)
       activity2 = build(:activity2)
       create_activity(activity2)
-      visit '/'
+      visit '/categories?utf8=&Category=Sports'
       click_on('Football')
       click_on("I'm in")
       t = Time.local(2020, 10, 6, 12, 0, 0)
@@ -189,11 +193,12 @@ feature "User can sign in and out" do
       sign_in_as(user2)
       activity2 = build(:activity2)
       create_activity(activity2)
-      visit '/'
+      visit '/categories?utf8=&Category=Sports'
       click_on('Football')
       click_on("I'm in")
+      sleep 1
       click_on "My Profile"
-      expect(page).to have_content("Upcoming attending activities: Football")
+      expect(page).to have_content("Attending Football")
     end
 
     scenario "has no attended activities if none exist" do

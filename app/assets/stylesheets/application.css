@@ -48,7 +48,7 @@
   }
 
 .leaflet-top {
-    top: 30px !important;
+    top: 0px !important;
 }
 
 .activity-map {
@@ -74,6 +74,10 @@
   height: 300px;
   border: solid gray 1px;
 }
+
+/*********************************************************************************/
+/* Header                                                                         */
+/*********************************************************************************/
 
 .navbar{
   z-index:2;
@@ -456,7 +460,6 @@ max-height:100%;
 .content{
   width: 100%;
   display: inline-block;
-  text-align: center;
   background: #fff;
 }
 
@@ -467,7 +470,16 @@ max-height:100%;
 }
 
 .each-activity {
-  display: inline-block;
+  list-style-type: none;
+  border-bottom: solid gray 1px;
+  float: left;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.each-activity li a {
+  text-decoration: none;
+  font-size: 26px;
 }
 
 /*********************************************************************************/
@@ -734,3 +746,161 @@ input[type=text] {
     opacity: 0;
   }
 }
+
+
+/*********************************************************************************/
+/* Category Pages                                                                */
+/*********************************************************************************/
+
+.outdoor-header {
+   height: 300px;
+   background: url('outdoors.jpg') center no-repeat;
+
+}
+
+.outdoor-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.sports-header {
+   height: 300px;
+   background: url('sport.jpg') center no-repeat;
+   background-size: cover;
+}
+
+.sports-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.food-header {
+   height: 300px;
+   background: url('food.jpg') center no-repeat;
+   background-size: cover;
+}
+
+.food-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+
+.coding-header {
+   height: 300px;
+   background: url('coding.jpg') center no-repeat;
+   background-size: cover;
+}
+
+.coding-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.other-header {
+   height: 300px;
+   background: url('other.jpg') center no-repeat;
+   background-size: cover;
+}
+
+.other-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.culture-header {
+   height: 300px;
+   background: url('culture.jpg') center no-repeat;
+   background-size: cover;
+}
+
+.culture-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.education-header {
+   height: 300px;
+   background: url('education.jpg') center no-repeat;
+
+}
+
+.education-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.nightlife-header {
+   height: 300px;
+   background: url('nightlife.jpg') center no-repeat;
+   background-size: cover;
+}
+
+.nightlife-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.comedy-header {
+   height: 300px;
+   background: url('comedy.jpg') center no-repeat;
+   background-size: cover;
+
+}
+
+.comedy-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+.music-header {
+   height: 300px;
+   background: url('music.jpg') center no-repeat;
+   background-size: cover;
+}
+
+.music-header h1 {
+  position: absolute;
+  margin-top: 220px;
+  text-align: center;
+  color: #fff;
+  font-size: 45px;
+}
+
+
+
+
+
+
+
+
+
+
+

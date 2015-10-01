@@ -26,5 +26,14 @@
   %div
     %input#nightlife.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Nightlife"}/
     %label{:for => "Nightlife"} nightlife
+  %div
+    %input#food.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Food"}/
+    %label{:for => "Food"} food
+  %div
+    %input#outdoor.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Outdoor"}/
+    %label{:for => "Outdoor"} outdoors
+  %div
+    %input#other.filter{:checked => "checked", :name => "filter", :type => "checkbox", :value => "Other"}/
+    %label{:for => "Other"} other
 #map
 %script{:src => "/src/map.js"}
