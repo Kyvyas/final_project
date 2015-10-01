@@ -32,12 +32,59 @@
 
 
 %section.content
-  %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
-  - if @activities.any?
-    - @activities.each do | activity |
-      .row
-        %ul
-          %div.each-activity.col-md-5
-            %li=link_to activity.title, activity_path(activity)
-            %li= activity.location
-            %li= activity.datetime.strftime("%a %d %b, %Y - at %I:%M %p")
+  .row
+    .col-md-6
+      %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
+      - if @activities.any?
+        - @activities.each do | activity |
+          %ul
+            %div.each-activity
+              %li=link_to activity.title, activity_path(activity)
+              %li= activity.location
+              %li= activity.datetime.strftime("%a %d %b, %Y - at %I:%M %p")
+
+    %section.categories.hidden-xs.hidden-sm
+      .col-md-6
+        .category-stack.col-md-5
+          %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Sports';"} Sports
+        .category-stack.col-md-5
+          %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Music';"} Music
+        .category-stack.col-md-5
+          %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Culture';"} Culture
+        .category-stack.col-md-5
+          %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Education';"} Education
+        .category-stack.col-md-5
+          %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Coding';"} Coding
+        .category-stack.col-md-5
+          %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Nightlife';"} Nightlife
+        .category-stack.col-md-5
+          %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Comdey';"} Comedy
+        .category-stack.col-md-5
+          %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Food';"} Food
+        .category-stack.col-md-5
+          %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Outdoors';"} Outdoors
+        .category-stack.col-md-5
+          %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Other';"} Other
+
+  %section.categories.hidden-md.hidden-lg
+    .cat-stack-top-pad
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Sports';"} Sports
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Music';"} Music
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Culture';"} Culture
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Education';"} Education
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Coding';"} Coding
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Nightlife';"} Nightlife
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Comdey';"} Comedy
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Food';"} Food
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box2{:onclick => "location.href='/categories?utf8=✓&Category=Outdoors';"} Outdoors
+      .category-stack-mobile.col-xs-6.no-padding
+        %div.color-box{:onclick => "location.href='/categories?utf8=✓&Category=Other';"} Other
