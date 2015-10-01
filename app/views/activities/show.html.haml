@@ -4,39 +4,54 @@
 %script{:src => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"}
 %link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css", :rel => "stylesheet"}/
 %link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+%link{:href => "https://fonts.googleapis.com/css?family=Lato|PT+Sans|Montserrat|Poiret+One", :rel => "stylesheet", :type => "text/css"}/
 %script{:src => "/src/activity_map.js"}
 
-%section.show-activity
-  = @activity.title
-  = @activity.description
-  = @activity.location
-  People needed:
-  %p.people_needed= @people_needed
-  Total needed;
-  = @activity.participants
-  = @activity.datetime
-  = @activity.category
-  = @activity.tag
+%section.container
+  .row
+    %section.activity-info.col-md-8
+      %ul.list-unstyled.act-list
+        %li
+          %h2= @activity.title
+        %li
+          %h3
+            Hosted by:
+            %span= link_to @activity.user.name, user_path(@activity.user)
+        %li
+          %b Details:
+          %span= @activity.description
+        %li
+          %b Address:
+          %span= @activity.location
+        %li
+          %b People still needed:
+          %span.people_needed= @people_needed
+        %li
+          %b Capacity for this event: #{@activity.participants}
+        %li
+          %b When its on:
+          %span= @activity.datetime.strftime("%a %d %b, %Y - at %I:%M %p")
+        %li
+          %b Category:
+          = @activity.category
 
 
-  %p Hosted by:
-  = link_to @activity.user.name, user_path(@activity.user)
+      - if @people_needed > 0 && !current_user.has_clicked?(@activity) && !current_user.activities.include?(@activity)
+        %p= link_to "I'm in!", activity_attendances_path(@activity), class: 'join_button'
+      - elsif current_user.has_clicked?(@activity)
+        %p= link_to "I'm out!", attendance_path(@attendance), class: 'leave_button', method: :delete
 
-  - if @people_needed > 0 && !current_user.has_clicked?(@activity) && !current_user.activities.include?(@activity)
-    %p= link_to "I'm in!", activity_attendances_path(@activity), class: 'join_button'
-  - elsif current_user.has_clicked?(@activity)
-    %p= link_to "I'm out!", attendance_path(@attendance), class: 'leave_button', method: :delete
+      - if @activity.attendees.include?(current_user) && !current_user.rated_activites.include?(@activity)&& @activity.datetime < (Time.now)
+        %p= link_to "Rate activity", new_activity_rating_path(@activity)
 
-  - if @activity.attendees.include?(current_user) && !current_user.rated_activites.include?(@activity)&& @activity.datetime < (Time.now)
-    %p= link_to "Rate activity", new_activity_rating_path(@activity)
+      - if @activity.datetime > (DateTime.now)
+        %p= "You can rate this only after the event!"
 
-  - if @activity.datetime > (DateTime.now)
-    %p= "You can rate this only after the event!"
+      %b Activity Rating:
+      %span= "★" * @activity.ratings.average(:value).to_i + "☆" * (5 - @activity.ratings.average(:value).to_i)
 
-  %p Activity Rating:
-  = "★" * @activity.ratings.average(:value).to_i + "☆" * (5 - @activity.ratings.average(:value).to_i)
+      - if @activity.user == current_user && !@activity.has_happened?
+        %p
+        %p.delete=link_to "Delete activity", activity_path(@activity), method: :delete, class: "delete-btn"
 
-  - if @activity.user == current_user && !@activity.has_happened?
-    =link_to "Delete activity", activity_path(@activity), method: :delete
-
-  #activity_map
+    %section.activity-map#activity_map.col-md-4
