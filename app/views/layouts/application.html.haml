@@ -15,9 +15,9 @@
     = csrf_meta_tags
     = favicon_link_tag
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top#header_menu
+    %nav#header_menu.navbar.navbar-default.navbar-fixed-top
       .container-fluid
-        %div.logo
+        .logo
           = link_to(image_tag("white_horizontal_logo.png", :alt => "logo", :title => "Home"), "/")
         .navbar-header
           %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
@@ -25,21 +25,34 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %div.menu
+          .menu
             - if user_signed_in?
-              %li= link_to "Sign out", destroy_user_session_path, method: :delete
-              %li= link_to "My Profile", user_path(current_user)
-              %li= link_to "About us", '#about-us'
+              %li
+                = link_to "Sign out", destroy_user_session_path, method: :delete
+              %li
+                = link_to "My Profile", user_path(current_user)
+              %li
+                = link_to "About us", '#about-us'
             - else
-              %li= link_to "Sign in", new_user_session_path
-              %li= link_to "Sign up", new_user_registration_path
-              %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-              %li= link_to "About us", '#about-us'
-
-    %div.notice-message
+              %li
+                = link_to "Sign in", new_user_session_path
+              %li
+                = link_to "Sign up", new_user_registration_path
+              %li
+                = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+              %li
+                = link_to "About us", '#about-us'
+    .notice-message
       = notice
-    %div.alert-message
+    .alert-message
       = alert
     = yield
+    %nav#footer_menu.navbar.navbar-static-bottom
+      .container-fluid
+        .logo
+          = link_to(image_tag("white.png", :alt => "logo", :title => "Home"), "/")
+        %div
+          .menu-footer
+            %li
+              %a{:href => "mailto:teemapp.team@gmail.com"} Contact us

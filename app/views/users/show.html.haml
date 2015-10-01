@@ -1,19 +1,21 @@
 .profile.container
   .row
     .well.col-md-12.text-center
-      %h1= @user.name
+      %h1
+        = @user.name
   .row
     .col-md-4
       = image_tag @user.avatar(:medium)
     .col-md-4
       .container
         %ul.list-unstyled
-          -if @user.activities.any?
+          - if @user.activities.any?
             - if @past_hosted_activities.any?
               %li
                 %h4 Host Rating:
               %li
-                %p= "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
+                %p
+                  = "★" * @host_rating.to_i + "☆" * (5 - @host_rating.to_i)
             - if @future_hosted_activities.any?
               %li
                 %p Upcoming hosted activities:
@@ -30,25 +32,25 @@
                   %p Activity Rating:
                 %li
                   = "★" * activity.ratings.average(:value).to_i + "☆" * (5 - activity.ratings.average(:value).to_i)
-          -else
+          - else
             %li
               %p No hosted activities yet!
     .col-md-4
       .container
         %ul.list-unstyled
-        -if @user.attended_activities.any?
-          -if @future_attending_activities.any?
+        - if @user.attended_activities.any?
+          - if @future_attending_activities.any?
             %li
               %p Upcoming attending activities:
             - @user.attended_activities.each do | attended_activity |
               %li
-                =link_to attended_activity.title, activity_path(attended_activity)
-          -if @past_attended_activities.any?
+                = link_to attended_activity.title, activity_path(attended_activity)
+          - if @past_attended_activities.any?
             %li
               %p Attended activities:
             - @user.attended_activities.each do | attended_activity |
               %li
-                =link_to attended_activity.title, activity_path(attended_activity)
-        -else
+                = link_to attended_activity.title, activity_path(attended_activity)
+        - else
           %li
             %p No attended activities yet!
