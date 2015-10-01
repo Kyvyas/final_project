@@ -42,6 +42,9 @@
     top: 0px !important;
 }
 
+.activity-map {
+  margin-top:100px !important;
+}
 
 #map{
    position: absolute;
@@ -60,6 +63,7 @@
   margin: auto;
   width: 300px;
   height: 300px;
+  border: solid gray 1px;
 }
 
 /*********************************************************************************/
@@ -609,12 +613,41 @@ input[type=text] {
 /* Show activity                                                                */
 /*********************************************************************************/
 
-.show-activity {
+
+.activity-info {
   margin-top: 100px;
 }
 
 .rating {
   margin-top: 200px;
+}
+
+@media only screen and (max-width : 480px) {
+  .activity-info {
+    text-align: left;
+  }
+}
+
+.delete-btn {
+  width: 130px;
+  border: none;
+  padding: 5px;
+  line-height: 1;
+  border-radius: 0;
+  height: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  background-color: #001738 !important;
+  color: #fff;
+  list-style-type: none;
+}
+
+
+.delete a:hover {
+  color: #D3D3D3;
+  text-decoration: none;
 }
 
 .sk-folding-cube {

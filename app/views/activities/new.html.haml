@@ -7,7 +7,7 @@
       - @activity.errors.full_messages.each do |message|
         %li= message
 
-%section.create-activity.col-lg-6.col-lg-offset-3.container.center.well
+%section.create-activity.col-md-6.col-md-offset-3.col-xs-12container.center.well
   <h2>Add an activity!</h2>
   = form_for [@user, @activity], :url => activities_confirmation_path, html: { multipart: true } do |f|
     %div.form-group.form-input= f.text_field :title, {:required => true, :placeholder => "Activity Name" }

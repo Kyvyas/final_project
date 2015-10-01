@@ -6,14 +6,14 @@
 %link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css", :rel => "stylesheet"}/
 %script{:src => "/src/confirm_map.js"}
 
-%section.create-activity.col-lg-6.col-lg-offset-3.container.center.well
+%section.create-activity.col-md-6.col-md-offset-3.col-xs-12.container.center.well
   %h2 Confirm your activity
   = form_for [@user, @activity], :url => user_activities_path(@user), html: { multipart: true } do |f|
     %div.form-group.form-input= f.text_field :title, :placeholder => "Activity Name", :readonly => true
     %div.form-group.form-input= f.text_field :description, :placeholder => "Describe your Activity", :readonly => true
     %div.form-group.form-input= f.number_field :participants,  { min: 1, :placeholder => "People needed", :readonly => true }
     = f.label :datetime
-    %div.form-group= f.datetime_select :datetime
+    %div.form-group= f.text_field :datetime, value: "#{@activity.datetime.strftime("%a %d %b, %Y - at %I:%M %p")}"
     = f.label :category
     %div.form-group= f.text_field :category, :readonly => true
     %div.form-group.form-input= f.text_field :tag, :placeholder => "Activity e.g.'Football'", :readonly => true

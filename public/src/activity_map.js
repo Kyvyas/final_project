@@ -1,6 +1,6 @@
 $(document).ready(function() {
   L.mapbox.accessToken = 'pk.eyJ1Ijoib3dlbmxhbWIiLCJhIjoiY2lleWljcnF4MDBiOXQ0bHR0anRvamtucSJ9.t3YnHHqvQZ8Y0MTCNy0NNw';
-  var activity_map = L.mapbox.map('activity_map', 'mapbox.streets')
+  var activity_map = L.mapbox.map('activity_map', 'mapbox.pirates')
   var myLayer = L.mapbox.featureLayer().addTo(activity_map);
 
 
