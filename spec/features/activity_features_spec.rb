@@ -52,10 +52,10 @@ feature 'activity' do
       user2 = create(:user_2)
       sign_in_as(user2)
       click_on('Football')
-      expect(page).to have_content("People needed: 6")
+      expect(page).to have_content("People still needed: 6")
       click_on("I'm in!")
       sleep 1
-      expect(page).to have_content("People needed: 5")
+      expect(page).to have_content("People still needed: 5")
     end
   end
 
@@ -117,10 +117,13 @@ feature 'activity' do
     click_on('Tennis')
     click_on("I'm in!")
     click_on('Sign out')
+    sleep 2
     user3 = create(:user_3)
     sign_in_as(user3)
     expect(page).to have_content("Tennis")
     click_on("Tennis")
+    sleep 2
+    expect(page).to have_content("Tennis")
     expect(page).not_to have_content("I'm in")
   end
 
@@ -301,7 +304,7 @@ feature 'activity' do
     click_on "I'm out"
     visit '/'
     click_on "Football"
-    expect(page).to have_content("People needed: 6")
+    expect(page).to have_content("People still needed: 6")
     Timecop.return
   end
 
