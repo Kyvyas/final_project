@@ -6,7 +6,7 @@
 %link{:href => "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css", :rel => "stylesheet"}/
 %script{:src => "/src/confirm_map.js"}
 
-%section.create-activity.col-lg-6.col-lg-offset-3.container.center.well
+%section.create-activity.col-md-6.col-md-offset-3.col-xs-12.container.center.well
   %h2 Confirm your activity
   = form_for [@user, @activity], :url => user_activities_path(@user), html: { multipart: true } do |f|
     %div.form-group.form-input= f.text_field :title, :placeholder => "Activity Name", :readonly => true

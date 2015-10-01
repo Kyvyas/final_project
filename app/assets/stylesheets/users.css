@@ -105,3 +105,51 @@ input[type="number"] {
 .profile {
   padding-top: 150px;
 }
+
+
+@media only screen and (max-width : 480px) {
+  input[type=email] {
+   color: black;
+   font-size: 16px;
+   font-weight: 500;
+   padding-left: 10px;
+   width: 280px;
+   height: 40px;
+  }
+
+  input[type=password] {
+   color: black;
+   font-size: 16px;
+   font-weight: 500;
+   padding-left: 10px;
+   width: 280px;
+   height: 40px;
+  }
+
+  input[type="number"] {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 10px;
+    width: 150px;
+    height: 40px;
+  }
+
+  .new_user input[type=text] {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 10px;
+    width: 280px;
+    height: 40px;
+  }
+
+  .create-activity input[type=text] {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 10px;
+    width: 280px;
+    height: 40px;
+  }
+}
