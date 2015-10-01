@@ -16,15 +16,26 @@
 
 .confirm-box {
   background-color : #edf6fe;
+  size: auto;
+  margin: auto;
+  text-align: left;
+  width: 15%;
+   left: 100%;
+    display: block;
+    overflow: hidden;
+
 }
 
 .confirm-head {
   color: #a32020;
+  text-align: center;
 }
 
 .confirm-label {
   font-size: 18px;
   color: #005b96;
+position: relative;
+
 }
 
 .fa-map-marker {
