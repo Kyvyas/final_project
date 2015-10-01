@@ -16,4 +16,4 @@
 .DS_Store
 app/assets/.DS_Store
 public/system/users/avatars/000/000/001/
-
+.coverage
