@@ -81,6 +81,10 @@ input[type="number"] {
   list-style-type: none;
 }
 
+.form-group {
+  text-align: center;
+}
+
 .lrg-submit-btn {
   width: 400px;
   border: none;
