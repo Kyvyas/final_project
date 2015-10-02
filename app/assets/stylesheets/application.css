@@ -222,7 +222,7 @@ border: none;
 /*********************************************************************************/
 
 .hero{
-  background-image:url('boat.jpg');
+  background-image:url('hero2.jpg');
   background-size:cover;
   position:relative;
   height:100vh;
@@ -249,7 +249,7 @@ border: none;
 /*********************************************************************************/
 
 .mobile{
-  background-image:url('boat.jpg');
+  background-image:url('hero2.jpg');
   background-size:cover;
   position:relative;
   height:60vh;
@@ -393,6 +393,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   text-align: center;
   background: #fff;
+  margin-bottom: 40px;
 }
 
 .latest h1 {
@@ -424,13 +425,14 @@ max-height:100%;
   position: absolute;
   left:15px;
   text-align: left;
-  bottom: 0;
+  bottom: -8px;
   padding: 10px;
   background: rgba(255,255,255,0.7);
   width: 100%;
   color: #FFF;
   margin: 0px;
-  color: #000;
+ color: #606b70;
+
 }
 
 .image-wrapper .text-box h2 {
@@ -611,6 +613,7 @@ input[type=text] {
 }
 
 
+
 /*********************************************************************************/
 /* About us                                                          */
 /*********************************************************************************/
@@ -626,8 +629,25 @@ input[type=text] {
 
 .about-us h1 {
   float: left;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 
+}
+
+#about-us .image-wrapper img {
+  border-radius: 50%;
+}
+
+#about-us .image-wrapper .text-box {
+  position: relative;
+  text-align: center;
+  left: 0px;
+  bottom: -8px;
+  padding: 10px;
+  background: rgba(255,255,255,0.7);
+  width: 100%;
+  color: #FFF;
+  margin: 0px;
+ color: #606b70;
 }
 
 /*********************************************************************************/
