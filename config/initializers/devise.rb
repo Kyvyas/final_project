@@ -236,7 +236,7 @@ Devise.setup do |config|
 
   require "omniauth-facebook"
 
-  config.omniauth :facebook, Rails.application.secrets[:facebook_app_id], Rails.application.secrets[:facebook_app_secret], scope: 'email', info_fields: 'email, name', secure_image_url: true
+  config.omniauth :facebook, Rails.application.secrets[:facebook_app_id], Rails.application.secrets[:facebook_app_secret], scope: 'email', info_fields: 'email, name', secure_image_url: true, image_size: 'large'
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

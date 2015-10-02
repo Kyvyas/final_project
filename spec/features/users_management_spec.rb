@@ -123,7 +123,7 @@ feature "User can sign in and out" do
       choose("rating_value_3")
       click_on("Rate activity")
       click_on('Katya')
-      expect(page).to have_content("Activity Rating: ★★★☆☆")
+      expect(page).to have_content("★★★☆☆")
       Timecop.return
     end
 
@@ -179,7 +179,7 @@ feature "User can sign in and out" do
       t = Time.local(2020, 10, 6, 12, 0, 0)
       Timecop.travel(t)
       click_on "My Profile"
-      expect(page).to have_content("Attended activities: Football")
+      expect(page).to have_content("Activites Harry went to Football")
       Timecop.return
     end
 

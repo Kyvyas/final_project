@@ -14,9 +14,29 @@
  *= require_self
  */
 
-/*********************************************************************************/
-/* Map                                                                           */
-/*********************************************************************************/
+.confirm-box {
+  background-color : #edf6fe;
+  size: auto;
+  margin: auto;
+  text-align: left;
+  width: 15%;
+   left: 100%;
+    display: block;
+    overflow: hidden;
+
+}
+
+.confirm-head {
+  color: #a32020;
+  text-align: center;
+}
+
+.confirm-label {
+  font-size: 18px;
+  color: #005b96;
+position: relative;
+
+}
 
 .fa-map-marker {
     content: "\f041";
@@ -468,6 +488,7 @@ max-height:100%;
   float: left;
   padding-top: 20px;
   padding-bottom: 5px;
+  margin-right: 15px;
 }
 
 .each-activity li a {
@@ -639,7 +660,7 @@ input[type=text] {
 }
 
 .rating {
-  margin-top: 200px;
+  /*margin-top: 200px;*/
 }
 
 @media only screen and (max-width : 480px) {
@@ -905,13 +926,39 @@ input[type=text] {
   font-size: 45px;
 }
 
+.category-stack {
+  margin:15px;
+  padding-top: 15px;
+  text-align: center;
+  line-height: 120px;
+  color: #fff;
+  font-size: 36px;
+}
 
+.color-box {
+  width: 200px;
+  height: 150px;
+  background-color: #24C1A9;
+  cursor:pointer;
+}
 
+.color-box2 {
+  width: 200px;
+  height: 150px;
+  background-color: #FE5F55;
+  cursor:pointer;
+}
+.color-box2:hover{
+  background-color: #ECECEC;
+}
+.color-box:hover{
+  background-color: #251833;
+}
 
-
-
-
-
-
-
-
+.cat-stack-top-pad {
+  padding-top: 15px;
+  text-align: center;
+  line-height: 120px;
+  color: #fff;
+  font-size: 36px;
+}
