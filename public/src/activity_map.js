@@ -3,7 +3,6 @@ $(document).ready(function() {
   var activity_map = L.mapbox.map('activity_map', 'mapbox.pirates')
   var myLayer = L.mapbox.featureLayer().addTo(activity_map);
 
-
   myLayer.on('layeradd', function(e) {
     var marker;
     marker = e.layer;
