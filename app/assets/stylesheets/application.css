@@ -486,6 +486,7 @@ max-height:100%;
   float: left;
   padding-top: 20px;
   padding-bottom: 5px;
+  margin-right: 15px;
 }
 
 .each-activity li a {
@@ -905,13 +906,39 @@ input[type=text] {
   font-size: 45px;
 }
 
+.category-stack {
+  margin:15px;
+  padding-top: 15px;
+  text-align: center;
+  line-height: 120px;
+  color: #fff;
+  font-size: 36px;
+}
 
+.color-box {
+  width: 200px;
+  height: 150px;
+  background-color: #24C1A9;
+  cursor:pointer;
+}
 
+.color-box2 {
+  width: 200px;
+  height: 150px;
+  background-color: #FE5F55;
+  cursor:pointer;
+}
+.color-box2:hover{
+  background-color: #ECECEC;
+}
+.color-box:hover{
+  background-color: #251833;
+}
 
-
-
-
-
-
-
-
+.cat-stack-top-pad {
+  padding-top: 15px;
+  text-align: center;
+  line-height: 120px;
+  color: #fff;
+  font-size: 36px;
+}
