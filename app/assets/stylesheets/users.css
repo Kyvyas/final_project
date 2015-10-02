@@ -162,7 +162,7 @@ input[type="number"] {
 }
 
 .medium-btn {
-  border: solid 2px #fe5f55;
+  border: solid 2px #001738;
   width: 200px;
   font-size: 18px !important;
   line-height: 1;
@@ -172,12 +172,12 @@ input[type="number"] {
   text-align: center;
   font-weight: 500 !important;
   background-color: white;
-  color: #fe5f55 !important;
+  color: #001738 !important;
   list-style-type: none;
 }
 
 .medium-btn:hover {
-  background-color: #fe5f55;
+  background-color: #001738;
   color: #fff !important;
 }
 
