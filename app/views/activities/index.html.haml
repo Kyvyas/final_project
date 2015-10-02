@@ -34,20 +34,20 @@
       Latest Events
     .row
       .image-wrapper.col-md-4.col-sm-6
-        %img{:alt => "sometext", :src => "http://carebears.co/images/agkzp_cbaboutmain.jpg"}/
+        =image_tag 'culture1.jpg'
         .text-box
-          %h2 Event
-          %p Some event information
+          %h2 A cultural excursion
+          %p Let's get our culture on :)
       .image-wrapper.col-md-4.col-sm-6
-        %img{:alt => "sometext", :src => "http://weknowyourdreams.com/images/football/football-08.jpg"}/
+        =image_tag 'concert.jpg'
         .text-box
-          %h2 Event
-          %p Some event information
+          %h2 Let's see a concert
+          %p Wooohooooo
       .image-wrapper.col-md-4.col-sm-6
-        %img{:alt => "sometext", :src => "http://weknowyourdreams.com/images/football/football-08.jpg"}/
+        =image_tag 'food2.jpg'
         .text-box
-          %h2 Event
-          %p Some event information
+          %h2 Food market!
+          %p Want to try some food?
       / %div.latest-activity.col-md-4.col-sm-6
       /   %img.act-image{:alt => "Mountain View", :src => "http://weknowyourdreams.com/images/football/football-08.jpg", :style => "width:320px;height:228px;"}/
       /   .event-overlay
@@ -64,48 +64,74 @@
 
   %section.categories.hidden-md.hidden-lg.hidden-sm
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'football-match.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Sports"} Sports
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'musicsmall.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Music"} Music
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'flowers.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Culture"} Culture
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'edu.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Education"} Education
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'code.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Coding"} Coding
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'night.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Nightlife"} Nightlife
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'monty.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Comedy"} Comedy
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'food5.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Food"} Food
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'outdoors.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Outdoors"} Outdoors
     .col-xs-6.no-padding
-      %img.img-responsive{:src => "http://img2.10bestmedia.com/Images/Photos/284863/Create-Nightclub-3_54_990x660.jpg"}/
+      =image_tag 'pirate.jpg', class: 'img-responsive'
       %div.overlay
         %a{:href => "/categories?utf8=✓&Category=Other"} Other
 
   %section#about-us
     %h2.heading.heading--light.heading--center.heading--dark.promoted-collection__title
       About Us
+    .row
+      .image-wrapper.col-md-2.col-sm-6.col-md-offset-1
+        =image_tag 'retesh.JPG'
+        .text-box
+          %h2 Retesh Bajaj
+          %p Spring onion
+      .image-wrapper.col-md-2.col-sm-6
+        =image_tag 'sarah.jpg'
+        .text-box
+          %h2 Sarah Middleton
+          %p Apple
+      .image-wrapper.col-md-2.col-sm-6
+        =image_tag 'owen.JPG'
+        .text-box
+          %h2 Owen Lamb
+          %p Leek
+      .image-wrapper.col-md-2.col-sm-6
+        =image_tag 'katya.JPG'
+        .text-box
+          %h2 Katya-yani Vyas
+          %p Aubergine
+      .image-wrapper.col-md-2.col-sm-6
+        =image_tag 'fadi.jpg'
+        .text-box
+          %h2 Fadi Hakim
+          %p Turnip
 
 
