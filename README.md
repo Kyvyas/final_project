@@ -1,4 +1,4 @@
-![alt tag](https://travis-ci.org/Kyvyas/final_project.svg)    [![Coverage Status](https://coveralls.io/repos/Kyvyas/final_project/badge.svg?branch=adding-cover&service=github)]
+![alt tag](https://travis-ci.org/Kyvyas/final_project.svg)    ![Coverage Status](https://coveralls.io/repos/Kyvyas/final_project/badge.svg?branch=adding-cover&service=github)
 
 ##TeemApp
 ---
