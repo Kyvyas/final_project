@@ -109,11 +109,11 @@ I would like to rate the activity
 * Rspec, Capybara, TimeCop, Factory Girl for testing
 
 ####Challenges
-* Considering time was a major obstacle - hiding activities when they have already
+* Considering time was a major obstacle - hiding activities after they have taken
 place, but saving them into the database to allow users to give them a rating.
 * Allowing users to update the activity location on the confirmation page was very tricky.
 The solution was very streamlined, we used a geocoder to get an initial location, enabled
 the pin to be dragged and dropped, reverse geocoded the new location and used JavaScript
 to update the form - all in real-time
-* Constructing the database model acurately - We had to use a has and belongs to many
-relationship between User, Activities, and Attendees. 
+* Constructing the database model accurately - We had to use a has and belongs to many
+relationship between User, Activities, and Attendees.
