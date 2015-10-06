@@ -54,7 +54,7 @@ feature "User can sign in and out" do
     user = create(:user)
     sign_in_as(user)
     activity = build(:activity)
-    create_activity(activity)
+    make_activity(activity)
     visit '/categories?utf8=&Category=Sports'
     click_on('Football')
     click_on('Katya')
@@ -74,7 +74,7 @@ feature "User can sign in and out" do
       user = create(:user)
       sign_in_as(user)
       activity = build(:activity)
-      create_activity(activity)
+      make_activity(activity)
       t = Time.local(2020, 10, 6, 12, 0, 0)
       Timecop.travel(t)
 
@@ -90,7 +90,7 @@ feature "User can sign in and out" do
       user = create(:user)
       sign_in_as(user)
       activity = build(:activity)
-      create_activity(activity)
+      make_activity(activity)
       visit '/'
       click_on 'My Profile'
       expect(page).to have_content("Hosting Football")

@@ -14,7 +14,7 @@ feature 'activity' do
 
   scenario 'user creates a new activity', js: true do
     visit '/'
-    click_link("Add an activity")
+    find(".add-activity-large").trigger('click')
     fill_in "Activity Name", with: "Football"
     fill_in "Describe your Activity", with: "Football in the park, yea"
     fill_in "Location", with: "Regent's Park"
@@ -35,7 +35,7 @@ feature 'activity' do
 
   scenario 'host is visible on the activity page' do
     activity = build(:activity)
-    create_activity(activity)
+    make_activity(activity)
     visit '/categories?utf8=&Category=Sports'
     click_on('Football')
     expect(page).to have_content("Hosted by: Katya")
@@ -64,28 +64,28 @@ feature 'activity' do
   scenario 'user cannot make an activity without a title' do
     visit '/'
     activity = build(:activity, title: "")
-    create_activity(activity)
+    make_activity(activity)
     expect(page).to have_content("Title can't be blank")
   end
 
   scenario 'user cannot make an activity without a location' do
     visit '/'
     activity = build(:activity, location: "")
-    create_activity(activity)
+    make_activity(activity)
     expect(page).to have_content("Location can't be blank")
   end
 
   scenario 'user cannot make an activity without a category' do
     visit '/'
     activity = build(:activity, category: "Select")
-    create_activity(activity)
+    make_activity(activity)
     expect(page).to have_content("Must choose category")
   end
 
   scenario 'user cannot make an activity without a tag' do
     visit '/'
     activity = build(:activity, tag: "")
-    create_activity(activity)
+    make_activity(activity)
     expect(page).to have_content("Tag can't be blank")
   end
 
@@ -143,7 +143,7 @@ feature 'activity' do
     click_on("I'm in!")
     expect(page).not_to have_content("I'm in!")
     visit '/'
-    click_link("Add an activity")
+    find('.add-activity-large').trigger('click')
     fill_in "Activity Name", with: "Football"
     fill_in "Describe your Activity", with: "Football in the park, yea"
     fill_in "Location", with: "Regent's Park"
@@ -163,9 +163,9 @@ feature 'activity' do
 
   scenario "user can filter activities by category" do
     activity = build(:activity)
-    create_activity(activity)
+    make_activity(activity)
     activity3 = build(:activity3)
-    create_activity(activity3)
+    make_activity(activity3)
     visit '/'
     select "Sports", from: "Category"
     click_on("Filter")
@@ -174,42 +174,18 @@ feature 'activity' do
     expect(page).not_to have_content("Tom Jones Concert")
   end
 
-  xscenario "users can search activities by tag" do
-    activity = build(:activity)
-    create_activity(activity)
-    activity2 = build(:activity2)
-    create_activity(activity2)
-    visit '/'
-    fill_in "Search for a pirate activity", with: "Tennis"
-    click_on "Search"
-    expect(page).to have_content("Tennis")
-    expect(page).not_to have_content("Football")
-  end
-
-  xscenario "users can search activities by tag regardless of case" do
-    activity = build(:activity)
-    create_activity(activity)
-    activity2 = build(:activity2)
-    create_activity(activity2)
-    visit '/'
-    fill_in "Search for a pirate activity", with: "tenNis"
-    click_on "Search"
-    expect(page).to have_content("Tennis")
-    expect(page).not_to have_content("Football")
-  end
-
   scenario "users cannot create activities in the past" do
     past_activity = build(:past_activity)
-    create_activity(past_activity)
+    make_activity(past_activity)
     expect(page).to have_content("Your activity cannot be in the past! Leave the past where it is...")
   end
 
   context "activities need to be ordered by time at which they occur" do
     scenario 'activities are displayed in order ascending by time' do
       activity = build(:activity)
-      create_activity(activity)
+      make_activity(activity)
       activity2 = build(:activity2)
-      create_activity(activity2)
+      make_activity(activity2)
       visit '/categories?utf8=&Category=Sports'
       expect(page).to have_content("Football")
       expect(page).to have_content("Tennis")
@@ -217,9 +193,9 @@ feature 'activity' do
 
     scenario 'cannot be displayed in the wrong order' do
       activity2 = build(:activity2)
-      create_activity(activity2)
+      make_activity(activity2)
       activity = build(:activity)
-      create_activity(activity)
+      make_activity(activity)
       visit '/categories?utf8=&Category=Sports'
       expect(page).to have_content("Football")
       expect(page).to have_content("Tennis")
@@ -229,9 +205,9 @@ feature 'activity' do
   context "Time mock testing:" do
     scenario "activity list does not list past activities - date" do
       activity = build(:activity)
-      create_activity(activity)
+      make_activity(activity)
       activity2 = build(:activity2)
-      create_activity(activity2)
+      make_activity(activity2)
       t = Time.local(2016, 10, 9, 10, 5, 0)
       Timecop.travel(t)
       sleep 2
@@ -240,11 +216,11 @@ feature 'activity' do
       expect(page).not_to have_content("Football")
       Timecop.return
     end
-    xit "activity list does not list past activities - time" do
+    it "activity list does not list past activities - time" do
       activity = build(:activity)
-      create_activity(activity)
+      make_activity(activity)
       activity_late = build(:activity_late)
-      create_activity(activity_late)
+      make_activity(activity_late)
       t = Time.local(2016, 10, 6, 18, 30, 00)
       p t
       Timecop.travel(t)
@@ -259,7 +235,7 @@ feature 'activity' do
     t = Time.local(2016, 10, 6, 12, 0, 0)
     Timecop.travel(t)
     activity = build(:activity)
-    create_activity(activity)
+    make_activity(activity)
     visit '/'
     click_on 'My Profile'
     click_on "Football"
@@ -271,7 +247,7 @@ feature 'activity' do
   scenario "user cannot delete their hosted activities after they happen" do
     t = Time.local(2117, 10, 6, 17, 0, 0)
     activity = build(:activity)
-    create_activity(activity)
+    make_activity(activity)
     Timecop.travel(t)
     visit '/'
     click_on 'My Profile'

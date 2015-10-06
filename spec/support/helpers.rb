@@ -20,7 +20,24 @@ module FeatureHelpers
 
   def create_activity(activity)
     visit '/'
-    click_link 'Add an activity'
+    find('.add-activity-large').trigger('click')
+    fill_in "Activity Name", with: activity.title
+    fill_in "Describe your Activity", with: activity.description
+    fill_in "Location", with: activity.location
+    fill_in "People needed", with: activity.participants
+    select activity.datetime.strftime('%Y'), from: 'activity_datetime_1i'
+    select activity.datetime.strftime('%B'), from: 'activity_datetime_2i'
+    select activity.datetime.strftime('%-d'), from: 'activity_datetime_3i'
+    select activity.datetime.strftime('%H'), from: 'activity_datetime_4i'
+    select activity.datetime.strftime('%M'), from: 'activity_datetime_5i'
+    select activity.category, from: "Category"
+    fill_in "Activity e.g.'Football'", with: activity.tag
+    click_on "Let's do it"
+    click_on "Confirm"
+  end
+
+  def make_activity(activity)
+    click_on("Add an activity")
     fill_in "Activity Name", with: activity.title
     fill_in "Describe your Activity", with: activity.description
     fill_in "Location", with: activity.location
