@@ -15,6 +15,7 @@ feature 'rating' do
   scenario 'user cannot rate activity they have not signed up for', js: true do
     visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
+    sleep 1
     expect(page).not_to have_content "Rate activity"
   end
 
@@ -22,6 +23,7 @@ feature 'rating' do
     visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     click_on "I'm in!"
+    sleep 1
     t = Time.local(2016, 10, 7, 12, 0, 0)
     Timecop.travel(t)
     click_on "My Profile"
@@ -53,6 +55,7 @@ feature 'rating' do
   scenario "user does not see I'm in link if they are host", js: true do
     activity2 = build(:activity2)
     create_activity(activity2)
+    sleep 1
     visit '/categories?utf8=&Category=Sports'
     click_on 'Tennis'
     expect(page).not_to have_content("I'm in!")
