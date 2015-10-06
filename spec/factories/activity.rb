@@ -16,9 +16,7 @@ FactoryGirl.define do
     description 'running in the park, yea'
     location "Regent's Park"
     participants "6"
-    datetime "06/10/2016 19:00"
-    # date "06/10/2016"
-    # time "19:00"
+    datetime "06/10/2016 23:00"
     category "Sports"
     tag "running"
   end
@@ -29,8 +27,6 @@ FactoryGirl.define do
     location "Tennis Court"
     participants "1"
     datetime "06/10/2016 18:00"
-    # date "06/10/2016"
-    # time "18:00"
     category "Sports"
     tag "Tennis"
   end
@@ -41,8 +37,6 @@ FactoryGirl.define do
     location "The Country Club"
     participants "2"
     datetime "06/11/2016 18:00"
-    # date "06/11/2016"
-    # time "18:00"
     category "Sports"
     tag "Tennis"
   end
@@ -53,8 +47,6 @@ FactoryGirl.define do
     location "Paris"
     participants "5"
     datetime "18/11/2016 19:00"
-    # date "18/11/2016"
-    # time "19:00"
     category "Music"
     tag "Concert"
   end
@@ -65,8 +57,6 @@ FactoryGirl.define do
     location "New York"
     participants "3"
     datetime "18/11/2010 19:00"
-    # date "18/11/1966"
-    # time "19:00"
     category "Music"
     tag "Concert"
   end

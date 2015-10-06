@@ -12,7 +12,7 @@ feature 'rating' do
     sign_in_as(user2)
   end
 
-  scenario 'user cannot rate activity they have not signed up for' do
+  scenario 'user cannot rate activity they have not signed up for', js: true do
     visit '/categories?utf8=&Category=Sports'
     click_on 'Football'
     expect(page).not_to have_content "Rate activity"
@@ -78,14 +78,6 @@ feature 'rating' do
   end
 
     describe "time mock testing on rating" do
-      # before do
-      #   Timecop.freeze(Time.local(2016, 10, 5, 12, 0, 0))
-      # end
-
-      # after do
-      #   Timecop.return
-      # end
-
       scenario 'user cannot rate activity until after it has happened', js: true do
         visit '/categories?utf8=&Category=Sports'
         click_on 'Football'
