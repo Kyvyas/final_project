@@ -32,7 +32,7 @@ gem 'poltergeist'
 gem 'geocoder'
 gem 'timecop'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 group :production do
   gem 'rails_12factor'
