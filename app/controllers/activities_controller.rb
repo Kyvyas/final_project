@@ -4,7 +4,6 @@ class ActivitiesController < ApplicationController
     @tag = params["Tag"]
     if @tag
       @activities = Activity.where(tag: @tag.downcase)
-
     elsif params["Category"]
       @activities = Activity.where(category: params["Category"])
     else
@@ -50,7 +49,7 @@ class ActivitiesController < ApplicationController
     }
     respond_to do |format|
       format.html
-      format.json { render json: @geojson }  # respond with the created JSON object
+      format.json { render json: @geojson }
     end
   end
 

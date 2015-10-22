@@ -1,5 +1,4 @@
 class AttendancesController < ApplicationController
-
   def index
     @activity = Activity.find(params[:activity_id])
     @people_needed = @activity.participants - @activity.active_participants
@@ -32,6 +31,4 @@ class AttendancesController < ApplicationController
     flash[:notice] = "You are no longer attending this activity"
     redirect_to root_path
   end
-
-
 end

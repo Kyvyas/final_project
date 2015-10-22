@@ -79,30 +79,28 @@ feature 'rating' do
     expect(page).to have_content("Activity already rated.")
     Timecop.return
   end
-
-    describe "time mock testing on rating" do
-      scenario 'user cannot rate activity until after it has happened', js: true do
-        visit '/categories?utf8=&Category=Sports'
-        click_on 'Football'
-        click_on "I'm in!"
-        click_on "My Profile"
-        click_on "Football"
-        expect(page).not_to have_content "Rate activity"
-        expect(page).to have_content "You can rate this only after the event!"
-      end
-
-      scenario 'user can rate activity until after it has happened', js: true do
-        visit '/categories?utf8=&Category=Sports'
-        click_on 'Football'
-        click_on "I'm in!"
-        Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
-        click_on "My Profile"
-        click_on "Football"
-        expect(page).to have_content "Rate activity"
-        expect(page).not_to have_content "You can rate this only after the event!"
-        Timecop.return
-      end
-
+  
+  describe "time mock testing on rating" do
+    scenario 'user cannot rate activity until after it has happened', js: true do
+      visit '/categories?utf8=&Category=Sports'
+      click_on 'Football'
+      click_on "I'm in!"
+      click_on "My Profile"
+      click_on "Football"
+      expect(page).not_to have_content "Rate activity"
+      expect(page).to have_content "You can rate this only after the event!"
     end
 
+    scenario 'user can rate activity until after it has happened', js: true do
+      visit '/categories?utf8=&Category=Sports'
+      click_on 'Football'
+      click_on "I'm in!"
+      Timecop.freeze(Time.local(2016, 10, 7, 12, 0, 0))
+      click_on "My Profile"
+      click_on "Football"
+      expect(page).to have_content "Rate activity"
+      expect(page).not_to have_content "You can rate this only after the event!"
+      Timecop.return
+    end
+  end
 end

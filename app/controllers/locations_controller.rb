@@ -27,7 +27,7 @@ class LocationsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: @geojson }  # respond with the created JSON object
+      format.json { render json: @geojson }
     end
   end
 end

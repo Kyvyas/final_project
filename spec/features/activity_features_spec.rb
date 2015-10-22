@@ -293,6 +293,4 @@ feature 'activity' do
     expect(page).to have_content("People still needed: 6")
     Timecop.return
   end
-
-
 end

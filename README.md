@@ -15,7 +15,7 @@ cd final_project
 bundle install
 bin/rake db:create
 bin/rake db:create RAILS_ENV=test
-bin/rake dib:migrate
+bin/rake db:migrate
 bin/rake db:seed
 bin/rails s
 ```
